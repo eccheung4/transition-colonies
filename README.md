@@ -1,47 +1,32 @@
-# colonyJS Hackathon Starter Project
+# localMarket
 
-This is a simple starter project for [colonyJS](https://github.com/JoinColony/colonyJS) that demonstrates how to get connected to the an instance of the Colony Network with colonyJS and how to create a Colony.
+This project is a submission for the [Colony Hackathon](https://colony.io/hackathon/).
+
+## Proposal
+
+[https://github.com/JoinColony/colonyHackathon/issues/98](https://github.com/JoinColony/colonyHackathon/issues/98)
 
 ## Prerequisites
-You must have `yarn`, `nodejs`, and `npm` installed to use this starter.
 
-This starter needs to run with node version >= 8.2.1 - you may find it helpful to use `nvm` to manage node versions. We recommend using node 9.5. 
+- Yarn 1.7
+- Node 9.5
 
-## Install
-Clone to your working directory of choice with:
+### Start Ganache
 ```
-~$ git clone https://github.com/JoinColony/hackathonStarter.git
-```
-
-Move to your new starter directory and install dependencies:
-```
-$ cd hackathonStarter/
-
-~/hackathonStarter$ yarn 
+yarn start-ganache
 ```
 
-## Get Started
-Note: This project contains pre-written scripts that perform the same steps shown in the [Get Started](https://joincolony.github.io/colonyjs/docs-get-started/) page of the colonyJS docs. Have a look at the full documentation to see what's happening under-the-hood!
-
-### Start a test blockchain
-In a new terminal window:
+### Deploy Contracts
 ```
-~/hackathonStarter$ yarn start-ganache
-```
-
-### Deploy the colonyNetwork to ganache
-```
-~/hackathonStarter$ yarn deploy-contracts
+yarn deploy-contracts
 ```
 
 ### Start TrufflePig
-In a new terminal window, `cd` to the hackathonStarter and start TrufflePig with
 ```
-~/hackathonStarter$ yarn start-trufflepig
+yarn start-trufflepig
 ```
 
-### Run example code
-The code example included in this starter will use colonyJS to create a new token, a new colony, and return the address of the Meta Colony on your running test blockchain.
+### Start Server
 ```
-~/hackathonStarter$ yarn start
+yarn start
 ```
