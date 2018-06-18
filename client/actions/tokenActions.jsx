@@ -1,6 +1,6 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
-import * as tokenActions from '../colony/tokenActions'
+import * as tokenActions from '../helpers/actions/tokenActions'
 
 // createToken
 

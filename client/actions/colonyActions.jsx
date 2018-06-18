@@ -1,6 +1,6 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
-import * as colonyActions from '../colony/colonyActions'
+import * as colonyActions from '../helpers/actions/colonyActions'
 
 // createColony
 
