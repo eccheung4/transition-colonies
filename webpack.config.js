@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   target: 'web',
   entry: {
-    main: path.join(__dirname, '/src/client/index.jsx'),
+    main: path.join(__dirname, '/client/index.jsx'),
   },
   output: {
     filename: 'index.min.js',
