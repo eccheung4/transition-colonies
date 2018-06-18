@@ -7,7 +7,9 @@
     "deploy-contracts": "cd src/lib/colonyNetwork && ./node_modules/.bin/truffle migrate --compile-all --reset",
     "start-ganache": "cd src/lib/colonyNetwork && ganache-cli -d --gasLimit 7000000 --acctKeys ganache-accounts.json",
     "start-trufflepig": "cd src/lib/colonyNetwork && trufflepig --ganacheKeyFile ganache-accounts.json",
+    "build": "webpack -p --config webpack/production.config.js",
     "start": "node src/index",
+    "watch": "webpack -w --config webpack/development.config.js",
     "test": "jest"
   },
   "contributors": [
