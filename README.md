@@ -1,4 +1,4 @@
-# localMarket
+# transition-market
 
 This project is a submission for the [Colony Hackathon](https://colony.io/hackathon/).
 
