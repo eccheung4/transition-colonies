@@ -10,7 +10,9 @@ class ViewTasksContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getTasks(this.props.colonyClient)
+    if (this.props.tasks === null) {
+      this.props.getTasks(this.props.colonyClient)      
+    }
   }
 
   render() {
