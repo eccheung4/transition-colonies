@@ -7,6 +7,14 @@ const initialState = {
   createTokenLoading: false,
   createTokenSuccess: false,
 
+  // getToken
+  getTokenError: null,
+  getTokenLoading: false,
+  getTokenSuccess: false,
+
+  // token
+  token: null,
+
   // tokenAddress
   tokenAddress: null,
 
@@ -38,6 +46,38 @@ const tokenReducer = (state = initialState, action) => {
         ...state,
         createTokenLoading: false,
         createTokenSuccess: true,
+      }
+
+    // getToken
+
+    case actions.GET_TOKEN:
+      return {
+        ...state,
+        getTokenError: null,
+        getTokenLoading: true,
+        getTokenSuccess: false,
+      }
+
+    case actions.GET_TOKEN_ERROR:
+      return {
+        ...state,
+        getTokenError: action.payload,
+        getTokenLoading: false,
+      }
+
+    case actions.GET_TOKEN_SUCCESS:
+      return {
+        ...state,
+        getTokenLoading: false,
+        getTokenSuccess: true,
+      }
+
+    // setStateToken
+
+    case actions.SET_STATE_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
       }
 
     // setStateTokenAddress

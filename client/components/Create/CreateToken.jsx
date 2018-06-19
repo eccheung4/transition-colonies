@@ -33,7 +33,7 @@ const CreateToken = ({
     }
     {tokenAddress &&
       <p className={styles.message}>
-        {'Address: ' + tokenAddress}
+        {'address: ' + tokenAddress}
       </p>
     }
   </div>

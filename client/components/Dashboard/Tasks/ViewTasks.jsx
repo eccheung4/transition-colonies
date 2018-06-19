@@ -9,7 +9,7 @@ const ViewTasks = ({ tasks }) => (
         <li key={task.id} className={styles.item}>
           <p>{'title: ' + task.specification.title}</p>
           <p>{'description: ' + task.specification.description}</p>
-          <p>{'domain id: ' + task.domainId}</p>
+          <p>{'domainId: ' + task.domainId}</p>
           <p>{'evaluator: ' + task.roles.evaluator.address}</p>
           <p>{'manager: ' + task.roles.manager.address}</p>
           <p>{'worker: ' + task.roles.worker.address}</p>

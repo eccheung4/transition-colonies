@@ -26,7 +26,7 @@ const CreateColony = ({
     }
     {colonyAddress &&
       <p className={styles.message}>
-        {'Address: ' + colonyAddress}
+        {'address: ' + colonyAddress}
       </p>
     }
   </div>

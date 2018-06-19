@@ -26,6 +26,37 @@ export const createTokenSuccess = (message) => ({
   payload: message,
 })
 
+// getToken
+
+export const getToken = (colonyClient) => ({
+  type: actions.GET_TOKEN,
+  payload: tokenActions.getToken(colonyClient)
+    .then(token => {
+      store.dispatch(setStateToken(token))
+      store.dispatch(getTokenSuccess())
+    })
+    .catch(error => {
+      store.dispatch(getTokenError(error.message))
+    }),
+})
+
+export const getTokenError = (message) => ({
+  type: actions.GET_TOKEN_ERROR,
+  payload: message,
+})
+
+export const getTokenSuccess = (message) => ({
+  type: actions.GET_TOKEN_SUCCESS,
+  payload: message,
+})
+
+// setStateToken
+
+export const setStateToken = (token) => ({
+  type: actions.SET_STATE_TOKEN,
+  payload: token,
+})
+
 // setStateTokenAddress
 
 export const setStateTokenAddress = (tokenAddress) => ({

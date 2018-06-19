@@ -10,3 +10,19 @@ export const createToken = async (networkClient, tokenName, tokenSymbol) => {
   return tokenAddress
 
 }
+
+// getToken
+
+export const getToken = async (colonyClient) => {
+
+  const address = colonyClient.token._contract.address
+
+  // const tokenInfo = await colonyClient.token.getTokenInfo.call()
+
+  const totalSupply = await colonyClient.token.getTotalSupply.call()
+
+  const amount = totalSupply.amount.toNumber()
+
+  return { address, amount }
+
+}
