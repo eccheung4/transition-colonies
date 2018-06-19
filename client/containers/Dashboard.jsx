@@ -22,6 +22,9 @@ class DashboardContainer extends Component {
   }
 
   render() {
+    if (this.props.colonyClient === null) {
+      return <div/>
+    }
     return <Dashboard />
   }
 

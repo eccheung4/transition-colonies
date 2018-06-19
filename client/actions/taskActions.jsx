@@ -50,9 +50,40 @@ export const getTaskSuccess = (message) => ({
   payload: message,
 })
 
+// getTasks
+
+export const getTasks = (colonyClient) => ({
+  type: actions.GET_TASKS,
+  payload: taskActions.getTasks(colonyClient)
+    .then(task => {
+      store.dispatch(setStateTasks(task))
+      store.dispatch(getTasksSuccess())
+    })
+    .catch(error => {
+      store.dispatch(getTasksError(error.message))
+    }),
+})
+
+export const getTasksError = (message) => ({
+  type: actions.GET_TASKS_ERROR,
+  payload: message,
+})
+
+export const getTasksSuccess = (message) => ({
+  type: actions.GET_TASKS_SUCCESS,
+  payload: message,
+})
+
 // setStateTask
 
 export const setStateTask = (task) => ({
   type: actions.SET_STATE_TASK,
   payload: task,
+})
+
+// setStateTasks
+
+export const setStateTasks = (tasks) => ({
+  type: actions.SET_STATE_TASKS,
+  payload: tasks,
 })

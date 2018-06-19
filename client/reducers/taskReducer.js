@@ -12,8 +12,16 @@ const initialState = {
   getTaskLoading: false,
   getTaskSuccess: false,
 
+  // getTasks
+  getTasksError: null,
+  getTasksLoading: false,
+  getTasksSuccess: false,
+
   // task
   task: null,
+
+  // tasks
+  tasks: null,
 
 }
 
@@ -69,12 +77,44 @@ const taskReducer = (state = initialState, action) => {
         getTaskSuccess: true,
       }
 
+    // getTasks
+
+    case actions.GET_TASKS:
+      return {
+        ...state,
+        getTasksError: null,
+        getTasksLoading: true,
+        getTasksSuccess: false,
+      }
+
+    case actions.GET_TASKS_ERROR:
+      return {
+        ...state,
+        getTasksError: action.payload,
+        getTasksLoading: false,
+      }
+
+    case actions.GET_TASKS_SUCCESS:
+      return {
+        ...state,
+        getTasksLoading: false,
+        getTasksSuccess: true,
+        }
+
     // setStateTask
 
     case actions.SET_STATE_TASK:
       return {
         ...state,
         task: action.payload,
+      }
+
+    // setStateTasks
+
+    case actions.SET_STATE_TASKS:
+      return {
+        ...state,
+        tasks: action.payload,
       }
 
     // default

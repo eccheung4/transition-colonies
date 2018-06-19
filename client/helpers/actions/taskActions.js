@@ -48,3 +48,35 @@ export const getTask = async (colonyClient, taskId) => {
   return { ...task, specification: { ...specification } }
 
 }
+
+// getTasks
+
+export const getTasks = async (colonyClient) => {
+
+  // get task count
+  const { count: taskCount } = await colonyClient.getTaskCount.call()
+
+  // set task id
+  let taskId = 1
+
+  // set tasks
+  let tasks = []
+
+  // get tasks
+  while (taskId <= taskCount) {
+
+    // get task
+    const task = await getTask(colonyClient, taskId)
+
+    // push task to tasks
+    tasks.push(task)
+
+    // increment task id
+    taskId++
+
+  }
+
+  // return tasks
+  return tasks
+
+}
