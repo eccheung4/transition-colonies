@@ -1,16 +1,23 @@
 import React from 'react'
-import CreateTask from '../containers/Dashboard/CreateTask'
-import ViewColony from '../containers/Dashboard/ViewColony'
-import ViewTask from '../containers/Dashboard/ViewTask'
-import ViewTasks from '../containers/Dashboard/ViewTasks'
+import { Route, Switch } from 'react-router-dom'
+import Colony from './Dashboard/Colony'
+import Menu from './Dashboard/Menu'
+import Home from './Dashboard/Home'
+import Tasks from './Dashboard/Tasks'
+import Token from './Dashboard/Token'
 import styles from './Dashboard.scss'
 
 const Dashboard = () => (
   <div className={styles.container}>
-    <ViewColony />
-    <CreateTask />
-    <ViewTask />
-    <ViewTasks />
+    <Menu />
+    <div className={styles.content}>
+      <Switch>
+        <Route exact path="/dashboard" component={Home} />
+        <Route exact path="/dashboard/colony" component={Colony} />
+        <Route exact path="/dashboard/tasks" component={Tasks} />
+        <Route exact path="/dashboard/token" component={Token} />
+      </Switch>
+    </div>
   </div>
 )
 

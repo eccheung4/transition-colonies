@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ViewColony from '../../components/Dashboard/ViewColony'
+import ViewColony from '../../../components/Dashboard/Colony/ViewColony'
 
 class ViewColonyContainer extends Component {
 

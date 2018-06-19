@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createTask } from '../../actions/taskActions'
-import CreateTask from '../../components/Dashboard/CreateTask'
+import { createTask } from '../../../actions/taskActions'
+import CreateTask from '../../../components/Dashboard/Tasks/CreateTask'
 
 class CreateTaskContainer extends Component {
 

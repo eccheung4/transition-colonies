@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTasks } from '../../actions/taskActions'
-import ViewTasks from '../../components/Dashboard/ViewTasks'
+import { getTasks } from '../../../actions/taskActions'
+import ViewTasks from '../../../components/Dashboard/Tasks/ViewTasks'
 
 class ViewTasksContainer extends Component {
 

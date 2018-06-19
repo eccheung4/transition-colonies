@@ -1,0 +1,21 @@
+.menu {
+  background: rgba(250, 250, 250, 0.9);
+  height: 100vh;
+  left: 0;
+  top: 0;
+  padding-top: 6rem; // header height
+  position: fixed;
+  width: 15vw;
+  z-index: 1;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 2rem;
+}
+
+.item {
+  display: block;
+  padding: 1rem;
+}
