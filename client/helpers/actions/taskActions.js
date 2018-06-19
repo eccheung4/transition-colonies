@@ -35,6 +35,15 @@ export const getTask = async (colonyClient, taskId) => {
   // get task
   const task = await colonyClient.getTask.call({ taskId })
 
+  // get evaluator
+  const evaluator = await colonyClient.getTaskRole.call({ taskId, role: 'EVALUATOR' })
+
+  // get manager
+  const manager = await colonyClient.getTaskRole.call({ taskId, role: 'MANAGER' })
+
+  // get worker
+  const worker = await colonyClient.getTaskRole.call({ taskId, role: 'WORKER' })
+
   // initialize extended colony protocol
   await ecp.init()
 
@@ -44,8 +53,18 @@ export const getTask = async (colonyClient, taskId) => {
   // stop extended colony protocol
   await ecp.stop()
 
-  // return task with appended specification
-  return { ...task, specification: { ...specification } }
+  // return task with appended properties
+  return {
+    ...task,
+    roles: {
+      evaluator,
+      manager,
+      worker,
+    },
+    specification: {
+      ...specification,
+    },
+  }
 
 }
 
