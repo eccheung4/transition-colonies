@@ -107,6 +107,10 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         task: action.payload,
+        tasks: [
+          ...state.tasks,
+          action.payload,
+        ],
       }
 
     // setStateTasks
