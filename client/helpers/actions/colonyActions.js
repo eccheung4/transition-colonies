@@ -12,16 +12,16 @@ export const createColony = async (networkClient, tokenAddress) => {
   const { localSkillId } = await colonyClient.getDomain.call({ domainId: 1 })
 
   // add business domain
-  const businessDomain = await colonyClient.addDomain.send({ parentSkillId: localSkillId })
+  await colonyClient.addDomain.send({ parentSkillId: localSkillId })
 
   // add education domain
-  const educationDomain = await colonyClient.addDomain.send({ parentSkillId: localSkillId })
+  await colonyClient.addDomain.send({ parentSkillId: localSkillId })
 
   // add service domain
-  const serviceDomain = await colonyClient.addDomain.send({ parentSkillId: localSkillId })
+  await colonyClient.addDomain.send({ parentSkillId: localSkillId })
 
-  // return colony address
-  return colonyAddress
+  // return colony client
+  return colonyClient
 
 }
 

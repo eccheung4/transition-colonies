@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { createColony } from '../../actions/colonyActions'
 import CreateColony from '../../components/Create/CreateColony'
 
@@ -12,6 +13,12 @@ class CreateColonyContainer extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.createColonySuccess) {
+      this.props.history.push('/dashboard')
+    }
   }
 
   handleChange(event) {
@@ -51,4 +58,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateColonyContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateColonyContainer))

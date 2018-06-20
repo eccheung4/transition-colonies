@@ -7,8 +7,8 @@ import * as colonyActions from '../helpers/actions/colonyActions'
 export const createColony = (networkClient, tokenAddress) => ({
   type: actions.CREATE_COLONY,
   payload: colonyActions.createColony(networkClient, tokenAddress)
-    .then(colonyAddress => {
-      store.dispatch(setStateColonyAddress(colonyAddress))
+    .then(colonyClient => {
+      store.dispatch(setStateColonyClient(colonyClient))
       store.dispatch(createColonySuccess())
     })
     .catch(error => {
@@ -96,13 +96,6 @@ export const getMetaColonyClientError = (message) => ({
 export const getMetaColonyClientSuccess = (message) => ({
   type: actions.GET_META_COLONY_CLIENT_SUCCESS,
   payload: message,
-})
-
-// setStateColonyAddress
-
-export const setStateColonyAddress = (colonyAddress) => ({
-  type: actions.SET_STATE_COLONY_ADDRESS,
-  payload: colonyAddress,
 })
 
 // setStateColonyClient

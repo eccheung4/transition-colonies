@@ -2,9 +2,6 @@ import * as actions from '../constants/actions'
 
 const initialState = {
 
-  // colonyAddress
-  colonyAddress: null,
-
   // colonyClient
   colonyClient: null,
 
@@ -131,14 +128,6 @@ const colonyReducer = (state = initialState, action) => {
         ...state,
         getMetaColonyClientLoading: false,
         getMetaColonyClientSuccess: true,
-      }
-
-    // setStateColonyAddress
-
-    case actions.SET_STATE_COLONY_ADDRESS:
-      return {
-        ...state,
-        colonyAddress: action.payload,
       }
 
     // setStateColonyClient
