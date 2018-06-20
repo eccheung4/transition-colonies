@@ -10,7 +10,7 @@ class CreateTaskContainer extends Component {
     this.state = {
       taskTitle: '',
       taskDescription: '',
-      taskDomainId: 0,
+      taskDomainId: 1,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)

@@ -169,7 +169,7 @@ const taskReducer = (state = initialState, action) => {
         return {
           ...state,
           task: action.payload,
-          tasks: tasks
+          tasks: [ ...tasks ]
         }
       } else {
         return {
