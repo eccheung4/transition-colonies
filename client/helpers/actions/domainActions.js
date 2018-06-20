@@ -35,6 +35,15 @@ export const getDomains = async (colonyClient) => {
         break
     }
 
+    // get pot balance for domain
+    const potBalance = await colonyClient.getPotBalance.call({
+      potId: domain.potId,
+      source: colonyClient.token._contract.address,
+    })
+
+    // append potBalance
+    domain.potBalance = potBalance
+
     // push domain to domains
     domains.push(domain)
 

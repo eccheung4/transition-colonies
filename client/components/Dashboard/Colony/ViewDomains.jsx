@@ -10,6 +10,7 @@ const ViewDomains = ({ domains }) => (
           <p>{'title: ' + domain.title}</p>
           <p>{'localSkillId: ' + domain.localSkillId}</p>
           <p>{'potId: ' + domain.potId}</p>
+          <p>{'potBalance: ' + domain.potBalance.balance.toNumber()}</p>
         </li>
       ))}
     </ul>
