@@ -8,6 +8,12 @@ export const createColony = async (networkClient, tokenAddress) => {
   // get colony client
   const colonyClient = await networkClient.getColonyClientByAddress(colonyAddress)
 
+  // set colony contract as token owner
+  await colonyClient.token.setOwner.send({ owner: colonyClient.contract.address })
+
+  // set colony owner as user role admin
+  await colonyClient.authority.setUserRole.send({ user: colonyClient.adapter.wallet.address, role: 'ADMIN' })
+
   // get local skill id from root domain
   const { localSkillId } = await colonyClient.getDomain.call({ domainId: 1 })
 
