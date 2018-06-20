@@ -2,6 +2,30 @@ import { store } from '../index'
 import * as actions from '../constants/actions'
 import * as taskActions from '../helpers/actions/taskActions'
 
+// cancelTask
+
+export const cancelTask = (colonyClient, taskId) => ({
+  type: actions.CANCEL_TASK,
+  payload: taskActions.cancelTask(colonyClient, taskId)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(cancelTaskSuccess())
+    })
+    .catch(error => {
+      store.dispatch(cancelTaskError(error.message))
+    }),
+})
+
+export const cancelTaskError = (message) => ({
+  type: actions.CANCEL_TASK_ERROR,
+  payload: message,
+})
+
+export const cancelTaskSuccess = (message) => ({
+  type: actions.CANCEL_TASK_SUCCESS,
+  payload: message,
+})
+
 // createTask
 
 export const createTask = (colonyClient, taskTitle, taskDescription, taskDomainId) => ({

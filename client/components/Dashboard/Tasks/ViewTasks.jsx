@@ -1,4 +1,5 @@
 import React from 'react'
+import Task from '../../../containers/Dashboard/Tasks/Task'
 import styles from './ViewTasks.scss'
 
 const ViewTasks = ({ tasks }) => (
@@ -7,12 +8,7 @@ const ViewTasks = ({ tasks }) => (
     <ul className={styles.list}>
       {tasks.map(task => (
         <li key={task.id} className={styles.item}>
-          <p>{'title: ' + task.specification.title}</p>
-          <p>{'description: ' + task.specification.description}</p>
-          <p>{'domainId: ' + task.domainId}</p>
-          <p>{'evaluator: ' + task.roles.evaluator.address}</p>
-          <p>{'manager: ' + task.roles.manager.address}</p>
-          <p>{'worker: ' + task.roles.worker.address}</p>
+          <Task task={task} />
         </li>
       ))}
     </ul>

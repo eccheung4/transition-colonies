@@ -11,7 +11,7 @@ class ViewTasksContainer extends Component {
 
   componentDidMount() {
     if (this.props.tasks === null) {
-      this.props.getTasks(this.props.colonyClient)      
+      this.props.getTasks(this.props.colonyClient)
     }
   }
 

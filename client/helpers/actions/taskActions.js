@@ -1,6 +1,18 @@
 // import extended colony protocol
 const ecp = require('../ecp')
 
+// cancelTask
+
+export const cancelTask = async (colonyClient, taskId) => {
+
+  // cancel task
+  await colonyClient.cancelTask.send({ taskId })
+
+  // return task id
+  return taskId
+
+}
+
 // createTask
 
 export const createTask = async (colonyClient, taskTitle, taskDescription, taskDomainId) => {

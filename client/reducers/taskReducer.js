@@ -2,6 +2,11 @@ import * as actions from '../constants/actions'
 
 const initialState = {
 
+  // cancelTask
+  cancelTaskError: null,
+  cancelTaskLoading: false,
+  cancelTaskSuccess: false,
+
   // createTask
   createTaskError: null,
   createTaskLoading: false,
@@ -28,6 +33,30 @@ const initialState = {
 const taskReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
+    // cancelTask
+
+    case actions.CANCEL_TASK:
+      return {
+        ...state,
+        cancelTaskError: null,
+        cancelTaskLoading: true,
+        cancelTaskSuccess: false,
+      }
+
+    case actions.CANCEL_TASK_ERROR:
+      return {
+        ...state,
+        cancelTaskError: action.payload,
+        cancelTaskLoading: false,
+      }
+
+    case actions.CANCEL_TASK_SUCCESS:
+      return {
+        ...state,
+        cancelTaskLoading: false,
+        cancelTaskSuccess: true,
+      }
 
     // createTask
 
@@ -104,13 +133,21 @@ const taskReducer = (state = initialState, action) => {
     // setStateTask
 
     case actions.SET_STATE_TASK:
-      return {
-        ...state,
-        task: action.payload,
-        tasks: [
-          ...state.tasks,
-          action.payload,
-        ],
+      let index = state.tasks.findIndex(task => task.id === action.payload.id)
+      let tasks = state.tasks
+      if (index >= 0) {
+        tasks[index] = action.payload
+        return {
+          ...state,
+          task: action.payload,
+          tasks: tasks
+        }
+      } else {
+        return {
+          ...state,
+          task: action.payload,
+          tasks: [ ...tasks, action.payload ],
+        }
       }
 
     // setStateTasks
