@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Colony from './Dashboard/Colony'
 import Menu from './Dashboard/Menu'
 import Home from './Dashboard/Home'
 import Tasks from './Dashboard/Tasks'
@@ -13,7 +12,6 @@ const Dashboard = () => (
     <div className={styles.content}>
       <Switch>
         <Route exact path="/dashboard" component={Home} />
-        <Route exact path="/dashboard/colony" component={Colony} />
         <Route exact path="/dashboard/tasks" component={Tasks} />
         <Route exact path="/dashboard/token" component={Token} />
       </Switch>
