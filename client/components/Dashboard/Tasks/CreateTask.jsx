@@ -22,12 +22,20 @@ const CreateTask = ({
       placeholder="task description"
       type="text"
     />
-    <input
-      id="taskDomainId"
-      onChange={handleChange}
-      placeholder="task domain id"
-      type="number"
-    />
+    <select id="taskDomainId" onChange={handleChange}>
+      <option value={1}>
+        {'Colony'}
+      </option>
+      <option value={2}>
+        {'Business'}
+      </option>
+      <option value={3}>
+        {'Education'}
+      </option>
+      <option value={4}>
+        {'Service'}
+      </option>
+    </select>
     <button onClick={handleClick}>
       {'Create Task'}
     </button>
