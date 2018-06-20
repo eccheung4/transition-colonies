@@ -1,6 +1,6 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
-import * as domainActions from '../helpers/actions/domainActions'
+import * as domainActions from '../../helpers/actions/domainActions'
 
 // getDomains
 

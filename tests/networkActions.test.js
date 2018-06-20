@@ -1,4 +1,4 @@
-const networkActions = require('../client/helpers/actions/networkActions')
+const networkActions = require('../helpers/actions/networkActions')
 
 // getNetworkClient
 

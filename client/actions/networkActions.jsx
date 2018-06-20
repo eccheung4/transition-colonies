@@ -1,6 +1,6 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
-import * as networkActions from '../helpers/actions/networkActions'
+import * as networkActions from '../../helpers/actions/networkActions'
 
 // getNetworkClient
 

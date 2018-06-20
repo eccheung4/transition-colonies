@@ -1,6 +1,6 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
-import * as taskActions from '../helpers/actions/taskActions'
+import * as taskActions from '../../helpers/actions/taskActions'
 
 // cancelTask
 
