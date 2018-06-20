@@ -13,6 +13,22 @@ export const cancelTask = async (colonyClient, taskId) => {
 
 }
 
+// claimTask
+
+export const claimTask = async (colonyClient, taskId) => {
+
+  // set current user as task role worker
+  await colonyClient.setTaskRoleUser.send({
+    taskId,
+    role: 'WORKER',
+    user: colonyClient.adapter.wallet.address,
+  })
+
+  // return task id
+  return taskId
+
+}
+
 // createTask
 
 export const createTask = async (colonyClient, taskTitle, taskDescription, taskDomainId) => {

@@ -6,6 +6,10 @@ const Task = ({
   cancelTaskError,
   cancelTaskLoading,
   cancelTaskSuccess,
+  claimTask,
+  claimTaskError,
+  claimTaskLoading,
+  claimTaskSuccess,
   task,
 }) => (
   <div>
@@ -23,6 +27,9 @@ const Task = ({
     <p>{'cancelled: ' + task.cancelled}</p>
     <button onClick={() => cancelTask(task.id)}>
       {'Cancel Task'}
+    </button>
+    <button onClick={() => claimTask(task.id)}>
+      {'Claim Task'}
     </button>
   </div>
 )

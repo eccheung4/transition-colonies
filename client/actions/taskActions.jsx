@@ -26,6 +26,30 @@ export const cancelTaskSuccess = (message) => ({
   payload: message,
 })
 
+// claimTask
+
+export const claimTask = (colonyClient, taskId) => ({
+  type: actions.CLAIM_TASK,
+  payload: taskActions.claimTask(colonyClient, taskId)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(claimTaskSuccess())
+    })
+    .catch(error => {
+      store.dispatch(claimTaskError(error.message))
+    }),
+})
+
+export const claimTaskError = (message) => ({
+  type: actions.CLAIM_TASK_ERROR,
+  payload: message,
+})
+
+export const claimTaskSuccess = (message) => ({
+  type: actions.CLAIM_TASK_SUCCESS,
+  payload: message,
+})
+
 // createTask
 
 export const createTask = (colonyClient, taskTitle, taskDescription, taskDomainId) => ({
