@@ -1,3 +1,5 @@
+import BN from 'bn.js'
+
 // createToken
 
 export const createToken = async (networkClient, tokenName, tokenSymbol) => {
@@ -29,7 +31,7 @@ export const getToken = async (colonyClient) => {
 
 export const mintTokens = async (colonyClient, amount) => {
 
-  const mintTokens = await colonyClient.mintTokens.send({ amount })
+  const mintTokens = await colonyClient.mintTokens.send({ amount: new BN(amount) })
 
   return mintTokens
 
