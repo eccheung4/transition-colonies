@@ -50,6 +50,30 @@ export const getTokenSuccess = (message) => ({
   payload: message,
 })
 
+// mintTokens
+
+export const mintTokens = (colonyClient, amount) => ({
+  type: actions.MINT_TOKENS,
+  payload: tokenActions.mintTokens(colonyClient, amount)
+    .then(token => {
+      store.dispatch(getToken(colonyClient))
+      store.dispatch(mintTokensSuccess())
+    })
+    .catch(error => {
+      store.dispatch(mintTokensError(error.message))
+    }),
+})
+
+export const mintTokensError = (message) => ({
+  type: actions.MINT_TOKENS_ERROR,
+  payload: message,
+})
+
+export const mintTokensSuccess = (message) => ({
+  type: actions.MINT_TOKENS_SUCCESS,
+  payload: message,
+})
+
 // setStateToken
 
 export const setStateToken = (token) => ({

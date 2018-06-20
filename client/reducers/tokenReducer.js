@@ -12,6 +12,11 @@ const initialState = {
   getTokenLoading: false,
   getTokenSuccess: false,
 
+  // mintTokens
+  mintTokensError: null,
+  mintTokensLoading: false,
+  mintTokensSuccess: false,
+
   // token
   token: null,
 
@@ -70,6 +75,30 @@ const tokenReducer = (state = initialState, action) => {
         ...state,
         getTokenLoading: false,
         getTokenSuccess: true,
+      }
+
+    // mintTokens
+
+    case actions.MINT_TOKENS:
+      return {
+        ...state,
+        mintTokensError: null,
+        mintTokensLoading: true,
+        mintTokensSuccess: false,
+      }
+
+    case actions.MINT_TOKENS_ERROR:
+      return {
+        ...state,
+        mintTokensError: action.payload,
+        mintTokensLoading: false,
+      }
+
+    case actions.MINT_TOKENS_SUCCESS:
+      return {
+        ...state,
+        mintTokensLoading: false,
+        mintTokensSuccess: true,
       }
 
     // setStateToken

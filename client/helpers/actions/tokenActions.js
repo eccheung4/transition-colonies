@@ -24,3 +24,13 @@ export const getToken = async (colonyClient) => {
   return { address, totalSupply, ...tokenInfo }
 
 }
+
+// mintTokens
+
+export const mintTokens = async (colonyClient, amount) => {
+
+  const mintTokens = await colonyClient.mintTokens.send({ amount })
+
+  return mintTokens
+
+}
