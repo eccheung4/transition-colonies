@@ -72,6 +72,12 @@ export const getTask = async (colonyClient, taskId) => {
   // get worker
   const worker = await colonyClient.getTaskRole.call({ taskId, role: 'WORKER' })
 
+  // get pot balance
+  const potBalance = await colonyClient.getPotBalance.call({
+    potId: task.potId,
+    source: colonyClient.token._contract.address,
+  })
+
   // initialize extended colony protocol
   await ecp.init()
 
@@ -84,6 +90,7 @@ export const getTask = async (colonyClient, taskId) => {
   // return task with appended properties
   return {
     ...task,
+    potBalance,
     roles: {
       evaluator,
       manager,

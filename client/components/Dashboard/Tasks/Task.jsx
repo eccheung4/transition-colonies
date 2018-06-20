@@ -20,6 +20,7 @@ const Task = ({
     <p>{'domainId: ' + task.domainId}</p>
     <p>{'skillId: ' + task.skillId}</p>
     <p>{'potId: ' + task.potId}</p>
+    <p>{'potBalance: ' + task.potBalance.balance.toNumber()}</p>
     <p>{'evaluator: ' + task.roles.evaluator.address}</p>
     <p>{'manager: ' + task.roles.manager.address}</p>
     <p>{'worker: ' + task.roles.worker.address}</p>
