@@ -11,6 +11,13 @@ This project is a submission for the [Colony Hackathon](https://colony.io/hackat
 - Yarn 1.7
 - Node 9.5
 
+## Development
+
+### Install
+```
+yarn
+```
+
 ### Start Ganache
 ```
 yarn start-ganache
@@ -29,4 +36,9 @@ yarn start-trufflepig
 ### Start Server
 ```
 yarn start
+```
+
+### Start Webpack
+```
+yarn watch
 ```
