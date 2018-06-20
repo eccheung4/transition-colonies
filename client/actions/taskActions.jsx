@@ -52,9 +52,9 @@ export const claimTaskSuccess = (message) => ({
 
 // createTask
 
-export const createTask = (colonyClient, taskTitle, taskDescription, taskDomainId) => ({
+export const createTask = (colonyClient, title, description, domainId, dueDate) => ({
   type: actions.CREATE_TASK,
-  payload: taskActions.createTask(colonyClient, taskTitle, taskDescription, taskDomainId)
+  payload: taskActions.createTask(colonyClient, title, description, domainId, dueDate)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
       store.dispatch(createTaskSuccess())
@@ -134,4 +134,28 @@ export const setStateTask = (task) => ({
 export const setStateTasks = (tasks) => ({
   type: actions.SET_STATE_TASKS,
   payload: tasks,
+})
+
+// setTaskDueDate
+
+export const setTaskDueDate = (colonyClient, taskId, dueDate) => ({
+  type: actions.SET_TASK_DUE_DATE,
+  payload: taskActions.setTaskDueDate(colonyClient, taskId, dueDate)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(setTaskDueDateSuccess())
+    })
+    .catch(error => {
+      store.dispatch(setTaskDueDateError(error.message))
+    }),
+})
+
+export const setTaskDueDateError = (message) => ({
+  type: actions.SET_TASK_DUE_DATE_ERROR,
+  payload: message,
+})
+
+export const setTaskDueDateSuccess = (message) => ({
+  type: actions.SET_TASK_DUE_DATE_SUCCESS,
+  payload: message,
 })

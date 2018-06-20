@@ -27,6 +27,11 @@ const initialState = {
   getTasksLoading: false,
   getTasksSuccess: false,
 
+  // setTaskDueDate
+  setTaskDueDateError: null,
+  setTaskDueDateLoading: false,
+  setTaskDueDateSuccess: false,
+
   // task
   task: null,
 
@@ -157,7 +162,7 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         getTasksLoading: false,
         getTasksSuccess: true,
-        }
+      }
 
     // setStateTask
 
@@ -185,6 +190,30 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: action.payload,
+      }
+
+    // setTastDueDate
+
+    case actions.SET_TASK_DUE_DATE:
+      return {
+        ...state,
+        getTasksError: null,
+        getTasksLoading: true,
+        getTasksSuccess: false,
+      }
+
+    case actions.SET_TASK_DUE_DATE_ERROR:
+      return {
+        ...state,
+        getTasksError: action.payload,
+        getTasksLoading: false,
+      }
+
+    case actions.SET_TASK_DUE_DATE_SUCCESS:
+      return {
+        ...state,
+        getTasksLoading: false,
+        getTasksSuccess: true,
       }
 
     // default

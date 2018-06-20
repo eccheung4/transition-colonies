@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { cancelTask, claimTask } from '../../../actions/taskActions'
+import { cancelTask, claimTask, setTaskDueDate } from '../../../actions/taskActions'
 import Task from '../../../components/Dashboard/Tasks/Task'
 
 class TaskContainer extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      dueDate: null,
+    }
     this.cancelTask = this.cancelTask.bind(this)
     this.claimTask = this.claimTask.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.setDueDate = this.setDueDate.bind(this)
   }
 
   cancelTask() {
@@ -17,6 +22,22 @@ class TaskContainer extends Component {
 
   claimTask() {
     this.props.claimTask(this.props.colonyClient, this.props.task.id)
+  }
+
+  setDueDate() {
+
+    console.log('setDueDate', this.state.dueDate)
+
+    if (this.state.dueDate !== null) {
+      this.props.setTaskDueDate(this.props.colonyClient, this.props.task.id, this.state.dueDate)
+    }
+  }
+
+  handleChange(event) {
+
+    console.log('handlChange', event.target.value)
+
+    this.setState({ dueDate: event.target.value })
   }
 
   render() {
@@ -30,6 +51,8 @@ class TaskContainer extends Component {
         claimTaskError={this.props.claimTaskError}
         claimTaskLoading={this.props.claimTaskLoading}
         claimTaskSuccess={this.props.claimTaskSuccess}
+        handleChange={this.handleChange}
+        setDueDate={this.setDueDate}
         task={this.props.task}
       />
     )
@@ -53,6 +76,9 @@ const mapDispatchToProps = dispatch => ({
   },
   claimTask(colonyClient, taskId) {
     dispatch(claimTask(colonyClient, taskId))
+  },
+  setTaskDueDate(colonyClient, taskId, dueDate) {
+    dispatch(setTaskDueDate(colonyClient, taskId, dueDate))
   },
 })
 

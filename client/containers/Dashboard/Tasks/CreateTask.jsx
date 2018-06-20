@@ -8,30 +8,34 @@ class CreateTaskContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      taskTitle: '',
-      taskDescription: '',
-      taskDomainId: 1,
+      title: '',
+      description: '',
+      domainId: 1,
+      dueDate: null,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleChange(event) {
-    if (event.target.id === 'taskTitle') {
-      this.setState({ taskTitle: event.target.value })
-    } else if (event.target.id === 'taskDescription') {
-      this.setState({ taskDescription: event.target.value })
-    } else if (event.target.id === 'taskDomainId') {
-      this.setState({ taskDomainId: Number(event.target.value) })
+    if (event.target.id === 'title') {
+      this.setState({ title: event.target.value })
+    } else if (event.target.id === 'description') {
+      this.setState({ description: event.target.value })
+    } else if (event.target.id === 'domainId') {
+      this.setState({ domainId: Number(event.target.value) })
+    } else if (event.target.id === 'dueDate') {
+      this.setState({ dueDate: event.target.value })
     }
   }
 
   handleClick() {
     this.props.createTask(
       this.props.colonyClient,
-      this.state.taskTitle,
-      this.state.taskDescription,
-      this.state.taskDomainId
+      this.state.title,
+      this.state.description,
+      this.state.domainId,
+      this.state.dueDate
     )
   }
 
@@ -53,15 +57,15 @@ class CreateTaskContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+  colonyClient: state.colony.colonyClient,
   createTaskError: state.task.createTaskError,
   createTaskLoading: state.task.createTaskLoading,
   createTaskSuccess: state.task.createTaskSuccess,
-  colonyClient: state.colony.colonyClient,
 })
 
 const mapDispatchToProps = dispatch => ({
-  createTask(colonyClient, taskTitle, taskDescription, taskDomainId) {
-    dispatch(createTask(colonyClient, taskTitle, taskDescription, taskDomainId))
+  createTask(colonyClient, title, description, domainId, dueDate) {
+    dispatch(createTask(colonyClient, title, description, domainId, dueDate))
   },
 })
 

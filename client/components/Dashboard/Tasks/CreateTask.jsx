@@ -11,18 +11,18 @@ const CreateTask = ({
   <div className={styles.container}>
     <h2>{'Create Task'}</h2>
     <input
-      id="taskTitle"
+      id="title"
       onChange={handleChange}
       placeholder="task title"
       type="text"
     />
     <input
-      id="taskDescription"
+      id="description"
       onChange={handleChange}
       placeholder="task description"
       type="text"
     />
-    <select id="taskDomainId" onChange={handleChange}>
+    <select id="domainId" onChange={handleChange}>
       <option value={1}>
         {'Colony'}
       </option>
@@ -36,6 +36,11 @@ const CreateTask = ({
         {'Service'}
       </option>
     </select>
+    <input
+      id="dueDate"
+      onChange={handleChange}
+      type="date"
+    />
     <button onClick={handleClick}>
       {'Create Task'}
     </button>

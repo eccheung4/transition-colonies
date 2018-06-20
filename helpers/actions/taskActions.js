@@ -31,25 +31,27 @@ export const claimTask = async (colonyClient, taskId) => {
 
 // createTask
 
-export const createTask = async (colonyClient, taskTitle, taskDescription, taskDomainId) => {
+export const createTask = async (colonyClient, title, description, domainId, dueDate) => {
 
   // initialize extended colony protocol
   await ecp.init()
 
   // create specification hash
-  const specificationHash = await ecp.saveTaskSpecification({
-    title: taskTitle,
-    description: taskDescription,
-  })
+  const specificationHash = await ecp.saveTaskSpecification({ title, description })
 
   // stop extended colony protocol
   await ecp.stop()
 
   // create task
-  const { eventData: { taskId }} = await colonyClient.createTask.send({
-    domainId: taskDomainId,
-    specificationHash,
-  })
+  const { eventData: { taskId }} = await colonyClient.createTask.send({ domainId, specificationHash })
+
+  // check due date
+  if (dueDate) {
+
+    // set task due date
+    await setTaskDueDate(colonyClient, taskId, dueDate)
+
+  }
 
   // return task id
   return taskId
@@ -132,5 +134,41 @@ export const getTasks = async (colonyClient) => {
 
   // return tasks
   return tasks
+
+}
+
+// setTaskDueDate
+
+export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {
+
+  // start task due date operation
+  const setDueDateOperation = await colonyClient.setTaskDueDate.startOperation({ taskId, dueDate: new Date(dueDate) })
+
+  // check required signees includes current user address
+  if (setDueDateOperation.requiredSignees.includes(colonyClient.adapter.wallet.address)) {
+
+    // sign task due date operation
+    await setDueDateOperation.sign()
+
+  }
+
+  // check for missing signees
+  if (setDueDateOperation.missingSignees.length === 0) {
+
+    // send task due date operation
+    await setDueDateOperation.send()
+
+  } else {
+
+    // convert task due date operation to json
+    const json = setDueDateOperation.toJSON()
+
+    // TODO store operation for task due date
+    console.log('setDueDateOperation', json)
+
+  }
+
+  // return task id
+  return taskId
 
 }
