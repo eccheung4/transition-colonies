@@ -10,6 +10,10 @@ const Task = ({
   claimTaskError,
   claimTaskLoading,
   claimTaskSuccess,
+  finalizeTask,
+  finalizeTaskError,
+  finalizeTaskLoading,
+  finalizeTaskSuccess,
   handleChange,
   setDueDate,
   setDueDateError,
@@ -47,6 +51,9 @@ const Task = ({
       </button>
       <button onClick={cancelTask}>
         {'Cancel Task'}
+      </button>
+      <button onClick={finalizeTask}>
+        {'Finalize Task'}
       </button>
     </div>
     <div>

@@ -14,6 +14,7 @@ class TaskContainer extends Component {
     }
     this.cancelTask = this.cancelTask.bind(this)
     this.claimTask = this.claimTask.bind(this)
+    this.finalizeTask = this.finalizeTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.setDueDate = this.setDueDate.bind(this)
     this.setRole = this.setRole.bind(this)
@@ -26,6 +27,10 @@ class TaskContainer extends Component {
 
   claimTask() {
     this.props.claimTask(this.props.colonyClient, this.props.task.id)
+  }
+
+  finalizeTask() {
+    this.props.finalizeTask(this.props.colonyClient, this.props.task.id)
   }
 
   setDueDate() {
@@ -65,6 +70,10 @@ class TaskContainer extends Component {
         claimTaskError={this.props.claimTaskError}
         claimTaskLoading={this.props.claimTaskLoading}
         claimTaskSuccess={this.props.claimTaskSuccess}
+        finalizeTask={this.finalizeTask}
+        finalizeTaskError={this.props.finalizeTaskError}
+        finalizeTaskLoading={this.props.finalizeTaskLoading}
+        finalizeTaskSuccess={this.props.finalizeTaskSuccess}
         handleChange={this.handleChange}
         setDueDate={this.setDueDate}
         setTaskDueDateError={this.props.setTaskDueDateError}
@@ -93,6 +102,9 @@ const mapStateToProps = state => ({
   claimTaskLoading: state.task.claimTaskLoading,
   claimTaskSuccess: state.task.claimTaskSuccess,
   colonyClient: state.colony.colonyClient,
+  finalizeTaskError: state.task.finalizeTaskError,
+  finalizeTaskLoading: state.task.finalizeTaskLoading,
+  finalizeTaskSuccess: state.task.finalizeTaskSuccess,
   setTaskDueDateError: state.task.setTaskDueDateError,
   setTaskDueDateLoading: state.task.setTaskDueDateLoading,
   setTaskDueDateSuccess: state.task.setTaskDueDateSuccess,
@@ -110,6 +122,9 @@ const mapDispatchToProps = dispatch => ({
   },
   claimTask(colonyClient, taskId) {
     dispatch(taskActions.claimTask(colonyClient, taskId))
+  },
+  finalizeTask(colonyClient, taskId) {
+    dispatch(taskActions.finalizeTask(colonyClient, taskId))
   },
   setTaskDueDate(colonyClient, taskId, dueDate) {
     dispatch(taskActions.setTaskDueDate(colonyClient, taskId, dueDate))

@@ -17,6 +17,11 @@ const initialState = {
   createTaskLoading: false,
   createTaskSuccess: false,
 
+  // finalizeTask
+  finalizeTaskError: null,
+  finalizeTaskLoading: false,
+  finalizeTaskSuccess: false,
+
   // getTask
   getTaskError: null,
   getTaskLoading: false,
@@ -124,6 +129,30 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         createTaskLoading: false,
         createTaskSuccess: true,
+      }
+
+    // finalizeTask
+
+    case actions.FINALIZE_TASK:
+      return {
+        ...state,
+        finalizeTaskError: null,
+        finalizeTaskLoading: true,
+        finalizeTaskSuccess: false,
+      }
+
+    case actions.FINALIZE_TASK_ERROR:
+      return {
+        ...state,
+        finalizeTaskError: action.payload,
+        finalizeTaskLoading: false,
+      }
+
+    case actions.FINALIZE_TASK_SUCCESS:
+      return {
+        ...state,
+        finalizeTaskLoading: false,
+        finalizeTaskSuccess: true,
       }
 
     // getTask

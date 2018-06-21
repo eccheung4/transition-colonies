@@ -58,6 +58,18 @@ export const createTask = async (colonyClient, title, description, domainId, due
 
 }
 
+// finalizeTask
+
+export const finalizeTask = async (colonyClient, taskId) => {
+
+  // finalize task
+  await colonyClient.finalizeTask.send({ taskId })
+
+  // return task id
+  return taskId
+
+}
+
 // getTask
 
 export const getTask = async (colonyClient, taskId) => {
