@@ -4,9 +4,9 @@ import * as networkActions from '../../helpers/actions/networkActions'
 
 // getNetworkClient
 
-export const getNetworkClient = () => ({
+export const getNetworkClient = (testAccountIndex) => ({
   type: actions.GET_NETWORK_CLIENT,
-  payload: networkActions.getNetworkClient()
+  payload: networkActions.getNetworkClient(testAccountIndex)
     .then(networkClient => {
       store.dispatch(setStateNetworkClient(networkClient))
       store.dispatch(getNetworkClientSuccess())

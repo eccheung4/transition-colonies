@@ -1,35 +1,33 @@
-// Import the prerequisites
+// import the prerequisites and colony client
 const { providers, Wallet } = require('ethers')
 const { default: EthersAdapter } = require('@colony/colony-js-adapter-ethers')
 const { TrufflepigLoader } = require('@colony/colony-js-contract-loader-http')
-
-// Import the ColonyNetworkClient
 const { default: ColonyNetworkClient } = require('@colony/colony-js-client')
 
-// Create an instance of the Trufflepig contract loader
+// create an instance of Trufflepig loader
 const loader = new TrufflepigLoader()
 
-// Create a provider for local TestRPC (Ganache)
+// create a provider for local TestRPC (Ganache)
 const provider = new providers.JsonRpcProvider('http://localhost:8545/')
 
 // getNetworkClient
 
-export const getNetworkClient = async () => {
+export const getNetworkClient = async (testAccountIndex) => {
 
-  // Get the private key from the first account from the ganache-accounts through trufflepig
-  const { privateKey } = await loader.getAccount(0)
+  // get the private key from selected account through trufflepig
+  const { privateKey } = await loader.getAccount(testAccountIndex || 0)
 
-  // Create a wallet with the private key (so we have a balance we can use)
+  // create a wallet with the private key
   const wallet = new Wallet(privateKey, provider)
 
-  // Create an adapter (powered by ethers)
+  // create an ethers powered adapter
   const adapter = new EthersAdapter({
     loader,
     provider,
     wallet,
   })
 
-  // Connect to ColonyNetwork with the adapter
+  // connect to ColonyNetwork with the adapter
   const networkClient = new ColonyNetworkClient({ adapter })
   await networkClient.init()
 

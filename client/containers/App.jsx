@@ -10,7 +10,8 @@ class AppContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getNetworkClient()
+    let testAccountIndex = prompt('test account index:', '0')
+    this.props.getNetworkClient(Number(testAccountIndex))
   }
 
   componentDidUpdate(prevProps) {
@@ -47,8 +48,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getNetworkClient() {
-    dispatch(getNetworkClient())
+  getNetworkClient(testAccountIndex) {
+    dispatch(getNetworkClient(testAccountIndex))
   },
 })
 
