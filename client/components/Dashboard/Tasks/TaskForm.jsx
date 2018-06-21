@@ -4,11 +4,11 @@ import styles from './TaskForm.scss'
 const TaskForm = ({ handleChange, task }) => (
   <div className={styles.container}>
     <div className={styles.field}>
-      <label htmlFor="title">
+      <label htmlFor="specification-title">
         {'title:'}
       </label>
       <input
-        id="title"
+        id="specification-title"
         onChange={handleChange}
         placeholder="task title"
         type="text"
@@ -16,11 +16,11 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
-      <label htmlFor="description">
+      <label htmlFor="specification-description">
         {'description:'}
       </label>
       <input
-        id="description"
+        id="specification-description"
         onChange={handleChange}
         placeholder="task description"
         type="text"
@@ -60,7 +60,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="dueDate">
-        {'dueDate:'}
+        {'due date:'}
       </label>
       <input
         id="dueDate"
@@ -70,11 +70,11 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
-      <label htmlFor="evaluator">
+      <label htmlFor="role-evaluator">
         {'evaluator:'}
       </label>
       <input
-        id="evaluator"
+        id="role-evaluator"
         onChange={handleChange}
         placeholder="user address"
         type="text"
@@ -82,11 +82,11 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
-      <label htmlFor="manager">
+      <label htmlFor="role-manager">
         {'manager:'}
       </label>
       <input
-        id="manager"
+        id="role-manager"
         onChange={handleChange}
         placeholder="user address"
         type="text"
@@ -94,15 +94,39 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
-      <label htmlFor="worker">
+      <label htmlFor="role-worker">
         {'worker:'}
       </label>
       <input
-        id="worker"
+        id="role-worker"
         onChange={handleChange}
         placeholder="user address"
         type="text"
         value={task.roles.worker}
+      />
+    </div>
+    <div className={styles.field}>
+      <label htmlFor="payout-evaluator">
+        {'evaluator payout:'}
+      </label>
+      <input
+        id="payout-evaluator"
+        onChange={handleChange}
+        placeholder="0"
+        type="number"
+        value={task.payouts.evaluator}
+      />
+    </div>
+    <div className={styles.field}>
+      <label htmlFor="payout-worker">
+        {'worker payout:'}
+      </label>
+      <input
+        id="payout-worker"
+        onChange={handleChange}
+        placeholder="0"
+        type="number"
+        value={task.payouts.worker}
       />
     </div>
   </div>

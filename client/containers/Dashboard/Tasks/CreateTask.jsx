@@ -11,6 +11,10 @@ class CreateTaskContainer extends Component {
       task: {
         domainId: 1,
         dueDate: '',
+        payouts: {
+          evaluator: 0,
+          worker: 0,
+        },
         roles: {
           evaluator: '',
           manager: '',
@@ -35,19 +39,26 @@ class CreateTaskContainer extends Component {
     // check event target id
     switch (event.target.id) {
 
+      // payouts
+
+      case 'payout-evaluator':
+      case 'payout-worker':
+        task.payouts[event.target.id.substring(7)] = event.target.value
+        break
+
       // roles
 
-      case 'evaluator':
-      case 'manager':
-      case 'worker':
-        task.roles[event.target.id] = event.target.value
+      case 'role-evaluator':
+      case 'role-manager':
+      case 'role-worker':
+        task.roles[event.target.id.substring(5)] = event.target.value
         break
 
       // specification
 
-      case 'description':
-      case 'title':
-        task.specification[event.target.id] = event.target.value
+      case 'specification-description':
+      case 'specification-title':
+        task.specification[event.target.id.substring(14)] = event.target.value
         break
 
       // default
@@ -69,6 +80,7 @@ class CreateTaskContainer extends Component {
     const task = {
       domainId: this.state.task.domainId,
       dueDate: this.state.task.dueDate,
+      payouts: this.state.task.payouts,
       roles: this.state.task.roles,
       skillId: this.state.task.skillId,
       specification: this.state.task.specification,

@@ -32,10 +32,12 @@ const Task = ({
       <p>{'domainId: ' + task.domainId}</p>
       <p>{'skillId: ' + task.skillId}</p>
       <p>{'potId: ' + task.potId}</p>
-      <p>{'potBalance: ' + task.potBalance.balance.toNumber()}</p>
+      <p>{'potBalance: ' + task.potBalance}</p>
       <p>{'evaluator: ' + task.roles.evaluator.address}</p>
       <p>{'manager: ' + task.roles.manager.address}</p>
       <p>{'worker: ' + task.roles.worker.address}</p>
+      <p>{'evaluatorPayout: ' + task.payouts.evaluator}</p>
+      <p>{'workerPayout: ' + task.payouts.worker}</p>
       <p>{'finalized: ' + task.finalized}</p>
       <p>{'cancelled: ' + task.cancelled}</p>
     </div>

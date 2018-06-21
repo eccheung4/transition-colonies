@@ -29,6 +29,10 @@ class EditTaskContainer extends Component {
       task: {
         domainId: task.domainId,
         dueDate: formatDate(task.dueDate),
+        payouts: {
+          evaluator: task.payouts.evaluator,
+          worker: task.payouts.worker,
+        },
         roles: {
           evaluator: task.roles.evaluator.address || '',
           manager: task.roles.manager.address || '',
@@ -51,19 +55,26 @@ class EditTaskContainer extends Component {
     // check event target id
     switch (event.target.id) {
 
+      // payouts
+
+      case 'payout-evaluator':
+      case 'payout-worker':
+        task.payouts[event.target.id.substring(7)] = event.target.value
+        break
+
       // roles
 
-      case 'evaluator':
-      case 'manager':
-      case 'worker':
-        task.roles[event.target.id] = event.target.value
+      case 'role-evaluator':
+      case 'role-manager':
+      case 'role-worker':
+        task.roles[event.target.id.substring(5)] = event.target.value
         break
 
       // specification
 
-      case 'description':
-      case 'title':
-        task.specification[event.target.id] = event.target.value
+      case 'specification-description':
+      case 'specification-title':
+        task.specification[event.target.id.substring(14)] = event.target.value
         break
 
       // default
@@ -86,7 +97,7 @@ class EditTaskContainer extends Component {
     const next = this.state.task
 
     // declare task parameters
-    let domainId, dueDate, roles = {}, skillId, specification
+    let domainId, dueDate, payouts = {}, roles = {}, skillId, specification
 
     // set domainId if domainId has changed
     if (prev.domainId !== next.domainId) {
@@ -96,6 +107,16 @@ class EditTaskContainer extends Component {
     // set dueDate if dueDate has changed
     if (prev.dueDate !== next.dueDate) {
       dueDate = next.dueDate
+    }
+
+    // set evaluator payout if evaluator payout has changed
+    if (prev.payouts.evaluator.address !== next.payouts.evaluator) {
+      payouts.evaluator = next.payouts.evaluator
+    }
+
+    // set worker payout if worker payout has changed
+    if (prev.payouts.worker.address !== next.payouts.worker) {
+      payouts.worker = next.payouts.worker
     }
 
     // set evaluator if evaluator has changed
@@ -131,6 +152,7 @@ class EditTaskContainer extends Component {
       domainId,
       dueDate,
       id: prev.id,
+      payouts,
       roles,
       skillId,
       specification,

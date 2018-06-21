@@ -1,5 +1,8 @@
+// import big number
+import BN from 'bn.js'
+
 // import extended protocol
-const ecp = require('../ecp')
+import ecp from '../ecp'
 
 // cancelTask
 
@@ -73,6 +76,22 @@ export const createTask = async (colonyClient, task) => {
 
   }
 
+  // check evaluator payout
+  if (task.payouts.evaluator) {
+
+    // set task evaluator payout
+    await setTaskEvaluatorPayout(colonyClient, taskId, task.payouts.evaluator)
+
+  }
+
+  // check worker payout
+  if (task.payouts.worker) {
+
+    // set task worker payout
+    await setTaskWorkerPayout(colonyClient, taskId, task.payouts.worker)
+
+  }
+
   // check evaluator
   if (task.roles.evaluator) {
 
@@ -136,6 +155,20 @@ export const getTask = async (colonyClient, taskId) => {
     source: colonyClient.token._contract.address,
   })
 
+  // get evaluator payout
+  const evaluatorPayout = await colonyClient.getTaskPayout.call({
+    taskId,
+    role: 'EVALUATOR',
+    source: colonyClient.token._contract.address,
+  })
+
+  // get worker payout
+  const workerPayout = await colonyClient.getTaskPayout.call({
+    taskId,
+    role: 'WORKER',
+    source: colonyClient.token._contract.address,
+  })
+
   // initialize extended protocol
   await ecp.init()
 
@@ -148,7 +181,11 @@ export const getTask = async (colonyClient, taskId) => {
   // return task
   return {
     ...task,
-    potBalance,
+    payouts: {
+      evaluator: evaluatorPayout.amount.toNumber(),
+      worker: workerPayout.amount.toNumber(),
+    },
+    potBalance: potBalance.balance.toNumber(),
     roles: {
       evaluator,
       manager,
@@ -190,6 +227,33 @@ export const getTasks = async (colonyClient) => {
 
   // return tasks
   return tasks
+
+}
+
+// setTaskBrief
+
+export const setTaskBrief = async (colonyClient, taskId, specification) => {
+
+  // initialize extended protocol
+  await ecp.init()
+
+  // create specification hash
+  const specificationHash = await ecp.saveTaskSpecification(specification)
+
+  // stop extended protocol
+  await ecp.stop()
+
+  // start set task brief operation
+  const setTaskBriefOperation = await colonyClient.setTaskBrief.startOperation({ taskId, specificationHash })
+
+  // serialize operation into JSON format
+  const setTaskBriefOperationJSON = setTaskBriefOperation.toJSON()
+
+  // sign task brief
+  await signTaskBrief(colonyClient, setTaskBriefOperationJSON)
+
+  // return id
+  return taskId
 
 }
 
@@ -241,6 +305,28 @@ export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {
 
 }
 
+// setTaskEvaluatorPayout
+
+export const setTaskEvaluatorPayout = async (colonyClient, taskId, amount) => {
+
+  // start set task evaluator payout operation
+  const setTaskEvaluatorPayout = await colonyClient.setTaskEvaluatorPayout.startOperation({
+    taskId,
+    source: colonyClient.token._contract.address,
+    amount: new BN(amount),
+  })
+
+  // serialize operation into JSON format
+  const setTaskEvaluatorPayoutJSON = setTaskEvaluatorPayout.toJSON()
+
+  // sign task evaluator payout
+  await signTaskEvaluatorPayout(colonyClient, setTaskEvaluatorPayoutJSON)
+
+  // return id
+  return taskId
+
+}
+
 // setTaskRole
 
 export const setTaskRole = async (colonyClient, taskId, role, user) => {
@@ -265,27 +351,22 @@ export const setTaskSkill = async (colonyClient, taskId, skillId) => {
 
 }
 
-// setTaskBrief
+// setTaskWorkerPayout
 
-export const setTaskBrief = async (colonyClient, taskId, specification) => {
+export const setTaskWorkerPayout = async (colonyClient, taskId, amount) => {
 
-  // initialize extended protocol
-  await ecp.init()
-
-  // create specification hash
-  const specificationHash = await ecp.saveTaskSpecification(specification)
-
-  // stop extended protocol
-  await ecp.stop()
-
-  // start set task brief operation
-  const setTaskBriefOperation = await colonyClient.setTaskBrief.startOperation({ taskId, specificationHash })
+  // start set task worker payout operation
+  const setTaskWorkerPayout = await colonyClient.setTaskWorkerPayout.startOperation({
+    taskId,
+    source: colonyClient.token._contract.address,
+    amount: new BN(amount),
+  })
 
   // serialize operation into JSON format
-  const setTaskBriefOperationJSON = setTaskBriefOperation.toJSON()
+  const setTaskWorkerPayoutJSON = setTaskWorkerPayout.toJSON()
 
-  // sign task brief
-  await signTaskBrief(colonyClient, setTaskBriefOperationJSON)
+  // sign task worker payout
+  await signTaskWorkerPayout(colonyClient, setTaskWorkerPayoutJSON)
 
   // return id
   return taskId
@@ -301,6 +382,12 @@ export const signTask = async (colonyClient, taskId) => {
 
   // get JSON formatted task due date operation from local storage
   const setTaskDueDateOperationJSON = localStorage.getItem('setTaskDueDateOperationJSON')
+
+  // get JSON formatted task evaluator payout operation from local storage
+  const setTaskEvaluatorPayoutOperationJSON = localStorage.getItem('setTaskEvaluatorPayoutOperationJSON')
+
+  // get JSON formatted task worker payout operation from local storage
+  const setTaskWorkerPayoutOperationJSON = localStorage.getItem('setTaskWorkerPayoutOperationJSON')
 
   // check if task brief operation exists
   if (setTaskBriefOperationJSON) {
@@ -329,6 +416,38 @@ export const signTask = async (colonyClient, taskId) => {
 
       // sign task due date
       await signTaskDueDate(colonyClient, setTaskDueDateOperationJSON)
+
+    }
+
+  }
+
+  // check if task evaluator payout operation exists
+  if (setTaskEvaluatorPayoutOperationJSON) {
+
+    // parse set task evaluator payout operation json
+    const setTaskEvaluatorPayoutOperation = JSON.parse(setTaskEvaluatorPayoutOperationJSON)
+
+    // check task id
+    if (setTaskEvaluatorPayoutOperation.payload.inputValues.taskId === taskId) {
+
+      // sign task evaluator payout
+      await signTaskEvaluatorPayout(colonyClient, setTaskEvaluatorPayoutOperationJSON)
+
+    }
+
+  }
+
+  // check if task worker payout operation exists
+  if (setTaskWorkerPayoutOperationJSON) {
+
+    // parse set task worker payout operation json
+    const setTaskWorkerPayoutOperation = JSON.parse(setTaskWorkerPayoutOperationJSON)
+
+    // check task id
+    if (setTaskWorkerPayoutOperation.payload.inputValues.taskId === taskId) {
+
+      // sign task worker payout
+      await signTaskWorkerPayout(colonyClient, setTaskWorkerPayoutOperationJSON)
 
     }
 
@@ -411,6 +530,78 @@ export const signTaskDueDate = async (colonyClient, operationJSON) => {
 
 }
 
+// signTaskEvaluatorPayout
+
+export const signTaskEvaluatorPayout = async (colonyClient, operationJSON) => {
+
+  // restore operation
+  const setTaskEvaluatorPayoutOperation = await colonyClient.setTaskEvaluatorPayout.restoreOperation(operationJSON)
+
+  // check if required signees includes current user address
+  if (setTaskEvaluatorPayoutOperation.requiredSignees.includes(colonyClient.adapter.wallet.address)) {
+
+    // sign set task evaluator payout operation
+    await setTaskEvaluatorPayoutOperation.sign()
+
+  }
+
+  // check for missing signees
+  if (setTaskEvaluatorPayoutOperation.missingSignees.length === 0) {
+
+    // send set task evaluator payout operation
+    await setTaskEvaluatorPayoutOperation.send()
+
+  } else {
+
+    // serialize operation into JSON format
+    const setTaskEvaluatorPayoutOperationJSON = setTaskEvaluatorPayoutOperation.toJSON()
+
+    // save operation to local storage
+    localStorage.setItem('setTaskEvaluatorPayoutOperationJSON', setTaskEvaluatorPayoutOperationJSON)
+
+  }
+
+  // return operation
+  return setTaskEvaluatorPayoutOperation
+
+}
+
+// signTaskWorkerPayout
+
+export const signTaskWorkerPayout = async (colonyClient, operationJSON) => {
+
+  // restore operation
+  const setTaskWorkerPayoutOperation = await colonyClient.setTaskWorkerPayout.restoreOperation(operationJSON)
+
+  // check if required signees includes current user address
+  if (setTaskWorkerPayoutOperation.requiredSignees.includes(colonyClient.adapter.wallet.address)) {
+
+    // sign set task worker payout operation
+    await setTaskWorkerPayoutOperation.sign()
+
+  }
+
+  // check for missing signees
+  if (setTaskWorkerPayoutOperation.missingSignees.length === 0) {
+
+    // send set task worker payout operation
+    await setTaskWorkerPayoutOperation.send()
+
+  } else {
+
+    // serialize operation into JSON format
+    const setTaskWorkerPayoutOperationJSON = setTaskWorkerPayoutOperation.toJSON()
+
+    // save operation to local storage
+    localStorage.setItem('setTaskWorkerPayoutOperationJSON', setTaskWorkerPayoutOperationJSON)
+
+  }
+
+  // return operation
+  return setTaskWorkerPayoutOperation
+
+}
+
 // updateTask
 
 export const updateTask = async (colonyClient, task) => {
@@ -437,6 +628,22 @@ export const updateTask = async (colonyClient, task) => {
 
     // set task due date
     await setTaskDueDate(colonyClient, taskId, dueDate)
+
+  }
+
+  // check evaluator payout
+  if (task.payouts.evaluator) {
+
+    // set task evaluator payout
+    await setTaskEvaluatorPayout(colonyClient, taskId, task.payouts.evaluator)
+
+  }
+
+  // check worker payout
+  if (task.payouts.worker) {
+
+    // set task worker payout
+    await setTaskWorkerPayout(colonyClient, taskId, task.payouts.worker)
 
   }
 
