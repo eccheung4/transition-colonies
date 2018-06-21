@@ -5,12 +5,17 @@
     padding: 1rem 0;
   }
 
-  input, select {
+}
+
+.section {
+  padding: 0.5rem 0;
+
+  label, input, select {
     margin-right: 0.5rem;
   }
 
 }
 
-.message {
-  padding: 1rem 0;
+.error {
+  color: red;
 }

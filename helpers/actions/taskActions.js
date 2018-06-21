@@ -31,7 +31,7 @@ export const claimTask = async (colonyClient, taskId) => {
 
 // createTask
 
-export const createTask = async (colonyClient, title, description, domainId, dueDate) => {
+export const createTask = async (colonyClient, title, description, domainId, dueDate, roles, skillId) => {
 
   // initialize extended colony protocol
   await ecp.init()
@@ -50,6 +50,40 @@ export const createTask = async (colonyClient, title, description, domainId, due
 
     // set task due date
     await setTaskDueDate(colonyClient, taskId, dueDate)
+
+  }
+
+  // check skill id
+  if (skillId) {
+
+    // set task due date
+    await setTaskSkill(colonyClient, taskId, skillId)
+
+  }
+
+  console.log('roles', roles)
+
+  // check evaluator
+  if (roles.evaluator) {
+
+    // set task role
+    await setTaskRole(colonyClient, taskId, 'EVALUATOR', roles.evaluator)
+
+  }
+
+  // check manager
+  if (roles.manager) {
+
+    // set task role
+    await setTaskRole(colonyClient, taskId, 'MANAGER', roles.manager)
+
+  }
+
+  // check worker
+  if (roles.worker) {
+
+    // set task role
+    await setTaskRole(colonyClient, taskId, 'WORKER', roles.worker)
 
   }
 
@@ -149,18 +183,6 @@ export const getTasks = async (colonyClient) => {
 
 }
 
-// setTaskRole
-
-export const setTaskRole = async (colonyClient, taskId, role, user) => {
-
-  // set task role
-  const setTaskRoleUser = await colonyClient.setTaskRoleUser.send({ taskId, role, user })
-
-  // return task id
-  return taskId
-
-}
-
 // setTaskDueDate
 
 export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {
@@ -193,6 +215,18 @@ export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {
     console.log('pendingOperation', pendingOperation)
 
   }
+
+  // return task id
+  return taskId
+
+}
+
+// setTaskRole
+
+export const setTaskRole = async (colonyClient, taskId, role, user) => {
+
+  // set task role
+  const setTaskRoleUser = await colonyClient.setTaskRoleUser.send({ taskId, role, user })
 
   // return task id
   return taskId

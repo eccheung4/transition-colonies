@@ -8,10 +8,16 @@ class CreateTaskContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
       description: '',
       domainId: 1,
       dueDate: null,
+      roles: {
+        evaluator: '',
+        manager: '',
+        worker: '',
+      },
+      skillId: 0,
+      title: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -26,6 +32,14 @@ class CreateTaskContainer extends Component {
       this.setState({ domainId: Number(event.target.value) })
     } else if (event.target.id === 'dueDate') {
       this.setState({ dueDate: event.target.value })
+    } else if (event.target.id === 'evaluator') {
+      this.setState({ roles: { ...this.state.roles, evaluator: event.target.value } })
+    } else if (event.target.id === 'manager') {
+      this.setState({ roles: { ...this.state.roles, manager: event.target.value } })
+    } else if (event.target.id === 'worker') {
+      this.setState({ roles: { ...this.state.roles, worker: event.target.value } })
+    } else if (event.target.id === 'skillId') {
+      this.setState({ skillId: Number(event.target.value) })
     }
   }
 
@@ -35,7 +49,9 @@ class CreateTaskContainer extends Component {
       this.state.title,
       this.state.description,
       this.state.domainId,
-      this.state.dueDate
+      this.state.dueDate,
+      this.state.roles,
+      this.state.skillId,
     )
   }
 
@@ -64,8 +80,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createTask(colonyClient, title, description, domainId, dueDate) {
-    dispatch(createTask(colonyClient, title, description, domainId, dueDate))
+  createTask(colonyClient, title, description, domainId, dueDate, roles, skillId) {
+    dispatch(createTask(colonyClient, title, description, domainId, dueDate, roles, skillId))
   },
 })
 

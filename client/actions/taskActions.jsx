@@ -52,9 +52,9 @@ export const claimTaskSuccess = (message) => ({
 
 // createTask
 
-export const createTask = (colonyClient, title, description, domainId, dueDate) => ({
+export const createTask = (colonyClient, title, description, domainId, dueDate, roles, skillId) => ({
   type: actions.CREATE_TASK,
-  payload: taskActions.createTask(colonyClient, title, description, domainId, dueDate)
+  payload: taskActions.createTask(colonyClient, title, description, domainId, dueDate, roles, skillId)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
       store.dispatch(createTaskSuccess())
