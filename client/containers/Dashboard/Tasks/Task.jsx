@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import * as taskActions from '../../../actions/taskActions'
 import Task from '../../../components/Dashboard/Tasks/Task'
 
@@ -7,20 +8,11 @@ class TaskContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      dueDate: null,
-      role: 'EVALUATOR',
-      skill: 0,
-      user: '0x0'
-    }
     this.cancelTask = this.cancelTask.bind(this)
     this.claimTask = this.claimTask.bind(this)
+    this.editTask = this.editTask.bind(this)
     this.finalizeTask = this.finalizeTask.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.setDueDate = this.setDueDate.bind(this)
-    this.setRole = this.setRole.bind(this)
-    this.setSkill = this.setSkill.bind(this)
-    this.signDueDate = this.signDueDate.bind(this)
+    this.signTask = this.signTask.bind(this)
   }
 
   cancelTask() {
@@ -31,42 +23,16 @@ class TaskContainer extends Component {
     this.props.claimTask(this.props.colonyClient, this.props.task.id)
   }
 
+  editTask() {
+    this.props.history.push(`/dashboard/tasks/edit/${this.props.task.id}`)
+  }
+
   finalizeTask() {
     this.props.finalizeTask(this.props.colonyClient, this.props.task.id)
   }
 
-  setDueDate() {
-    if (this.state.dueDate !== null) {
-      this.props.setTaskDueDate(this.props.colonyClient, this.props.task.id, this.state.dueDate)
-    }
-  }
-
-  setRole() {
-    if (this.state.user !== '0x0') {
-      this.props.setTaskRole(this.props.colonyClient, this.props.task.id, this.state.role, this.state.user)
-    }
-  }
-
-  setSkill() {
-    if (this.state.user !== 0) {
-      this.props.setTaskSkill(this.props.colonyClient, this.props.task.id, this.state.skill)
-    }
-  }
-
-  signDueDate() {
-    this.props.signTaskDueDate(this.props.colonyClient, this.props.task.id)
-  }
-
-  handleChange(event) {
-    if (event.target.id === 'dueDate') {
-      this.setState({ dueDate: event.target.value })
-    } else if (event.target.id === 'role') {
-      this.setState({ role: event.target.value })
-    } else if (event.target.id === 'skill') {
-      this.setState({ skill: Number(event.target.value) })
-    } else if (event.target.id === 'user') {
-      this.setState({ user: event.target.value })
-    }
+  signTask() {
+    this.props.signTask(this.props.colonyClient, this.props.task.id)
   }
 
   render() {
@@ -80,27 +46,15 @@ class TaskContainer extends Component {
         claimTaskError={this.props.claimTaskError}
         claimTaskLoading={this.props.claimTaskLoading}
         claimTaskSuccess={this.props.claimTaskSuccess}
+        editTask={this.editTask}
         finalizeTask={this.finalizeTask}
         finalizeTaskError={this.props.finalizeTaskError}
         finalizeTaskLoading={this.props.finalizeTaskLoading}
         finalizeTaskSuccess={this.props.finalizeTaskSuccess}
-        handleChange={this.handleChange}
-        setDueDate={this.setDueDate}
-        setTaskDueDateError={this.props.setTaskDueDateError}
-        setTaskDueDateLoading={this.props.setTaskDueDateLoading}
-        setTaskDueDateSuccess={this.props.setTaskDueDateSuccess}
-        setRole={this.setRole}
-        setTaskRoleError={this.props.setTaskRoleError}
-        setTaskRoleLoading={this.props.setTaskRoleLoading}
-        setTaskRoleSuccess={this.props.setTaskRoleSuccess}
-        setSkill={this.setSkill}
-        setTaskSkillError={this.props.setTaskSkillError}
-        setTaskSkillLoading={this.props.setTaskSkillLoading}
-        setTaskSkillSuccess={this.props.setTaskSkillSuccess}
-        signDueDate={this.signDueDate}
-        signTaskDueDateError={this.props.signTaskDueDateError}
-        signTaskDueDateLoading={this.props.signTaskDueDateLoading}
-        signTaskDueDateSuccess={this.props.signTaskDueDateSuccess}
+        signTask={this.signTask}
+        signTaskError={this.props.signTaskError}
+        signTaskLoading={this.props.signTaskLoading}
+        signTaskSuccess={this.props.signTaskSuccess}
         task={this.props.task}
       />
     )
@@ -119,15 +73,9 @@ const mapStateToProps = state => ({
   finalizeTaskError: state.task.finalizeTaskError,
   finalizeTaskLoading: state.task.finalizeTaskLoading,
   finalizeTaskSuccess: state.task.finalizeTaskSuccess,
-  setTaskDueDateError: state.task.setTaskDueDateError,
-  setTaskDueDateLoading: state.task.setTaskDueDateLoading,
-  setTaskDueDateSuccess: state.task.setTaskDueDateSuccess,
-  setTaskRoleError: state.task.setTaskRoleError,
-  setTaskRoleLoading: state.task.setTaskRoleLoading,
-  setTaskRoleSuccess: state.task.setTaskRoleSuccess,
-  signTaskDueDateError: state.task.signTaskDueDateError,
-  signTaskDueDateLoading: state.task.signTaskDueDateLoading,
-  signTaskDueDateSuccess: state.task.signTaskDueDateSuccess,
+  signTaskError: state.task.signTaskTaskError,
+  signTaskLoading: state.task.signTaskTaskLoading,
+  signTaskSuccess: state.task.signTaskTaskSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -140,18 +88,9 @@ const mapDispatchToProps = dispatch => ({
   finalizeTask(colonyClient, taskId) {
     dispatch(taskActions.finalizeTask(colonyClient, taskId))
   },
-  setTaskDueDate(colonyClient, taskId, dueDate) {
-    dispatch(taskActions.setTaskDueDate(colonyClient, taskId, dueDate))
-  },
-  setTaskRole(colonyClient, taskId, role, user) {
-    dispatch(taskActions.setTaskRole(colonyClient, taskId, role, user))
-  },
-  setTaskSkill(colonyClient, taskId, skillId) {
-    dispatch(taskActions.setTaskSkill(colonyClient, taskId, skillId))
-  },
-  signTaskDueDate(colonyClient, taskId) {
-    dispatch(taskActions.signTaskDueDate(colonyClient, taskId))
+  signTask(colonyClient, taskId) {
+    dispatch(taskActions.signTask(colonyClient, taskId))
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TaskContainer))

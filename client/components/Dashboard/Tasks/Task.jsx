@@ -1,4 +1,5 @@
 import React from 'react'
+import EditTask from '../../../containers/Dashboard/Tasks/EditTask'
 import styles from './Task.scss'
 
 const Task = ({
@@ -10,27 +11,16 @@ const Task = ({
   claimTaskError,
   claimTaskLoading,
   claimTaskSuccess,
+  editTask,
   finalizeTask,
   finalizeTaskError,
   finalizeTaskLoading,
   finalizeTaskSuccess,
   handleChange,
-  setDueDate,
-  setDueDateError,
-  setDueDateLoading,
-  setDueDateSuccess,
-  setRole,
-  setRoleError,
-  setRoleLoading,
-  setRoleSuccess,
-  setSkill,
-  setSkillError,
-  setSkillLoading,
-  setSkillSuccess,
-  signDueDate,
-  signDueDateError,
-  signDueDateLoading,
-  signDueDateSuccess,
+  signTask,
+  signTaskError,
+  signTaskLoading,
+  signTaskSuccess,
   task,
 }) => (
   <div className={styles.container}>
@@ -53,56 +43,17 @@ const Task = ({
       <button onClick={claimTask}>
         {'Claim Task'}
       </button>
-      <button onClick={cancelTask}>
-        {'Cancel Task'}
+      <button onClick={editTask}>
+        {'Edit Task'}
+      </button>
+      <button onClick={signTask}>
+        {'Sign Task'}
       </button>
       <button onClick={finalizeTask}>
         {'Finalize Task'}
       </button>
-    </div>
-    <div>
-      <input
-        id="dueDate"
-        onChange={handleChange}
-        type="date"
-      />
-      <button onClick={setDueDate}>
-        {'Set Due Date'}
-      </button>
-      <button onClick={signDueDate}>
-        {'Sign Due Date'}
-      </button>
-    </div>
-    <div>
-      <input
-        id="skill"
-        onChange={handleChange}
-        type="number"
-      />
-      <button onClick={setSkill}>
-        {'Set Skill'}
-      </button>
-    </div>
-    <div>
-      <select id="role" onChange={handleChange}>
-        <option value={'EVALUATOR'}>
-          {'Evaluator'}
-        </option>
-        <option value={'MANAGER'}>
-          {'Manager'}
-        </option>
-        <option value={'WORKER'}>
-          {'Worker'}
-        </option>
-      </select>
-      <input
-        id="user"
-        onChange={handleChange}
-        placeholder="user address"
-        type="text"
-      />
-      <button onClick={setRole}>
-        {'Set Role'}
+      <button onClick={cancelTask}>
+        {'Cancel Task'}
       </button>
     </div>
   </div>

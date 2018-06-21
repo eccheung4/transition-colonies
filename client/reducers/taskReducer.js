@@ -32,25 +32,10 @@ const initialState = {
   getTasksLoading: false,
   getTasksSuccess: false,
 
-  // setTaskDueDate
-  setTaskDueDateError: null,
-  setTaskDueDateLoading: false,
-  setTaskDueDateSuccess: false,
-
-  // setTaskRole
-  setTaskRoleError: null,
-  setTaskRoleLoading: false,
-  setTaskRoleSuccess: false,
-
-  // setTaskSkill
-  setTaskSkillError: null,
-  setTaskSkillLoading: false,
-  setTaskSkillSuccess: false,
-
-  // signTaskDueDate
-  signTaskDueDateError: null,
-  signTaskDueDateLoading: false,
-  signTaskDueDateSuccess: false,
+  // signTask
+  signTaskError: null,
+  signTaskLoading: false,
+  signTaskSuccess: false,
 
   // task
   task: null,
@@ -236,100 +221,28 @@ const taskReducer = (state = initialState, action) => {
         tasks: action.payload,
       }
 
-    // setTastDueDate
+    // signTask
 
-    case actions.SET_TASK_DUE_DATE:
+    case actions.SIGN_TASK:
       return {
         ...state,
-        setTastDueDateError: null,
-        setTastDueDateLoading: true,
-        setTastDueDateSuccess: false,
+        signTaskError: null,
+        signTaskLoading: true,
+        signTaskSuccess: false,
       }
 
-    case actions.SET_TASK_DUE_DATE_ERROR:
+    case actions.SIGN_TASK_ERROR:
       return {
         ...state,
-        setTastDueDateError: action.payload,
-        setTastDueDateLoading: false,
+        signTaskError: action.payload,
+        signTaskLoading: false,
       }
 
-    case actions.SET_TASK_DUE_DATE_SUCCESS:
+    case actions.SIGN_TASK_SUCCESS:
       return {
         ...state,
-        setTastDueDateLoading: false,
-        setTastDueDateSuccess: true,
-      }
-
-    // setTaskRole
-
-    case actions.SET_TASK_ROLE:
-      return {
-        ...state,
-        setTaskRoleError: null,
-        setTaskRoleLoading: true,
-        setTaskRoleSuccess: false,
-      }
-
-    case actions.SET_TASK_ROLE_ERROR:
-      return {
-        ...state,
-        setTaskRoleError: action.payload,
-        setTaskRoleLoading: false,
-      }
-
-    case actions.SET_TASK_ROLE_SUCCESS:
-      return {
-        ...state,
-        setTaskRoleLoading: false,
-        setTaskRoleSuccess: true,
-      }
-
-    // setTaskSkill
-
-    case actions.SET_TASK_SKILL:
-      return {
-        ...state,
-        setTaskSkillError: null,
-        setTaskSkillLoading: true,
-        setTaskSkillSuccess: false,
-      }
-
-    case actions.SET_TASK_SKILL_ERROR:
-      return {
-        ...state,
-        setTaskSkillError: action.payload,
-        setTaskSkillLoading: false,
-      }
-
-    case actions.SET_TASK_SKILL_SUCCESS:
-      return {
-        ...state,
-        setTaskSkillLoading: false,
-        setTaskSkillSuccess: true,
-      }
-
-    // signTaskDueDate
-
-    case actions.SIGN_TASK_DUE_DATE:
-      return {
-        ...state,
-        signTaskDueDateError: null,
-        signTaskDueDateLoading: true,
-        signTaskDueDateSuccess: false,
-      }
-
-    case actions.SIGN_TASK_DUE_DATE_ERROR:
-      return {
-        ...state,
-        signTaskDueDateError: action.payload,
-        signTaskDueDateLoading: false,
-      }
-
-    case actions.SIGN_TASK_DUE_DATE_SUCCESS:
-      return {
-        ...state,
-        signTaskDueDateLoading: false,
-        signTaskDueDateSuccess: true,
+        signTaskLoading: false,
+        signTaskSuccess: true,
       }
 
     // default

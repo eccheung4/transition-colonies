@@ -52,9 +52,9 @@ export const claimTaskSuccess = (message) => ({
 
 // createTask
 
-export const createTask = (colonyClient, title, description, domainId, dueDate, roles, skillId) => ({
+export const createTask = (colonyClient, task) => ({
   type: actions.CREATE_TASK,
-  payload: taskActions.createTask(colonyClient, title, description, domainId, dueDate, roles, skillId)
+  payload: taskActions.createTask(colonyClient, task)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
       store.dispatch(createTaskSuccess())
@@ -160,98 +160,50 @@ export const setStateTasks = (tasks) => ({
   payload: tasks,
 })
 
-// setTaskDueDate
+// signTask
 
-export const setTaskDueDate = (colonyClient, taskId, dueDate) => ({
-  type: actions.SET_TASK_DUE_DATE,
-  payload: taskActions.setTaskDueDate(colonyClient, taskId, dueDate)
+export const signTask = (colonyClient, taskId) => ({
+  type: actions.SIGN_TASK,
+  payload: taskActions.signTask(colonyClient, taskId)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
-      store.dispatch(setTaskDueDateSuccess())
+      store.dispatch(signTaskSuccess())
     })
     .catch(error => {
-      store.dispatch(setTaskDueDateError(error.message))
+      store.dispatch(signTaskError(error.message))
     }),
 })
 
-export const setTaskDueDateError = (message) => ({
-  type: actions.SET_TASK_DUE_DATE_ERROR,
+export const signTaskError = (message) => ({
+  type: actions.SIGN_TASK_ERROR,
   payload: message,
 })
 
-export const setTaskDueDateSuccess = (message) => ({
-  type: actions.SET_TASK_DUE_DATE_SUCCESS,
+export const signTaskSuccess = (message) => ({
+  type: actions.SIGN_TASK_SUCCESS,
   payload: message,
 })
 
-// setTaskSkill
+// updateTask
 
-export const setTaskSkill = (colonyClient, taskId, skillId) => ({
-  type: actions.SET_TASK_SKILL,
-  payload: taskActions.setTaskSkill(colonyClient, taskId, skillId)
+export const updateTask = (colonyClient, task) => ({
+  type: actions.UPDATE_TASK,
+  payload: taskActions.updateTask(colonyClient, task)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
-      store.dispatch(setTaskSkillSuccess())
+      store.dispatch(updateTaskSuccess())
     })
     .catch(error => {
-      store.dispatch(setTaskSkillError(error.message))
+      store.dispatch(updateTaskError(error.message))
     }),
 })
 
-export const setTaskSkillError = (message) => ({
-  type: actions.SET_TASK_SKILL_ERROR,
+export const updateTaskError = (message) => ({
+  type: actions.UPDATE_TASK_ERROR,
   payload: message,
 })
 
-export const setTaskSkillSuccess = (message) => ({
-  type: actions.SET_TASK_SKILL_SUCCESS,
-  payload: message,
-})
-
-// setTaskRole
-
-export const setTaskRole = (colonyClient, taskId, role, user) => ({
-  type: actions.SET_TASK_ROLE,
-  payload: taskActions.setTaskRole(colonyClient, taskId, role, user)
-    .then(taskId => {
-      store.dispatch(getTask(colonyClient, taskId))
-      store.dispatch(setTaskRoleSuccess())
-    })
-    .catch(error => {
-      store.dispatch(setTaskRoleError(error.message))
-    }),
-})
-
-export const setTaskRoleError = (message) => ({
-  type: actions.SET_TASK_ROLE_ERROR,
-  payload: message,
-})
-
-export const setTaskRoleSuccess = (message) => ({
-  type: actions.SET_TASK_ROLE_SUCCESS,
-  payload: message,
-})
-
-// signTaskDueDate
-
-export const signTaskDueDate = (colonyClient, taskId) => ({
-  type: actions.SIGN_TASK_DUE_DATE,
-  payload: taskActions.signTaskDueDate(colonyClient, taskId)
-    .then(taskId => {
-      store.dispatch(getTask(colonyClient, taskId))
-      store.dispatch(signTaskDueDateSuccess())
-    })
-    .catch(error => {
-      store.dispatch(signTaskDueDateError(error.message))
-    }),
-})
-
-export const signTaskDueDateError = (message) => ({
-  type: actions.SIGN_TASK_DUE_DATE_ERROR,
-  payload: message,
-})
-
-export const signTaskDueDateSuccess = (message) => ({
-  type: actions.SIGN_TASK_DUE_DATE_SUCCESS,
+export const updateTaskSuccess = (message) => ({
+  type: actions.UPDATE_TASK_SUCCESS,
   payload: message,
 })

@@ -1,36 +1,34 @@
 import React from 'react'
 import TaskForm from './TaskForm'
-import ViewTask from '../../../containers/Dashboard/Tasks/ViewTask'
-import styles from './CreateTask.scss'
+import styles from './EditTask.scss'
 
-const CreateTask = ({
-  createTaskError,
-  createTaskLoading,
-  createTaskSuccess,
+const EditTask = ({
   handleChange,
   handleClick,
   task,
+  updateTaskError,
+  updateTaskLoading,
+  updateTaskSuccess,
 }) => (
   <div className={styles.container}>
-    <h2>{'Create Task'}</h2>
+    <h2>{'Edit Task'}</h2>
     <TaskForm
       handleChange={handleChange}
       task={task}
     />
     <div className={styles.buttons}>
       <button onClick={handleClick}>
-        {'Create Task'}
+        {'Update Task'}
       </button>
     </div>
-    {createTaskError &&
+    {updateTaskError &&
       <div className={styles.message}>
         <span className={styles.error}>
-          {createTaskError}
+          {updateTaskError}
         </span>
       </div>
     }
-    <ViewTask />
   </div>
 )
 
-export default CreateTask
+export default EditTask

@@ -8,57 +8,78 @@ class CreateTaskContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      description: '',
-      domainId: 1,
-      dueDate: null,
-      roles: {
-        evaluator: '',
-        manager: '',
-        worker: '',
+      task: {
+        domainId: 1,
+        dueDate: '',
+        roles: {
+          evaluator: '',
+          manager: '',
+          worker: '',
+        },
+        skillId: 0,
+        specification: {
+          description: '',
+          title: '',
+        },
       },
-      skillId: 0,
-      title: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleChange(event) {
-    if (event.target.id === 'title') {
-      this.setState({ title: event.target.value })
-    } else if (event.target.id === 'description') {
-      this.setState({ description: event.target.value })
-    } else if (event.target.id === 'domainId') {
-      this.setState({ domainId: Number(event.target.value) })
-    } else if (event.target.id === 'dueDate') {
-      this.setState({ dueDate: event.target.value })
-    } else if (event.target.id === 'evaluator') {
-      this.setState({ roles: { ...this.state.roles, evaluator: event.target.value } })
-    } else if (event.target.id === 'manager') {
-      this.setState({ roles: { ...this.state.roles, manager: event.target.value } })
-    } else if (event.target.id === 'worker') {
-      this.setState({ roles: { ...this.state.roles, worker: event.target.value } })
-    } else if (event.target.id === 'skillId') {
-      this.setState({ skillId: Number(event.target.value) })
+
+    // set task
+    let task = this.state.task
+
+    // check event target id
+    switch (event.target.id) {
+
+      // roles
+
+      case 'evaluator':
+      case 'manager':
+      case 'worker':
+        task.roles[event.target.id] = event.target.value
+        break
+
+      // specification
+
+      case 'description':
+      case 'title':
+        task.specification[event.target.id] = event.target.value
+        break
+
+      // default
+
+      default:
+        task[event.target.id] = event.target.value
+        break
+
     }
+
+    // set state
+    this.setState({ task })
+
   }
 
   handleClick() {
-    this.props.createTask(
-      this.props.colonyClient,
-      this.state.title,
-      this.state.description,
-      this.state.domainId,
-      this.state.dueDate,
-      this.state.roles,
-      this.state.skillId,
-    )
+
+    // set task
+    const task = {
+      domainId: this.state.task.domainId,
+      dueDate: this.state.task.dueDate,
+      roles: this.state.task.roles,
+      skillId: this.state.task.skillId,
+      specification: this.state.task.specification,
+    }
+
+    // create task
+    this.props.createTask(this.props.colonyClient, task)
+
   }
 
   render() {
-    if (this.props.colonyClient === null) {
-      return <div />
-    }
     return (
       <CreateTask
         createTaskError={this.props.createTaskError}
@@ -66,6 +87,7 @@ class CreateTaskContainer extends Component {
         createTaskSuccess={this.props.createTaskSuccess}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
+        task={this.state.task}
       />
     )
   }
@@ -80,8 +102,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createTask(colonyClient, title, description, domainId, dueDate, roles, skillId) {
-    dispatch(createTask(colonyClient, title, description, domainId, dueDate, roles, skillId))
+  createTask(colonyClient, task) {
+    dispatch(createTask(colonyClient, task))
   },
 })
 

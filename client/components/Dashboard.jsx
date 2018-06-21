@@ -12,7 +12,7 @@ const Dashboard = () => (
     <div className={styles.content}>
       <Switch>
         <Route exact path="/dashboard" component={Home} />
-        <Route exact path="/dashboard/tasks" component={Tasks} />
+        <Route path="/dashboard/tasks" component={Tasks} />
         <Route exact path="/dashboard/token" component={Token} />
       </Switch>
     </div>
