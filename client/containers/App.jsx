@@ -13,6 +13,12 @@ class AppContainer extends Component {
     this.props.getNetworkClient()
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      scroll(0,0)
+    }
+  }
+
   render() {
     if (this.props.getNetworkClientError) {
       return (
