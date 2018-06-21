@@ -23,6 +23,10 @@ const Task = ({
   setRoleError,
   setRoleLoading,
   setRoleSuccess,
+  setSkill,
+  setSkillError,
+  setSkillLoading,
+  setSkillSuccess,
   signDueDate,
   signDueDateError,
   signDueDateLoading,
@@ -67,6 +71,16 @@ const Task = ({
       </button>
       <button onClick={signDueDate}>
         {'Sign Due Date'}
+      </button>
+    </div>
+    <div>
+      <input
+        id="skill"
+        onChange={handleChange}
+        type="number"
+      />
+      <button onClick={setSkill}>
+        {'Set Skill'}
       </button>
     </div>
     <div>

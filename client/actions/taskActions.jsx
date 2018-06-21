@@ -184,6 +184,30 @@ export const setTaskDueDateSuccess = (message) => ({
   payload: message,
 })
 
+// setTaskSkill
+
+export const setTaskSkill = (colonyClient, taskId, skillId) => ({
+  type: actions.SET_TASK_SKILL,
+  payload: taskActions.setTaskSkill(colonyClient, taskId, skillId)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(setTaskSkillSuccess())
+    })
+    .catch(error => {
+      store.dispatch(setTaskSkillError(error.message))
+    }),
+})
+
+export const setTaskSkillError = (message) => ({
+  type: actions.SET_TASK_SKILL_ERROR,
+  payload: message,
+})
+
+export const setTaskSkillSuccess = (message) => ({
+  type: actions.SET_TASK_SKILL_SUCCESS,
+  payload: message,
+})
+
 // setTaskRole
 
 export const setTaskRole = (colonyClient, taskId, role, user) => ({

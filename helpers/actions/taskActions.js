@@ -199,6 +199,18 @@ export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {
 
 }
 
+// setTaskSkill
+
+export const setTaskSkill = async (colonyClient, taskId, skillId) => {
+
+  // set task role
+  const setTaskRoleUser = await colonyClient.setTaskSkill.send({ taskId, skillId })
+
+  // return task id
+  return taskId
+
+}
+
 // signTaskDueDate
 
 export const signTaskDueDate = async (colonyClient, taskId, operation) => {

@@ -10,6 +10,7 @@ class TaskContainer extends Component {
     this.state = {
       dueDate: null,
       role: 'EVALUATOR',
+      skill: 0,
       user: '0x0'
     }
     this.cancelTask = this.cancelTask.bind(this)
@@ -18,6 +19,7 @@ class TaskContainer extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.setDueDate = this.setDueDate.bind(this)
     this.setRole = this.setRole.bind(this)
+    this.setSkill = this.setSkill.bind(this)
     this.signDueDate = this.signDueDate.bind(this)
   }
 
@@ -45,6 +47,12 @@ class TaskContainer extends Component {
     }
   }
 
+  setSkill() {
+    if (this.state.user !== 0) {
+      this.props.setTaskSkill(this.props.colonyClient, this.props.task.id, this.state.skill)
+    }
+  }
+
   signDueDate() {
     this.props.signTaskDueDate(this.props.colonyClient, this.props.task.id)
   }
@@ -54,6 +62,8 @@ class TaskContainer extends Component {
       this.setState({ dueDate: event.target.value })
     } else if (event.target.id === 'role') {
       this.setState({ role: event.target.value })
+    } else if (event.target.id === 'skill') {
+      this.setState({ skill: Number(event.target.value) })
     } else if (event.target.id === 'user') {
       this.setState({ user: event.target.value })
     }
@@ -83,6 +93,10 @@ class TaskContainer extends Component {
         setTaskRoleError={this.props.setTaskRoleError}
         setTaskRoleLoading={this.props.setTaskRoleLoading}
         setTaskRoleSuccess={this.props.setTaskRoleSuccess}
+        setSkill={this.setSkill}
+        setTaskSkillError={this.props.setTaskSkillError}
+        setTaskSkillLoading={this.props.setTaskSkillLoading}
+        setTaskSkillSuccess={this.props.setTaskSkillSuccess}
         signDueDate={this.signDueDate}
         signTaskDueDateError={this.props.signTaskDueDateError}
         signTaskDueDateLoading={this.props.signTaskDueDateLoading}
@@ -131,6 +145,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setTaskRole(colonyClient, taskId, role, user) {
     dispatch(taskActions.setTaskRole(colonyClient, taskId, role, user))
+  },
+  setTaskSkill(colonyClient, taskId, skillId) {
+    dispatch(taskActions.setTaskSkill(colonyClient, taskId, skillId))
   },
   signTaskDueDate(colonyClient, taskId) {
     dispatch(taskActions.signTaskDueDate(colonyClient, taskId))
