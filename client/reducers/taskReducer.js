@@ -32,6 +32,11 @@ const initialState = {
   setTaskDueDateLoading: false,
   setTaskDueDateSuccess: false,
 
+  // signTaskDueDate
+  signTaskDueDateError: null,
+  signTaskDueDateLoading: false,
+  signTaskDueDateSuccess: false,
+
   // task
   task: null,
 
@@ -197,23 +202,47 @@ const taskReducer = (state = initialState, action) => {
     case actions.SET_TASK_DUE_DATE:
       return {
         ...state,
-        getTasksError: null,
-        getTasksLoading: true,
-        getTasksSuccess: false,
+        setTastDueDateError: null,
+        setTastDueDateLoading: true,
+        setTastDueDateSuccess: false,
       }
 
     case actions.SET_TASK_DUE_DATE_ERROR:
       return {
         ...state,
-        getTasksError: action.payload,
-        getTasksLoading: false,
+        setTastDueDateError: action.payload,
+        setTastDueDateLoading: false,
       }
 
     case actions.SET_TASK_DUE_DATE_SUCCESS:
       return {
         ...state,
-        getTasksLoading: false,
-        getTasksSuccess: true,
+        setTastDueDateLoading: false,
+        setTastDueDateSuccess: true,
+      }
+
+    // signTaskDueDate
+
+    case actions.SIGN_TASK_DUE_DATE:
+      return {
+        ...state,
+        signTaskDueDateError: null,
+        signTaskDueDateLoading: true,
+        signTaskDueDateSuccess: false,
+      }
+
+    case actions.SIGN_TASK_DUE_DATE_ERROR:
+      return {
+        ...state,
+        signTaskDueDateError: action.payload,
+        signTaskDueDateLoading: false,
+      }
+
+    case actions.SIGN_TASK_DUE_DATE_SUCCESS:
+      return {
+        ...state,
+        signTaskDueDateLoading: false,
+        signTaskDueDateSuccess: true,
       }
 
     // default

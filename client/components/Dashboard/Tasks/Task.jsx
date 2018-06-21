@@ -12,6 +12,13 @@ const Task = ({
   claimTaskSuccess,
   handleChange,
   setDueDate,
+  setDueDateError,
+  setDueDateLoading,
+  setDueDateSuccess,
+  signDueDate,
+  signDueDateError,
+  signDueDateLoading,
+  signDueDateSuccess,
   task,
 }) => (
   <div className={styles.container}>
@@ -45,7 +52,10 @@ const Task = ({
         type="date"
       />
       <button onClick={setDueDate}>
-        {'Set Task Due Date'}
+        {'Set Due Date'}
+      </button>
+      <button onClick={signDueDate}>
+        {'Sign Due Date'}
       </button>
     </div>
   </div>

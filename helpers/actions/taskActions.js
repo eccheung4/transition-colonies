@@ -161,10 +161,53 @@ export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {
   } else {
 
     // convert task due date operation to json
-    const json = setDueDateOperation.toJSON()
+    const pendingOperation = setDueDateOperation.toJSON()
 
-    // TODO store operation for task due date
-    console.log('setDueDateOperation', json)
+    // TODO update temporary solution
+    localStorage.setItem('pendingOperation', pendingOperation)
+
+    console.log('pendingOperation', pendingOperation)
+
+  }
+
+  // return task id
+  return taskId
+
+}
+
+// signTaskDueDate
+
+export const signTaskDueDate = async (colonyClient, taskId, operation) => {
+
+  // TODO update temporary solution
+  const pendingOperation = localStorage.getItem('pendingOperation')
+
+  // restore operation
+  const setDueDateOperation = await colonyClient.setTaskDueDate.restoreOperation(pendingOperation)
+
+  // check required signees includes current user address
+  if (setDueDateOperation.requiredSignees.includes(colonyClient.adapter.wallet.address)) {
+
+    // sign task due date operation
+    await setDueDateOperation.sign()
+
+  }
+
+  // check for missing signees
+  if (setDueDateOperation.missingSignees.length === 0) {
+
+    // send task due date operation
+    await setDueDateOperation.send()
+
+  } else {
+
+    // convert task due date operation to json
+    const pendingOperation = setDueDateOperation.toJSON()
+
+    // TODO update temporary solution
+    localStorage.setItem('pendingOperation', pendingOperation)
+
+    console.log('pendingOperation', pendingOperation)
 
   }
 

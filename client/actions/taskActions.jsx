@@ -159,3 +159,27 @@ export const setTaskDueDateSuccess = (message) => ({
   type: actions.SET_TASK_DUE_DATE_SUCCESS,
   payload: message,
 })
+
+// signTaskDueDate
+
+export const signTaskDueDate = (colonyClient, taskId) => ({
+  type: actions.SIGN_TASK_DUE_DATE,
+  payload: taskActions.signTaskDueDate(colonyClient, taskId)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(signTaskDueDateSuccess())
+    })
+    .catch(error => {
+      store.dispatch(signTaskDueDateError(error.message))
+    }),
+})
+
+export const signTaskDueDateError = (message) => ({
+  type: actions.SIGN_TASK_DUE_DATE_ERROR,
+  payload: message,
+})
+
+export const signTaskDueDateSuccess = (message) => ({
+  type: actions.SIGN_TASK_DUE_DATE_SUCCESS,
+  payload: message,
+})

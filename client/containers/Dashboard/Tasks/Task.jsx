@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { cancelTask, claimTask, setTaskDueDate } from '../../../actions/taskActions'
+import * as taskActions from '../../../actions/taskActions'
 import Task from '../../../components/Dashboard/Tasks/Task'
 
 class TaskContainer extends Component {
@@ -14,6 +14,7 @@ class TaskContainer extends Component {
     this.claimTask = this.claimTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.setDueDate = this.setDueDate.bind(this)
+    this.signDueDate = this.signDueDate.bind(this)
   }
 
   cancelTask() {
@@ -25,18 +26,16 @@ class TaskContainer extends Component {
   }
 
   setDueDate() {
-
-    console.log('setDueDate', this.state.dueDate)
-
     if (this.state.dueDate !== null) {
       this.props.setTaskDueDate(this.props.colonyClient, this.props.task.id, this.state.dueDate)
     }
   }
 
+  signDueDate() {
+    this.props.signTaskDueDate(this.props.colonyClient, this.props.task.id)
+  }
+
   handleChange(event) {
-
-    console.log('handlChange', event.target.value)
-
     this.setState({ dueDate: event.target.value })
   }
 
@@ -53,6 +52,13 @@ class TaskContainer extends Component {
         claimTaskSuccess={this.props.claimTaskSuccess}
         handleChange={this.handleChange}
         setDueDate={this.setDueDate}
+        setTaskDueDateError={this.props.setTaskDueDateError}
+        setTaskDueDateLoading={this.props.setTaskDueDateLoading}
+        setTaskDueDateSuccess={this.props.setTaskDueDateSuccess}
+        signDueDate={this.signDueDate}
+        signTaskDueDateError={this.props.signTaskDueDateError}
+        signTaskDueDateLoading={this.props.signTaskDueDateLoading}
+        signTaskDueDateSuccess={this.props.signTaskDueDateSuccess}
         task={this.props.task}
       />
     )
@@ -68,17 +74,26 @@ const mapStateToProps = state => ({
   claimTaskLoading: state.task.claimTaskLoading,
   claimTaskSuccess: state.task.claimTaskSuccess,
   colonyClient: state.colony.colonyClient,
+  setTaskDueDateError: state.task.setTaskDueDateError,
+  setTaskDueDateLoading: state.task.setTaskDueDateLoading,
+  setTaskDueDateSuccess: state.task.setTaskDueDateSuccess,
+  signTaskDueDateError: state.task.signTaskDueDateError,
+  signTaskDueDateLoading: state.task.signTaskDueDateLoading,
+  signTaskDueDateSuccess: state.task.signTaskDueDateSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({
   cancelTask(colonyClient, taskId) {
-    dispatch(cancelTask(colonyClient, taskId))
+    dispatch(taskActions.cancelTask(colonyClient, taskId))
   },
   claimTask(colonyClient, taskId) {
-    dispatch(claimTask(colonyClient, taskId))
+    dispatch(taskActions.claimTask(colonyClient, taskId))
   },
   setTaskDueDate(colonyClient, taskId, dueDate) {
-    dispatch(setTaskDueDate(colonyClient, taskId, dueDate))
+    dispatch(taskActions.setTaskDueDate(colonyClient, taskId, dueDate))
+  },
+  signTaskDueDate(colonyClient, taskId) {
+    dispatch(taskActions.signTaskDueDate(colonyClient, taskId))
   },
 })
 
