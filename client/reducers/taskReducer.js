@@ -32,6 +32,11 @@ const initialState = {
   setTaskDueDateLoading: false,
   setTaskDueDateSuccess: false,
 
+  // setTaskRole
+  setTaskRoleError: null,
+  setTaskRoleLoading: false,
+  setTaskRoleSuccess: false,
+
   // signTaskDueDate
   signTaskDueDateError: null,
   signTaskDueDateLoading: false,
@@ -219,6 +224,30 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         setTastDueDateLoading: false,
         setTastDueDateSuccess: true,
+      }
+
+    // setTaskRole
+
+    case actions.SET_TASK_ROLE:
+      return {
+        ...state,
+        setTaskRoleError: null,
+        setTaskRoleLoading: true,
+        setTaskRoleSuccess: false,
+      }
+
+    case actions.SET_TASK_ROLE_ERROR:
+      return {
+        ...state,
+        setTaskRoleError: action.payload,
+        setTaskRoleLoading: false,
+      }
+
+    case actions.SET_TASK_ROLE_SUCCESS:
+      return {
+        ...state,
+        setTaskRoleLoading: false,
+        setTaskRoleSuccess: true,
       }
 
     // signTaskDueDate

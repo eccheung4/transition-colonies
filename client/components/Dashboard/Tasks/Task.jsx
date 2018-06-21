@@ -15,6 +15,10 @@ const Task = ({
   setDueDateError,
   setDueDateLoading,
   setDueDateSuccess,
+  setRole,
+  setRoleError,
+  setRoleLoading,
+  setRoleSuccess,
   signDueDate,
   signDueDateError,
   signDueDateLoading,
@@ -56,6 +60,28 @@ const Task = ({
       </button>
       <button onClick={signDueDate}>
         {'Sign Due Date'}
+      </button>
+    </div>
+    <div>
+      <select id="role" onChange={handleChange}>
+        <option value={'EVALUATOR'}>
+          {'Evaluator'}
+        </option>
+        <option value={'MANAGER'}>
+          {'Manager'}
+        </option>
+        <option value={'WORKER'}>
+          {'Worker'}
+        </option>
+      </select>
+      <input
+        id="user"
+        onChange={handleChange}
+        placeholder="user address"
+        type="text"
+      />
+      <button onClick={setRole}>
+        {'Set Role'}
       </button>
     </div>
   </div>

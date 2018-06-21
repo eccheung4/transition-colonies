@@ -160,6 +160,30 @@ export const setTaskDueDateSuccess = (message) => ({
   payload: message,
 })
 
+// setTaskRole
+
+export const setTaskRole = (colonyClient, taskId, role, user) => ({
+  type: actions.SET_TASK_ROLE,
+  payload: taskActions.setTaskRole(colonyClient, taskId, role, user)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(setTaskRoleSuccess())
+    })
+    .catch(error => {
+      store.dispatch(setTaskRoleError(error.message))
+    }),
+})
+
+export const setTaskRoleError = (message) => ({
+  type: actions.SET_TASK_ROLE_ERROR,
+  payload: message,
+})
+
+export const setTaskRoleSuccess = (message) => ({
+  type: actions.SET_TASK_ROLE_SUCCESS,
+  payload: message,
+})
+
 // signTaskDueDate
 
 export const signTaskDueDate = (colonyClient, taskId) => ({

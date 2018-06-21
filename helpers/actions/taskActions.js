@@ -137,6 +137,18 @@ export const getTasks = async (colonyClient) => {
 
 }
 
+// setTaskRole
+
+export const setTaskRole = async (colonyClient, taskId, role, user) => {
+
+  // set task role
+  const setTaskRoleUser = await colonyClient.setTaskRoleUser.send({ taskId, role, user })
+
+  // return task id
+  return taskId
+
+}
+
 // setTaskDueDate
 
 export const setTaskDueDate = async (colonyClient, taskId, dueDate) => {

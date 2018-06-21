@@ -9,11 +9,14 @@ class TaskContainer extends Component {
     super(props)
     this.state = {
       dueDate: null,
+      role: 'EVALUATOR',
+      user: '0x0'
     }
     this.cancelTask = this.cancelTask.bind(this)
     this.claimTask = this.claimTask.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.setDueDate = this.setDueDate.bind(this)
+    this.setRole = this.setRole.bind(this)
     this.signDueDate = this.signDueDate.bind(this)
   }
 
@@ -31,12 +34,24 @@ class TaskContainer extends Component {
     }
   }
 
+  setRole() {
+    if (this.state.user !== '0x0') {
+      this.props.setTaskRole(this.props.colonyClient, this.props.task.id, this.state.role, this.state.user)
+    }
+  }
+
   signDueDate() {
     this.props.signTaskDueDate(this.props.colonyClient, this.props.task.id)
   }
 
   handleChange(event) {
-    this.setState({ dueDate: event.target.value })
+    if (event.target.id === 'dueDate') {
+      this.setState({ dueDate: event.target.value })
+    } else if (event.target.id === 'role') {
+      this.setState({ role: event.target.value })
+    } else if (event.target.id === 'user') {
+      this.setState({ user: event.target.value })
+    }
   }
 
   render() {
@@ -55,6 +70,10 @@ class TaskContainer extends Component {
         setTaskDueDateError={this.props.setTaskDueDateError}
         setTaskDueDateLoading={this.props.setTaskDueDateLoading}
         setTaskDueDateSuccess={this.props.setTaskDueDateSuccess}
+        setRole={this.setRole}
+        setTaskRoleError={this.props.setTaskRoleError}
+        setTaskRoleLoading={this.props.setTaskRoleLoading}
+        setTaskRoleSuccess={this.props.setTaskRoleSuccess}
         signDueDate={this.signDueDate}
         signTaskDueDateError={this.props.signTaskDueDateError}
         signTaskDueDateLoading={this.props.signTaskDueDateLoading}
@@ -77,6 +96,9 @@ const mapStateToProps = state => ({
   setTaskDueDateError: state.task.setTaskDueDateError,
   setTaskDueDateLoading: state.task.setTaskDueDateLoading,
   setTaskDueDateSuccess: state.task.setTaskDueDateSuccess,
+  setTaskRoleError: state.task.setTaskRoleError,
+  setTaskRoleLoading: state.task.setTaskRoleLoading,
+  setTaskRoleSuccess: state.task.setTaskRoleSuccess,
   signTaskDueDateError: state.task.signTaskDueDateError,
   signTaskDueDateLoading: state.task.signTaskDueDateLoading,
   signTaskDueDateSuccess: state.task.signTaskDueDateSuccess,
@@ -91,6 +113,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setTaskDueDate(colonyClient, taskId, dueDate) {
     dispatch(taskActions.setTaskDueDate(colonyClient, taskId, dueDate))
+  },
+  setTaskRole(colonyClient, taskId, role, user) {
+    dispatch(taskActions.setTaskRole(colonyClient, taskId, role, user))
   },
   signTaskDueDate(colonyClient, taskId) {
     dispatch(taskActions.signTaskDueDate(colonyClient, taskId))
