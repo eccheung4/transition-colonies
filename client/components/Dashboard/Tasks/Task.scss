@@ -1,12 +1,30 @@
 .container {
 
+
+}
+
+.info {
+  padding: 0.5rem;
+
   div {
-    padding: 0.5rem;
+    padding: 0.25rem;
+  }
 
-    button {
-      margin-right: 0.5rem;
-    }
+  div.group {
+    padding: 0;
+  }
 
+}
+
+.indent {
+  margin-left: 1rem;
+}
+
+.buttons {
+  padding: 0.5rem;
+
+  button {
+    margin-right: 0.5rem;
   }
 
 }

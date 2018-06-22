@@ -37,6 +37,11 @@ const initialState = {
   signTaskLoading: false,
   signTaskSuccess: false,
 
+  // submitTask
+  submitTaskError: null,
+  submitTaskLoading: false,
+  submitTaskSuccess: false,
+
   // updateTask
   updateTaskError: null,
   updateTaskLoading: false,
@@ -248,6 +253,30 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         signTaskLoading: false,
         signTaskSuccess: true,
+      }
+
+    // submitTask
+
+    case actions.SUBMIT_TASK:
+      return {
+        ...state,
+        submitTaskError: null,
+        submitTaskLoading: true,
+        submitTaskSuccess: false,
+      }
+
+    case actions.SUBMIT_TASK_ERROR:
+      return {
+        ...state,
+        submitTaskError: action.payload,
+        submitTaskLoading: false,
+      }
+
+    case actions.SUBMIT_TASK_SUCCESS:
+      return {
+        ...state,
+        submitTaskLoading: false,
+        submitTaskSuccess: true,
       }
 
     // updateTask

@@ -187,6 +187,17 @@ export const getTask = async (colonyClient, taskId) => {
   // initialize extended protocol
   await ecp.init()
 
+  // declare deliverable
+  let deliverable
+
+  // check deliverable hash
+  if (task.deliverableHash) {
+
+    // get deliverable from deliverable hash
+    deliverable = await ecp.getTaskDeliverable(task.deliverableHash)
+
+  }
+
   // get specification from specification hash
   const specification = await ecp.getTaskSpecification(task.specificationHash)
 
@@ -196,19 +207,27 @@ export const getTask = async (colonyClient, taskId) => {
   // return task
   return {
     ...task,
+    deliverable: deliverable ? {
+      message: deliverable.message,
+    } : {
+      message: null
+    },
     payouts: {
       evaluator: evaluatorPayout.amount.toNumber(),
       manager: managerPayout.amount.toNumber(),
       worker: workerPayout.amount.toNumber(),
     },
-    potBalance: potBalance.balance.toNumber(),
+    pot: {
+      balance: potBalance.balance.toNumber(),
+    },
     roles: {
       evaluator,
       manager,
       worker,
     },
     specification: {
-      ...specification,
+      description: specification.description,
+      title: specification.title,
     },
   }
 
@@ -278,7 +297,7 @@ export const setTaskBrief = async (colonyClient, taskId, specification) => {
 export const setTaskDomain = async (colonyClient, taskId, domainId) => {
 
   // set task domain
-  const setTaskDomain = await colonyClient.setTaskDomain.send({ taskId, domainId })
+  await colonyClient.setTaskDomain.send({ taskId, domainId })
 
   // return id
   return taskId
@@ -348,7 +367,7 @@ export const setTaskEvaluatorPayout = async (colonyClient, taskId, amount) => {
 export const setTaskManagerPayout = async (colonyClient, taskId, amount) => {
 
   // start set task manager payout
-  const setTaskManagerPayout = await colonyClient.setTaskManagerPayout.send({
+  await colonyClient.setTaskManagerPayout.send({
     taskId,
     source: colonyClient.token._contract.address,
     amount: new BN(amount),
@@ -364,7 +383,7 @@ export const setTaskManagerPayout = async (colonyClient, taskId, amount) => {
 export const setTaskRole = async (colonyClient, taskId, role, user) => {
 
   // set task role
-  const setTaskRoleUser = await colonyClient.setTaskRoleUser.send({ taskId, role, user })
+  await colonyClient.setTaskRoleUser.send({ taskId, role, user })
 
   // return id
   return taskId
@@ -376,7 +395,7 @@ export const setTaskRole = async (colonyClient, taskId, role, user) => {
 export const setTaskSkill = async (colonyClient, taskId, skillId) => {
 
   // set task role
-  const setTaskRoleUser = await colonyClient.setTaskSkill.send({ taskId, skillId })
+  await colonyClient.setTaskSkill.send({ taskId, skillId })
 
   // return id
   return taskId
@@ -631,6 +650,27 @@ export const signTaskWorkerPayout = async (colonyClient, operationJSON) => {
 
   // return operation
   return setTaskWorkerPayoutOperation
+
+}
+
+// submitTask
+
+export const submitTask = async (colonyClient, taskId, deliverable) => {
+
+  // initialize extended protocol
+  await ecp.init()
+
+  // create deliverable hash
+  const deliverableHash = await ecp.saveTaskDeliverable(deliverable)
+
+  // stop extended protocol
+  await ecp.stop()
+
+  // submit task deliverable
+  await colonyClient.submitTaskDeliverable.send({ taskId, deliverableHash })
+
+  // return id
+  return taskId
 
 }
 

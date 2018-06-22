@@ -21,26 +21,110 @@ const Task = ({
   signTaskError,
   signTaskLoading,
   signTaskSuccess,
+  submitTask,
   task,
 }) => (
   <div className={styles.container}>
-    <div>
-      <p>{'id: ' + task.id}</p>
-      <p>{'title: ' + task.specification.title}</p>
-      <p>{'due date: ' + task.dueDate}</p>
-      <p>{'description: ' + task.specification.description}</p>
-      <p>{'domain id: ' + task.domainId}</p>
-      <p>{'skill id: ' + task.skillId}</p>
-      <p>{'pot id: ' + task.potId}</p>
-      <p>{'pot balance: ' + task.potBalance}</p>
-      <p>{'evaluator: ' + task.roles.evaluator.address}</p>
-      <p>{'manager: ' + task.roles.manager.address}</p>
-      <p>{'worker: ' + task.roles.worker.address}</p>
-      <p>{'evaluator payout: ' + task.payouts.evaluator}</p>
-      <p>{'manager payout: ' + task.payouts.manager}</p>
-      <p>{'worker payout: ' + task.payouts.worker}</p>
-      <p>{'finalized: ' + task.finalized}</p>
-      <p>{'cancelled: ' + task.cancelled}</p>
+    <div className={styles.info}>
+      <div>
+        <span>{'id:'}</span>
+        <span>{' ' + task.id}</span>
+      </div>
+      <div>
+        <span>{'skill id:'}</span>
+        <span>{' ' + task.skillId}</span>
+      </div>
+      <div>
+        <span>{'domain id:'}</span>
+        <span>{' ' + task.domainId}</span>
+      </div>
+      <div>
+        <span>{'due date:'}</span>
+        <span>{' ' + task.dueDate}</span>
+      </div>
+      <div className={styles.group}>
+        <div>{'specification:'}</div>
+        <div className={styles.indent}>
+          <span>{'hash:'}</span>
+          <span>{' ' + task.specificationHash}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'title:'}</span>
+          <span>{' ' + task.specification.title}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'description:'}</span>
+          <span>{' ' + task.specification.description}</span>
+        </div>
+      </div>
+      <div className={styles.group}>
+        <div>{'pot:'}</div>
+        <div className={styles.indent}>
+          <span>{'id:'}</span>
+          <span>{' ' + task.potId}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'balance:'}</span>
+          <span>{' ' + task.pot.balance}</span>
+        </div>
+      </div>
+      <div className={styles.group}>
+        <div>{'roles:'}</div>
+        <div className={styles.indent}>
+          <span>{'evaluator:'}</span>
+          <span>{' ' + task.roles.evaluator.address}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'manager:'}</span>
+          <span>{' ' + task.roles.manager.address}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'worker:'}</span>
+          <span>{' ' + task.roles.worker.address}</span>
+        </div>
+      </div>
+      <div className={styles.group}>
+        <div>{'payouts:'}</div>
+        <div className={styles.indent}>
+          <span>{'cannot:'}</span>
+          <span>{' ' + task.payoutsWeCannotMake}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'evaluator:'}</span>
+          <span>{' ' + task.payouts.evaluator}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'manager:'}</span>
+          <span>{' ' + task.payouts.manager}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'worker:'}</span>
+          <span>{' ' + task.payouts.worker}</span>
+        </div>
+      </div>
+      <div className={styles.group}>
+        <div>{'deliverable:'}</div>
+        <div className={styles.indent}>
+          <span>{'hash:'}</span>
+          <span>{' ' + task.deliverableHash}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'date: '}</span>
+          <span>{' ' + task.deliverableDate}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'message: '}</span>
+          <span>{' ' + task.deliverable.message}</span>
+        </div>
+      </div>
+      <div>
+        <span>{'cancelled:'}</span>
+        <span>{' ' + task.cancelled}</span>
+      </div>
+      <div>
+        <span>{'finalized:'}</span>
+        <span>{' ' + task.finalized}</span>
+      </div>
     </div>
     <div>
       <button onClick={claimTask}>
@@ -54,6 +138,9 @@ const Task = ({
       </button>
       <button onClick={finalizeTask}>
         {'Finalize Task'}
+      </button>
+      <button onClick={submitTask}>
+        {'Submit Task'}
       </button>
       <button onClick={cancelTask}>
         {'Cancel Task'}
