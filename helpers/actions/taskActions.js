@@ -653,6 +653,27 @@ export const signTaskWorkerPayout = async (colonyClient, operationJSON) => {
 
 }
 
+// submitRating
+
+export const submitRating = async (colonyClient, taskId, role, rating) => {
+
+  // set salt
+  const salt = 'secret'
+
+  // set value
+  const value = new BN(rating)
+
+  // generate rating secret
+  const ratingSecret = await colonyClient.generateSecret.call({ salt, value })
+
+  // submit task work rating
+  const submitTaskWorkRating = await colonyClient.submitTaskWorkRating.send({ taskId, role, ratingSecret })
+
+  // return id
+  return taskId
+
+}
+
 // submitWork
 
 export const submitWork = async (colonyClient, taskId, deliverable) => {

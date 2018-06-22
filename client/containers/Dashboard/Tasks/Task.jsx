@@ -13,6 +13,7 @@ class TaskContainer extends Component {
     this.editTask = this.editTask.bind(this)
     this.finalizeTask = this.finalizeTask.bind(this)
     this.signTask = this.signTask.bind(this)
+    this.submitRating = this.submitRating.bind(this)
     this.submitWork = this.submitWork.bind(this)
   }
 
@@ -34,6 +35,10 @@ class TaskContainer extends Component {
 
   signTask() {
     this.props.signTask(this.props.colonyClient, this.props.task.id)
+  }
+
+  submitRating() {
+    this.props.history.push(`/dashboard/tasks/rate/${this.props.task.id}`)
   }
 
   submitWork() {
@@ -60,6 +65,7 @@ class TaskContainer extends Component {
         signTaskError={this.props.signTaskError}
         signTaskLoading={this.props.signTaskLoading}
         signTaskSuccess={this.props.signTaskSuccess}
+        submitRating={this.submitRating}
         submitWork={this.submitWork}
         task={this.props.task}
       />

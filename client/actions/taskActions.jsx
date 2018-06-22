@@ -184,10 +184,34 @@ export const signTaskSuccess = (message) => ({
   payload: message,
 })
 
+// submitRating
+
+export const submitRating = (colonyClient, taskId, role, rating) => ({
+  type: actions.SUBMIT_RATING,
+  payload: taskActions.submitRating(colonyClient, taskId, role, rating)
+    .then(taskId => {
+      store.dispatch(getTask(colonyClient, taskId))
+      store.dispatch(submitRatingSuccess())
+    })
+    .catch(error => {
+      store.dispatch(submitRatingError(error.message))
+    }),
+})
+
+export const submitRatingError = (message) => ({
+  type: actions.SUBMIT_RATING_ERROR,
+  payload: message,
+})
+
+export const submitRatingSuccess = (message) => ({
+  type: actions.SUBMIT_RATING_SUCCESS,
+  payload: message,
+})
+
 // submitWork
 
 export const submitWork = (colonyClient, taskId, deliverable) => ({
-  type: actions.SUBMIT_TASK,
+  type: actions.SUBMIT_WORK,
   payload: taskActions.submitWork(colonyClient, taskId, deliverable)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
@@ -199,12 +223,12 @@ export const submitWork = (colonyClient, taskId, deliverable) => ({
 })
 
 export const submitWorkError = (message) => ({
-  type: actions.SUBMIT_TASK_ERROR,
+  type: actions.SUBMIT_WORK_ERROR,
   payload: message,
 })
 
 export const submitWorkSuccess = (message) => ({
-  type: actions.SUBMIT_TASK_SUCCESS,
+  type: actions.SUBMIT_WORK_SUCCESS,
   payload: message,
 })
 

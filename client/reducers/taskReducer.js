@@ -37,6 +37,11 @@ const initialState = {
   signTaskLoading: false,
   signTaskSuccess: false,
 
+  // submitRating
+  submitRatingError: null,
+  submitRatingLoading: false,
+  submitRatingSuccess: false,
+
   // submitWork
   submitWorkError: null,
   submitWorkLoading: false,
@@ -255,9 +260,33 @@ const taskReducer = (state = initialState, action) => {
         signTaskSuccess: true,
       }
 
+    // submitRating
+
+    case actions.SUBMIT_RATING:
+      return {
+        ...state,
+        submitRatingError: null,
+        submitRatingLoading: true,
+        submitRatingSuccess: false,
+      }
+
+    case actions.SUBMIT_RATING_ERROR:
+      return {
+        ...state,
+        submitRatingError: action.payload,
+        submitRatingLoading: false,
+      }
+
+    case actions.SUBMIT_RATING_SUCCESS:
+      return {
+        ...state,
+        submitRatingLoading: false,
+        submitRatingSuccess: true,
+      }
+
     // submitWork
 
-    case actions.SUBMIT_TASK:
+    case actions.SUBMIT_WORK:
       return {
         ...state,
         submitWorkError: null,
@@ -265,14 +294,14 @@ const taskReducer = (state = initialState, action) => {
         submitWorkSuccess: false,
       }
 
-    case actions.SUBMIT_TASK_ERROR:
+    case actions.SUBMIT_WORK_ERROR:
       return {
         ...state,
         submitWorkError: action.payload,
         submitWorkLoading: false,
       }
 
-    case actions.SUBMIT_TASK_SUCCESS:
+    case actions.SUBMIT_WORK_SUCCESS:
       return {
         ...state,
         submitWorkLoading: false,

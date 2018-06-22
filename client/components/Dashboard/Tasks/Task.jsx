@@ -21,6 +21,7 @@ const Task = ({
   signTaskError,
   signTaskLoading,
   signTaskSuccess,
+  submitRating,
   submitWork,
   task,
 }) => (
@@ -126,7 +127,7 @@ const Task = ({
         <span>{' ' + task.payoutsWeCannotMake}</span>
       </div>
     </div>
-    <div>
+    <div className={styles.buttons}>
       <button onClick={claimTask}>
         {'Claim Task'}
       </button>
@@ -141,6 +142,9 @@ const Task = ({
       </button>
       <button onClick={submitWork}>
         {'Submit Work'}
+      </button>
+      <button onClick={submitRating}>
+        {'Submit Rating'}
       </button>
       <button onClick={cancelTask}>
         {'Cancel Task'}
