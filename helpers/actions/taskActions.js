@@ -653,9 +653,9 @@ export const signTaskWorkerPayout = async (colonyClient, operationJSON) => {
 
 }
 
-// submitTask
+// submitWork
 
-export const submitTask = async (colonyClient, taskId, deliverable) => {
+export const submitWork = async (colonyClient, taskId, deliverable) => {
 
   // initialize extended protocol
   await ecp.init()

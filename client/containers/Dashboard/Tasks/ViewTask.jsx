@@ -12,13 +12,13 @@ class ViewTaskContainer extends Component {
   componentDidUpdate(prevProps) {
     if (
       (this.state.task === null || prevProps.task !== this.props.task) &&
-      (!this.props.createTaskLoading && !this.props.updateTaskLoading) &&
+      (!this.props.createTaskLoading && !this.props.submitWorkLoading && !this.props.updateTaskLoading) &&
       this.props.getTaskSuccess
     ) {
       this.setState({ task: this.props.task })
     } else if (
       this.state.task !== null &&
-      (this.props.createTaskLoading || this.props.updateTaskLoading)
+      (this.props.createTaskLoading || this.props.submitWorkLoading || this.props.updateTaskLoading)
     ) {
       this.setState({ task: null })
     }
@@ -41,6 +41,7 @@ const mapStateToProps = state => ({
   createTaskLoading: state.task.createTaskLoading,
   getTaskSuccess: state.task.getTaskSuccess,
   task: state.task.task,
+  submitWorkLoading: state.task.submitWorkLoading,
   updateTaskLoading: state.task.updateTaskLoading,
 })
 

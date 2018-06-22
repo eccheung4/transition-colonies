@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { submitTask } from '../../../actions/taskActions'
-import SubmitTask from '../../../components/Dashboard/Tasks/SubmitTask'
+import { submitWork } from '../../../actions/taskActions'
+import SubmitWork from '../../../components/Dashboard/Tasks/SubmitWork'
 
-class SubmitTaskContainer extends Component {
+class SubmitWorkContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -32,7 +32,7 @@ class SubmitTaskContainer extends Component {
   handleClick() {
 
     // submit task
-    this.props.submitTask(
+    this.props.submitWork(
       this.props.colonyClient,
       Number(this.props.match.params.id),
       this.state.deliverable
@@ -42,13 +42,13 @@ class SubmitTaskContainer extends Component {
 
   render() {
     return (
-      <SubmitTask
+      <SubmitWork
         deliverable={this.state.deliverable}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
-        submitTaskError={this.props.submitTaskError}
-        submitTaskLoading={this.props.submitTaskLoading}
-        submitTaskSuccess={this.props.submitTaskSuccess}
+        submitWorkError={this.props.submitWorkError}
+        submitWorkLoading={this.props.submitWorkLoading}
+        submitWorkSuccess={this.props.submitWorkSuccess}
       />
     )
   }
@@ -57,15 +57,15 @@ class SubmitTaskContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  submitTaskError: state.task.submitTaskError,
-  submitTaskLoading: state.task.submitTaskLoading,
-  submitTaskSuccess: state.task.submitTaskSuccess,
+  submitWorkError: state.task.submitWorkError,
+  submitWorkLoading: state.task.submitWorkLoading,
+  submitWorkSuccess: state.task.submitWorkSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({
-  submitTask(colonyClient, taskId, deliverable) {
-    dispatch(submitTask(colonyClient, taskId, deliverable))
+  submitWork(colonyClient, taskId, deliverable) {
+    dispatch(submitWork(colonyClient, taskId, deliverable))
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitTaskContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SubmitWorkContainer)

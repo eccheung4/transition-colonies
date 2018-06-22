@@ -37,10 +37,10 @@ const initialState = {
   signTaskLoading: false,
   signTaskSuccess: false,
 
-  // submitTask
-  submitTaskError: null,
-  submitTaskLoading: false,
-  submitTaskSuccess: false,
+  // submitWork
+  submitWorkError: null,
+  submitWorkLoading: false,
+  submitWorkSuccess: false,
 
   // updateTask
   updateTaskError: null,
@@ -255,28 +255,28 @@ const taskReducer = (state = initialState, action) => {
         signTaskSuccess: true,
       }
 
-    // submitTask
+    // submitWork
 
     case actions.SUBMIT_TASK:
       return {
         ...state,
-        submitTaskError: null,
-        submitTaskLoading: true,
-        submitTaskSuccess: false,
+        submitWorkError: null,
+        submitWorkLoading: true,
+        submitWorkSuccess: false,
       }
 
     case actions.SUBMIT_TASK_ERROR:
       return {
         ...state,
-        submitTaskError: action.payload,
-        submitTaskLoading: false,
+        submitWorkError: action.payload,
+        submitWorkLoading: false,
       }
 
     case actions.SUBMIT_TASK_SUCCESS:
       return {
         ...state,
-        submitTaskLoading: false,
-        submitTaskSuccess: true,
+        submitWorkLoading: false,
+        submitWorkSuccess: true,
       }
 
     // updateTask

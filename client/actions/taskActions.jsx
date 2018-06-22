@@ -184,26 +184,26 @@ export const signTaskSuccess = (message) => ({
   payload: message,
 })
 
-// submitTask
+// submitWork
 
-export const submitTask = (colonyClient, taskId, deliverable) => ({
+export const submitWork = (colonyClient, taskId, deliverable) => ({
   type: actions.SUBMIT_TASK,
-  payload: taskActions.submitTask(colonyClient, taskId, deliverable)
+  payload: taskActions.submitWork(colonyClient, taskId, deliverable)
     .then(taskId => {
       store.dispatch(getTask(colonyClient, taskId))
-      store.dispatch(submitTaskSuccess())
+      store.dispatch(submitWorkSuccess())
     })
     .catch(error => {
-      store.dispatch(submitTaskError(error.message))
+      store.dispatch(submitWorkError(error.message))
     }),
 })
 
-export const submitTaskError = (message) => ({
+export const submitWorkError = (message) => ({
   type: actions.SUBMIT_TASK_ERROR,
   payload: message,
 })
 
-export const submitTaskSuccess = (message) => ({
+export const submitWorkSuccess = (message) => ({
   type: actions.SUBMIT_TASK_SUCCESS,
   payload: message,
 })

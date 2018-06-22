@@ -21,7 +21,7 @@ const Task = ({
   signTaskError,
   signTaskLoading,
   signTaskSuccess,
-  submitTask,
+  submitWork,
   task,
 }) => (
   <div className={styles.container}>
@@ -58,17 +58,6 @@ const Task = ({
         </div>
       </div>
       <div className={styles.group}>
-        <div>{'pot:'}</div>
-        <div className={styles.indent}>
-          <span>{'id:'}</span>
-          <span>{' ' + task.potId}</span>
-        </div>
-        <div className={styles.indent}>
-          <span>{'balance:'}</span>
-          <span>{' ' + task.pot.balance}</span>
-        </div>
-      </div>
-      <div className={styles.group}>
         <div>{'roles:'}</div>
         <div className={styles.indent}>
           <span>{'evaluator:'}</span>
@@ -84,11 +73,18 @@ const Task = ({
         </div>
       </div>
       <div className={styles.group}>
-        <div>{'payouts:'}</div>
+        <div>{'pot:'}</div>
         <div className={styles.indent}>
-          <span>{'cannot:'}</span>
-          <span>{' ' + task.payoutsWeCannotMake}</span>
+          <span>{'id:'}</span>
+          <span>{' ' + task.potId}</span>
         </div>
+        <div className={styles.indent}>
+          <span>{'balance:'}</span>
+          <span>{' ' + task.pot.balance}</span>
+        </div>
+      </div>
+      <div className={styles.group}>
+        <div>{'payouts:'}</div>
         <div className={styles.indent}>
           <span>{'evaluator:'}</span>
           <span>{' ' + task.payouts.evaluator}</span>
@@ -125,6 +121,10 @@ const Task = ({
         <span>{'finalized:'}</span>
         <span>{' ' + task.finalized}</span>
       </div>
+      <div>
+        <span>{'payouts we cannot make:'}</span>
+        <span>{' ' + task.payoutsWeCannotMake}</span>
+      </div>
     </div>
     <div>
       <button onClick={claimTask}>
@@ -139,8 +139,8 @@ const Task = ({
       <button onClick={finalizeTask}>
         {'Finalize Task'}
       </button>
-      <button onClick={submitTask}>
-        {'Submit Task'}
+      <button onClick={submitWork}>
+        {'Submit Work'}
       </button>
       <button onClick={cancelTask}>
         {'Cancel Task'}

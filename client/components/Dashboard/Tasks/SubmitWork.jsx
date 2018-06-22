@@ -1,16 +1,17 @@
 import React from 'react'
-import styles from './SubmitTask.scss'
+import ViewTask from '../../../containers/Dashboard/Tasks/ViewTask'
+import styles from './SubmitWork.scss'
 
-const SubmitTask = ({
+const SubmitWork = ({
   deliverable,
   handleChange,
   handleClick,
-  submitTaskError,
-  submitTaskLoading,
-  submitTaskSuccess,
+  submitWorkError,
+  submitWorkLoading,
+  submitWorkSuccess,
 }) => (
   <div className={styles.container}>
-    <h2>{'Submit Task'}</h2>
+    <h2>{'Submit Work'}</h2>
     <div className={styles.field}>
       <label htmlFor="message">
         {'message:'}
@@ -25,17 +26,18 @@ const SubmitTask = ({
     </div>
     <div className={styles.buttons}>
       <button onClick={handleClick}>
-        {'Submit Task'}
+        {'Submit Work'}
       </button>
     </div>
-    {submitTaskError &&
+    {submitWorkError &&
       <div className={styles.message}>
         <span className={styles.error}>
-          {submitTaskError}
+          {submitWorkError}
         </span>
       </div>
     }
+    <ViewTask />
   </div>
 )
 
-export default SubmitTask
+export default SubmitWork
