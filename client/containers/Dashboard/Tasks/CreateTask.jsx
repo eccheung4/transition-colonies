@@ -13,6 +13,7 @@ class CreateTaskContainer extends Component {
         dueDate: '',
         payouts: {
           evaluator: 0,
+          manager: 0,
           worker: 0,
         },
         roles: {
@@ -42,6 +43,7 @@ class CreateTaskContainer extends Component {
       // payouts
 
       case 'payout-evaluator':
+      case 'payout-manager':
       case 'payout-worker':
         task.payouts[event.target.id.substring(7)] = event.target.value
         break

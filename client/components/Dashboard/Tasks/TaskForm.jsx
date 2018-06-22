@@ -118,6 +118,18 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
+      <label htmlFor="payout-manager">
+        {'manager payout:'}
+      </label>
+      <input
+        id="payout-manager"
+        onChange={handleChange}
+        placeholder="0"
+        type="number"
+        value={task.payouts.manager}
+      />
+    </div>
+    <div className={styles.field}>
       <label htmlFor="payout-worker">
         {'worker payout:'}
       </label>

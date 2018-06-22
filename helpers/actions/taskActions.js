@@ -84,6 +84,14 @@ export const createTask = async (colonyClient, task) => {
 
   }
 
+  // check manager payout
+  if (task.payouts.manager) {
+
+    // set task manager payout
+    await setTaskManagerPayout(colonyClient, taskId, task.payouts.manager)
+
+  }
+
   // check worker payout
   if (task.payouts.worker) {
 
@@ -162,6 +170,13 @@ export const getTask = async (colonyClient, taskId) => {
     source: colonyClient.token._contract.address,
   })
 
+  // get manager payout
+  const managerPayout = await colonyClient.getTaskPayout.call({
+    taskId,
+    role: 'MANAGER',
+    source: colonyClient.token._contract.address,
+  })
+
   // get worker payout
   const workerPayout = await colonyClient.getTaskPayout.call({
     taskId,
@@ -183,6 +198,7 @@ export const getTask = async (colonyClient, taskId) => {
     ...task,
     payouts: {
       evaluator: evaluatorPayout.amount.toNumber(),
+      manager: managerPayout.amount.toNumber(),
       worker: workerPayout.amount.toNumber(),
     },
     potBalance: potBalance.balance.toNumber(),
@@ -321,6 +337,22 @@ export const setTaskEvaluatorPayout = async (colonyClient, taskId, amount) => {
 
   // sign task evaluator payout
   await signTaskEvaluatorPayout(colonyClient, setTaskEvaluatorPayoutJSON)
+
+  // return id
+  return taskId
+
+}
+
+// setTaskManagerPayout
+
+export const setTaskManagerPayout = async (colonyClient, taskId, amount) => {
+
+  // start set task manager payout
+  const setTaskManagerPayout = await colonyClient.setTaskManagerPayout.send({
+    taskId,
+    source: colonyClient.token._contract.address,
+    amount: new BN(amount),
+  })
 
   // return id
   return taskId
@@ -636,6 +668,14 @@ export const updateTask = async (colonyClient, task) => {
 
     // set task evaluator payout
     await setTaskEvaluatorPayout(colonyClient, taskId, task.payouts.evaluator)
+
+  }
+
+  // check manager payout
+  if (task.payouts.manager) {
+
+    // set task manager payout
+    await setTaskManagerPayout(colonyClient, taskId, task.payouts.manager)
 
   }
 

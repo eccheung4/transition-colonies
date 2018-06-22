@@ -31,6 +31,7 @@ class EditTaskContainer extends Component {
         dueDate: formatDate(task.dueDate),
         payouts: {
           evaluator: task.payouts.evaluator,
+          manager: task.payouts.manager,
           worker: task.payouts.worker,
         },
         roles: {
@@ -58,6 +59,7 @@ class EditTaskContainer extends Component {
       // payouts
 
       case 'payout-evaluator':
+      case 'payout-manager':
       case 'payout-worker':
         task.payouts[event.target.id.substring(7)] = event.target.value
         break
@@ -112,6 +114,11 @@ class EditTaskContainer extends Component {
     // set evaluator payout if evaluator payout has changed
     if (prev.payouts.evaluator.address !== next.payouts.evaluator) {
       payouts.evaluator = next.payouts.evaluator
+    }
+
+    // set manager payout if manager payout has changed
+    if (prev.payouts.manager.address !== next.payouts.manager) {
+      payouts.manager = next.payouts.manager
     }
 
     // set worker payout if worker payout has changed

@@ -27,17 +27,18 @@ const Task = ({
     <div>
       <p>{'id: ' + task.id}</p>
       <p>{'title: ' + task.specification.title}</p>
-      <p>{'dueDate: ' + task.dueDate}</p>
+      <p>{'due date: ' + task.dueDate}</p>
       <p>{'description: ' + task.specification.description}</p>
-      <p>{'domainId: ' + task.domainId}</p>
-      <p>{'skillId: ' + task.skillId}</p>
-      <p>{'potId: ' + task.potId}</p>
-      <p>{'potBalance: ' + task.potBalance}</p>
+      <p>{'domain id: ' + task.domainId}</p>
+      <p>{'skill id: ' + task.skillId}</p>
+      <p>{'pot id: ' + task.potId}</p>
+      <p>{'pot balance: ' + task.potBalance}</p>
       <p>{'evaluator: ' + task.roles.evaluator.address}</p>
       <p>{'manager: ' + task.roles.manager.address}</p>
       <p>{'worker: ' + task.roles.worker.address}</p>
-      <p>{'evaluatorPayout: ' + task.payouts.evaluator}</p>
-      <p>{'workerPayout: ' + task.payouts.worker}</p>
+      <p>{'evaluator payout: ' + task.payouts.evaluator}</p>
+      <p>{'manager payout: ' + task.payouts.manager}</p>
+      <p>{'worker payout: ' + task.payouts.worker}</p>
       <p>{'finalized: ' + task.finalized}</p>
       <p>{'cancelled: ' + task.cancelled}</p>
     </div>

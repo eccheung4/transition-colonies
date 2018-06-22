@@ -1,3 +1,4 @@
+// import big number
 import BN from 'bn.js'
 
 // createToken
