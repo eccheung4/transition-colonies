@@ -529,6 +529,9 @@ export const setTaskWorkerPayout = async (colonyClient, taskId, amount) => {
 
 export const signTask = async (colonyClient, taskId) => {
 
+  // set address
+  const address = colonyClient._contract.address
+
   // get JSON formatted task brief operation from local storage
   const setTaskBriefOperationJSON = localStorage.getItem('setTaskBriefOperationJSON')
 
@@ -541,67 +544,75 @@ export const signTask = async (colonyClient, taskId) => {
   // get JSON formatted task worker payout operation from local storage
   const setTaskWorkerPayoutOperationJSON = localStorage.getItem('setTaskWorkerPayoutOperationJSON')
 
-  // check if task brief operation exists
-  if (setTaskBriefOperationJSON) {
+  // set setTaskBriefOperation
+  const setTaskBriefOperation = JSON.parse(setTaskBriefOperationJSON)
 
-    // parse set task brief operation json
-    const setTaskBriefOperation = JSON.parse(setTaskBriefOperationJSON)
+  // set setTaskDueDateOperation
+  const setTaskDueDateOperation = JSON.parse(setTaskDueDateOperationJSON)
 
-    // check task id
-    if (setTaskBriefOperation.payload.inputValues.taskId === taskId) {
+  // set setTaskEvaluatorPayoutOperation
+  const setTaskEvaluatorPayoutOperation = JSON.parse(setTaskEvaluatorPayoutOperationJSON)
 
-      // sign task brief
-      await signTaskBrief(colonyClient, setTaskBriefOperationJSON)
+  // set setTaskWorkerPayoutOperation
+  const setTaskWorkerPayoutOperation = JSON.parse(setTaskWorkerPayoutOperationJSON)
 
-    }
+  // check if task brief operation exists for contract and task
+  if (
+    setTaskBriefOperationJSON &&
+    setTaskBriefOperation.payload.sourceAddress === address &&
+    setTaskBriefOperation.payload.inputValues.taskId === taskId
+  ) {
 
-  }
+    // sign task brief
+    await signTaskBrief(colonyClient, setTaskBriefOperationJSON)
 
-  // check if task due date operation exists
-  if (setTaskDueDateOperationJSON) {
-
-    // parse set task due date operation json
-    const setTaskDueDateOperation = JSON.parse(setTaskDueDateOperationJSON)
-
-    // check task id
-    if (setTaskDueDateOperation.payload.inputValues.taskId === taskId) {
-
-      // sign task due date
-      await signTaskDueDate(colonyClient, setTaskDueDateOperationJSON)
-
-    }
+    // remove local storage item
+    localStorage.removeItem('setTaskBriefOperationJSON')
 
   }
 
-  // check if task evaluator payout operation exists
-  if (setTaskEvaluatorPayoutOperationJSON) {
+  // check if task due date operation exists for contract and task
+  if (
+    setTaskDueDateOperationJSON &&
+    setTaskDueDateOperation.payload.sourceAddress === address &&
+    setTaskDueDateOperation.payload.inputValues.taskId === taskId
+  ) {
 
-    // parse set task evaluator payout operation json
-    const setTaskEvaluatorPayoutOperation = JSON.parse(setTaskEvaluatorPayoutOperationJSON)
+    // sign task due date
+    await signTaskDueDate(colonyClient, setTaskDueDateOperationJSON)
 
-    // check task id
-    if (setTaskEvaluatorPayoutOperation.payload.inputValues.taskId === taskId) {
-
-      // sign task evaluator payout
-      await signTaskEvaluatorPayout(colonyClient, setTaskEvaluatorPayoutOperationJSON)
-
-    }
+    // remove local storage item
+    localStorage.removeItem('setTaskDueDateOperationJSON')
 
   }
 
-  // check if task worker payout operation exists
-  if (setTaskWorkerPayoutOperationJSON) {
+  // check if task evaluator payout operation exists for contract and task
+  if (
+    setTaskEvaluatorPayoutOperationJSON &&
+    setTaskEvaluatorPayoutOperation.payload.sourceAddress === address &&
+    setTaskEvaluatorPayoutOperation.payload.inputValues.taskId === taskId
+  ) {
 
-    // parse set task worker payout operation json
-    const setTaskWorkerPayoutOperation = JSON.parse(setTaskWorkerPayoutOperationJSON)
+    // sign task evaluator payout
+    await signTaskEvaluatorPayout(colonyClient, setTaskEvaluatorPayoutOperationJSON)
 
-    // check task id
-    if (setTaskWorkerPayoutOperation.payload.inputValues.taskId === taskId) {
+    // remove local storage item
+    localStorage.removeItem('setTaskEvaluatorPayoutOperationJSON')
 
-      // sign task worker payout
-      await signTaskWorkerPayout(colonyClient, setTaskWorkerPayoutOperationJSON)
+  }
 
-    }
+  // check if task worker payout operation exists for contract and task
+  if (
+    setTaskWorkerPayoutOperationJSON &&
+    setTaskWorkerPayoutOperation.payload.sourceAddress === address &&
+    setTaskWorkerPayoutOperation.payload.inputValues.taskId === taskId
+  ) {
+
+    // sign task worker payout
+    await signTaskWorkerPayout(colonyClient, setTaskWorkerPayoutOperationJSON)
+
+    // remove local storage item
+    localStorage.removeItem('setTaskWorkerPayoutOperationJSON')
 
   }
 
