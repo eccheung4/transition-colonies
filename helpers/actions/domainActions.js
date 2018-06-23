@@ -1,3 +1,23 @@
+// getDomainTitle
+
+export const getDomainTitle = (domainId) => {
+
+  // return domain title
+  switch (domainId) {
+    case 1:
+      return 'market'
+    case 2:
+      return 'business'
+    case 3:
+      return 'education'
+    case 4:
+      return 'service'
+    default:
+      break
+  }
+
+}
+
 // getDomains
 
 export const getDomains = async (colonyClient) => {
@@ -17,23 +37,8 @@ export const getDomains = async (colonyClient) => {
     // get domain
     const domain = await colonyClient.getDomain.call({ domainId })
 
-    // append domain names
-    switch (domainId) {
-      case 1:
-        domain.title = 'colony'
-        break
-      case 2:
-        domain.title = 'business'
-        break
-      case 3:
-        domain.title = 'education'
-        break
-      case 4:
-        domain.title = 'service'
-        break
-      default:
-        break
-    }
+    // append domain title
+    domain.title = getDomainTitle(domainId)
 
     // get pot balance for domain
     const potBalance = await colonyClient.getPotBalance.call({

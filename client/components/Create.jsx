@@ -1,12 +1,12 @@
 import React from 'react'
-import CreateColony from '../containers/Create/CreateColony'
+import CreateMarket from '../containers/Create/CreateMarket'
 import CreateToken from '../containers/Create/CreateToken'
 import styles from './Create.scss'
 
 const Create = () => (
   <div className={styles.container}>
     <CreateToken />
-    <CreateColony />
+    <CreateMarket />
   </div>
 )
 

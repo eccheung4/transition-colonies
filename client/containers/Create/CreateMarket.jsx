@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { createColony } from '../../actions/colonyActions'
-import CreateColony from '../../components/Create/CreateColony'
+import CreateMarket from '../../components/Create/CreateMarket'
 
-class CreateColonyContainer extends Component {
+class CreateMarketContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -31,7 +31,7 @@ class CreateColonyContainer extends Component {
 
   render() {
     return (
-      <CreateColony
+      <CreateMarket
         colonyAddress={this.props.colonyAddress}
         createColonyError={this.props.createColonyError}
         createColonyLoading={this.props.createColonyLoading}
@@ -58,4 +58,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateColonyContainer))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CreateMarketContainer))

@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './GetColony.scss'
+import styles from './GetMarket.scss'
 
-const GetColony = ({
+const GetMarket = ({
   getColonyClientError,
   getColonyClientLoading,
   getColonyClientSuccess,
@@ -9,14 +9,14 @@ const GetColony = ({
   handleChange,
 }) => (
   <div className={styles.container}>
-    <h2>{'Get Colony'}</h2>
+    <h2>{'Get Market'}</h2>
     <input
       onChange={handleChange}
-      placeholder="colony address"
+      placeholder="market address"
       type="text"
     />
     <button onClick={handleClick}>
-      {'Get Colony'}
+      {'Get Market'}
     </button>
     {getColonyClientError &&
       <p className={styles.message}>
@@ -26,4 +26,4 @@ const GetColony = ({
   </div>
 )
 
-export default GetColony
+export default GetMarket

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ViewColony from '../../../components/Dashboard/Home/ViewColony'
+import ViewMarket from '../../../components/Dashboard/Home/ViewMarket'
 
-class ViewColonyContainer extends Component {
+class ViewMarketContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -13,7 +13,7 @@ class ViewColonyContainer extends Component {
       return <div />
     }
     return (
-      <ViewColony
+      <ViewMarket
         colonyClient={this.props.colonyClient}
       />
     )
@@ -25,4 +25,4 @@ const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
 })
 
-export default connect(mapStateToProps, null)(ViewColonyContainer)
+export default connect(mapStateToProps, null)(ViewMarketContainer)

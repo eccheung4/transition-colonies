@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './CreateColony.scss'
+import styles from './CreateMarket.scss'
 
-const CreateColony = ({
+const CreateMarket = ({
   colonyAddress,
   createColonyError,
   createColonyLoading,
@@ -10,14 +10,14 @@ const CreateColony = ({
   handleClick,
 }) => (
   <div className={styles.container}>
-    <h2>{'Create Colony'}</h2>
+    <h2>{'Create Market'}</h2>
     <input
       onChange={handleChange}
       placeholder="token address"
       type="text"
     />
     <button onClick={handleClick}>
-      {'Create Colony'}
+      {'Create Market'}
     </button>
     {createColonyError &&
       <p className={styles.message}>
@@ -32,4 +32,4 @@ const CreateColony = ({
   </div>
 )
 
-export default CreateColony
+export default CreateMarket
