@@ -2,6 +2,11 @@ import * as actions from '../constants/actions'
 
 const initialState = {
 
+  // claimFunds
+  claimFundsError: null,
+  claimFundsLoading: false,
+  claimFundsSuccess: false,
+
   // domains
   domains: null,
 
@@ -21,9 +26,33 @@ const domainReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
+    // claimFunds
+
+    case actions.CLAIM_FUNDS:
+      return {
+        ...state,
+        claimFundsError: null,
+        claimFundsLoading: true,
+        claimFundsSuccess: false,
+      }
+
+    case actions.CLAIM_FUNDS_ERROR:
+      return {
+        ...state,
+        claimFundsError: action.payload,
+        claimFundsLoading: false,
+      }
+
+    case actions.CLAIM_FUNDS_SUCCESS:
+      return {
+        ...state,
+        claimFundsLoading: false,
+        claimFundsSuccess: true,
+      }
+
     // fundDomain
 
-    case actions.GET_DOMAINS:
+    case actions.FUND_DOMAIN:
       return {
         ...state,
         fundDomainError: null,
@@ -31,14 +60,14 @@ const domainReducer = (state = initialState, action) => {
         fundDomainSuccess: false,
       }
 
-    case actions.GET_DOMAINS_ERROR:
+    case actions.FUND_DOMAIN_ERROR:
       return {
         ...state,
         fundDomainError: action.payload,
         fundDomainLoading: false,
       }
 
-    case actions.GET_DOMAINS_SUCCESS:
+    case actions.FUND_DOMAIN_SUCCESS:
       return {
         ...state,
         fundDomainLoading: false,

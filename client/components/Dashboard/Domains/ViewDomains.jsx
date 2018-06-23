@@ -12,16 +12,16 @@ const ViewDomains = ({
     {!domains || getDomainsLoading ?
       <div>{'loading...'}</div>
     :
-    <ul className={styles.list}>
-      {domains.map((domain, index) => (
-        <li key={index} className={styles.item}>
-          <p>{'title: ' + domain.title}</p>
-          <p>{'localSkillId: ' + domain.localSkillId}</p>
-          <p>{'potId: ' + domain.potId}</p>
-          <p>{'potBalance: ' + domain.potBalance.balance.toNumber()}</p>
-        </li>
-      ))}
-    </ul>
+      <ul className={styles.list}>
+        {domains.map((domain, index) => (
+          <li key={index} className={styles.item}>
+            <p>{'title: ' + domain.title}</p>
+            <p>{'localSkillId: ' + domain.localSkillId}</p>
+            <p>{'potId: ' + domain.potId}</p>
+            <p>{'potBalance: ' + domain.potBalance.balance.toNumber()}</p>
+          </li>
+        ))}
+      </ul>
     }
   </div>
 )

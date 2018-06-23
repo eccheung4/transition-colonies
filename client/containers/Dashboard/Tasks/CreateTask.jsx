@@ -10,7 +10,7 @@ class CreateTaskContainer extends Component {
     this.state = {
       submitted: false,
       task: {
-        domainId: 1,
+        domainId: 2,
         dueDate: '',
         payouts: {
           evaluator: 0,

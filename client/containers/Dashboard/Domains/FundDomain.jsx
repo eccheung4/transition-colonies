@@ -7,33 +7,35 @@ class FundDomainContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      amount: 0,
-      domainId: 2,
-    }
+    this.state = { funding: { amount: 0, domainId: 2 } }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.fundDomainSuccess && prevProps.fundDomainSuccess !== this.props.fundDomainSuccess) {
+      this.setState({ funding: { amount: 0, domainId: 2 } })
+    }
+  }
+
   handleChange(event) {
-    let state = this.state
-    state[event.target.id] = event.target.value
-    this.setState({ ...state })
+    let funding = this.state.funding
+    funding[event.target.id] = event.target.value
+    this.setState({ funding })
   }
 
   handleClick() {
     this.props.fundDomain(
       this.props.colonyClient,
-      Number(this.state.domainId),
-      this.state.amount,
+      Number(this.state.funding.domainId),
+      this.state.funding.amount,
     )
   }
 
   render() {
     return (
       <FundDomain
-        amount={this.state.amount}
-        domainId={this.state.domainId}
+        funding={this.state.funding}
         fundDomainError={this.props.fundDomainError}
         fundDomainLoading={this.props.fundDomainLoading}
         fundDomainSuccess={this.props.fundDomainSuccess}
@@ -47,9 +49,9 @@ class FundDomainContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  fundDomainError: state.token.fundDomainError,
-  fundDomainLoading: state.token.fundDomainLoading,
-  fundDomainSuccess: state.token.fundDomainSuccess,
+  fundDomainError: state.domain.fundDomainError,
+  fundDomainLoading: state.domain.fundDomainLoading,
+  fundDomainSuccess: state.domain.fundDomainSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -7,24 +7,25 @@ class CreateTokenContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      tokenName: '',
-      tokenSymbol: '',
-    }
+    this.state = { token: { name: '', symbol: '' } }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleChange(event) {
-    if (event.target.id === 'tokenName') {
-      this.setState({ tokenName: event.target.value })
-    } else if (event.target.id === 'tokenSymbol') {
-      this.setState({ tokenSymbol: event.target.value })
+  componentDidUpdate(prevProps) {
+    if (this.props.createTokenSuccess && prevProps.createTokenSuccess !== this.props.createTokenSuccess) {
+      this.setState({ token: { name: '', symbol: '' } })
     }
   }
 
+  handleChange(event) {
+    let token = this.state.token
+    token[event.target.id] = event.target.value
+    this.setState({ token })
+  }
+
   handleClick() {
-    this.props.createToken(this.props.networkClient, this.state.tokenName, this.state.tokenSymbol)
+    this.props.createToken(this.props.networkClient, this.state.token.name, this.state.token.symbol)
   }
 
   render() {
@@ -35,6 +36,7 @@ class CreateTokenContainer extends Component {
         createTokenSuccess={this.props.createTokenSuccess}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
+        token={this.state.token}
         tokenAddress={this.props.tokenAddress}
       />
     )
@@ -51,8 +53,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  createToken(networkClient, tokenName, tokenSymbol) {
-    dispatch(createToken(networkClient, tokenName, tokenSymbol))
+  createToken(networkClient, name, symbol) {
+    dispatch(createToken(networkClient, name, symbol))
   },
 })
 

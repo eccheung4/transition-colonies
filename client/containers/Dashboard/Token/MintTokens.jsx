@@ -7,15 +7,21 @@ class MintTokensContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      amount: 0,
-    }
+    this.state = { amount: 0 }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.mintTokensSuccess && prevProps.mintTokensSuccess !== this.props.mintTokensSuccess) {
+      this.setState({ amount: 0 })
+    }
+  }
+
   handleChange(event) {
-    this.setState({ amount: event.target.value })
+    let state = this.state
+    state[event.target.id] = event.target.value
+    this.setState({ ...state })
   }
 
   handleClick() {
@@ -25,6 +31,7 @@ class MintTokensContainer extends Component {
   render() {
     return (
       <MintTokens
+        amount={this.state.amount}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
         mintTokensError={this.props.mintTokensError}

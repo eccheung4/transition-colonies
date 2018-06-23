@@ -9,20 +9,29 @@ const ClaimFunds = ({
 }) => (
   <div className={styles.container}>
     <h2>{'Claim Funds'}</h2>
-    <button onClick={handleClick}>
-      {'Claim Funds'}
-    </button>
+    <div className={styles.buttons}>
+      <button onClick={handleClick}>
+        {'Claim Funds'}
+      </button>
+    </div>
     {claimFundsError &&
-      <span className={styles.message}>
+      <div className={styles.message}>
         <span className={styles.error}>
           {claimFundsError}
         </span>
-      </span>
+      </div>
+    }
+    {claimFundsLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
     }
     {claimFundsSuccess &&
-      <span className={styles.message}>
+      <div className={styles.message}>
         {'success'}
-      </span>
+      </div>
     }
   </div>
 )

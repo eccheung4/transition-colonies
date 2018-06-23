@@ -8,9 +8,7 @@ class CreateMarketContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      tokenAddress: '',
-    }
+    this.state = { tokenAddress: '' }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
@@ -22,7 +20,9 @@ class CreateMarketContainer extends Component {
   }
 
   handleChange(event) {
-    this.setState({ tokenAddress: event.target.value })
+    let state = this.state
+    state[event.target.id] = event.target.value
+    this.setState({ ...state })
   }
 
   handleClick() {

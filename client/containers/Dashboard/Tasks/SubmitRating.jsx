@@ -15,29 +15,28 @@ class SubmitRatingContainer extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.submitRatingSuccess && prevProps.submitRatingSuccess !== this.props.submitRatingSuccess) {
+      this.setState({
+        rating: 10,
+        role: 'EVALUATOR',
+      })
+    }
+  }
+
   handleChange(event) {
-
-    // set state
     let state = this.state
-
-    // set state property
     state[event.target.id] = event.target.value
-
-    // set state
     this.setState({ ...state })
-
   }
 
   handleClick() {
-
-    // submit rating
     this.props.submitRating(
       this.props.colonyClient,
       Number(this.props.match.params.id),
       this.state.role,
       Number(this.state.rating),
     )
-
   }
 
   render() {

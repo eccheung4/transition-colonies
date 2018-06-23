@@ -3,48 +3,65 @@ import styles from './TaskActions.scss'
 
 const TaskActions = ({
   cancelTask,
-  cancelTaskError,
-  cancelTaskLoading,
-  cancelTaskSuccess,
   editTask,
+  error,
   fundTask,
   finalizeTask,
-  finalizeTaskError,
-  finalizeTaskLoading,
-  finalizeTaskSuccess,
+  loading,
   signTask,
-  signTaskError,
-  signTaskLoading,
-  signTaskSuccess,
   submitRating,
   submitWork,
+  success,
   viewTask,
 }) => (
   <div className={styles.container}>
-    <button onClick={viewTask}>
-      {'View Task'}
-    </button>
-    <button onClick={editTask}>
-      {'Edit Task'}
-    </button>
-    <button onClick={signTask}>
-      {'Sign Task'}
-    </button>
-    <button onClick={fundTask}>
-      {'Fund Task'}
-    </button>
-    <button onClick={finalizeTask}>
-      {'Finalize Task'}
-    </button>
-    <button onClick={submitWork}>
-      {'Submit Work'}
-    </button>
-    <button onClick={submitRating}>
-      {'Submit Rating'}
-    </button>
-    <button onClick={cancelTask}>
-      {'Cancel Task'}
-    </button>
+    <div className={styles.buttons}>
+      <button onClick={viewTask}>
+        {'View Task'}
+      </button>
+      <button onClick={editTask}>
+        {'Edit Task'}
+      </button>
+      <button onClick={signTask}>
+        {'Sign Task'}
+      </button>
+      <button onClick={fundTask}>
+        {'Fund Task'}
+      </button>
+      <button onClick={finalizeTask}>
+        {'Finalize Task'}
+      </button>
+      <button onClick={submitWork}>
+        {'Submit Work'}
+      </button>
+      <button onClick={submitRating}>
+        {'Submit Rating'}
+      </button>
+      <button onClick={cancelTask}>
+        {'Cancel Task'}
+      </button>
+    </div>
+    {error && !loading &&
+      <div className={styles.message}>
+        <span className={styles.error}>
+          {error}
+        </span>
+      </div>
+    }
+    {loading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
+    {!error && !loading && success &&
+      <div className={styles.message}>
+        <span>
+          {'success'}
+        </span>
+      </div>
+    }
   </div>
 )
 

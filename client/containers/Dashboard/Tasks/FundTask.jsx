@@ -14,6 +14,12 @@ class FundTaskContainer extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.fundTaskSuccess && prevProps.fundTaskSuccess !== this.props.fundTaskSuccess) {
+      this.setState({ amount: 0 })
+    }
+  }
+
   handleChange(event) {
     let state = this.state
     state[event.target.id] = event.target.value
@@ -21,8 +27,11 @@ class FundTaskContainer extends Component {
   }
 
   handleClick() {
-    const taskId = Number(this.props.match.params.id)
-    this.props.fundTask(this.props.colonyClient, taskId, this.state.amount)
+    this.props.fundTask(
+      this.props.colonyClient,
+      Number(this.props.match.params.id),
+      this.state.amount,
+    )
   }
 
   render() {

@@ -32,9 +32,6 @@ const TaskForm = ({ handleChange, task }) => (
         {'domain:'}
       </label>
       <select id="domainId" onChange={handleChange} value={task.domainId}>
-        <option value={1}>
-          {'Market'}
-        </option>
         <option value={2}>
           {'Business'}
         </option>

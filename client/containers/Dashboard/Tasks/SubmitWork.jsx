@@ -16,28 +16,28 @@ class SubmitWorkContainer extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.submitWorkSuccess && prevProps.submitWorkSuccess !== this.props.submitWorkSuccess) {
+      this.setState({
+        deliverable: {
+          message: '',
+        },
+      })
+    }
+  }
+
   handleChange(event) {
-
-    // set deliverable
     let deliverable = this.state.deliverable
-
-    // set deliverable property
     deliverable[event.target.id] = event.target.value
-
-    // set state
     this.setState({ deliverable })
-
   }
 
   handleClick() {
-
-    // submit task
     this.props.submitWork(
       this.props.colonyClient,
       Number(this.props.match.params.id),
       this.state.deliverable
     )
-
   }
 
   render() {

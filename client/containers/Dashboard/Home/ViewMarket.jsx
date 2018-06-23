@@ -9,12 +9,9 @@ class ViewMarketContainer extends Component {
   }
 
   render() {
-    if (this.props.colonyClient === null) {
-      return <div />
-    }
     return (
       <ViewMarket
-        colonyClient={this.props.colonyClient}
+        address={this.props.colonyClient.contract.address}
       />
     )
   }

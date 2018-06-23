@@ -1,15 +1,3 @@
-// claimFunds
-
-export const claimFunds = async (colonyClient) => {
-
-  const token = colonyClient.token._contract.address
-
-  const claimColonyFunds = await colonyClient.claimColonyFunds.send({ token })
-
-  return true
-
-}
-
 // createColony
 
 export const createColony = async (networkClient, tokenAddress) => {
@@ -18,7 +6,7 @@ export const createColony = async (networkClient, tokenAddress) => {
   const { eventData: { colonyAddress } } = await networkClient.createColony.send({ tokenAddress })
 
   // get colony client
-  const colonyClient = await networkClient.getColonyClientByAddress(colonyAddress)
+  const colonyClient = await getColonyClient(networkClient, colonyAddress)
 
   // set colony contract as token owner
   await colonyClient.token.setOwner.send({ owner: colonyClient.contract.address })
@@ -51,30 +39,12 @@ export const createColony = async (networkClient, tokenAddress) => {
 
 // getColonyClient
 
-export const getColonyClient = async (networkClient, colonyId) => {
+export const getColonyClient = async (networkClient, colonyAddress) => {
 
-  const colonyClient = await networkClient.getColonyClient(colonyId)
-
-  return colonyClient
-
-}
-
-// getColonyClientByAddress
-
-export const getColonyClientByAddress = async (networkClient, colonyAddress) => {
-
+  // get colony client
   const colonyClient = await networkClient.getColonyClientByAddress(colonyAddress)
 
+  // return colony client
   return colonyClient
-
-}
-
-// getMetaColonyClient
-
-export const getMetaColonyClient = async (networkClient) => {
-
-  const metaColonyClient = await networkClient.getMetaColonyClient()
-
-  return metaColonyClient
 
 }

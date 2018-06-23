@@ -12,6 +12,9 @@ const FundTask = ({
   <div className={styles.container}>
     <h2>{'Fund Task'}</h2>
     <div className={styles.field}>
+      <label htmlFor="amount">
+        {'amount:'}
+      </label>
       <input
         id="amount"
         onChange={handleChange}

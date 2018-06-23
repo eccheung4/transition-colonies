@@ -2,10 +2,34 @@ import { store } from '../index'
 import * as actions from '../constants/actions'
 import * as domainActions from '../../helpers/actions/domainActions'
 
+// claimFunds
+
+export const claimFunds = (colonyClient) => ({
+  type: actions.CLAIM_FUNDS,
+  payload: domainActions.claimFunds(colonyClient)
+    .then(domains => {
+      store.dispatch(setStateDomains(domains))
+      store.dispatch(claimFundsSuccess())
+    })
+    .catch(error => {
+      store.dispatch(claimFundsError(error.message))
+    }),
+})
+
+export const claimFundsError = (message) => ({
+  type: actions.CLAIM_FUNDS_ERROR,
+  payload: message,
+})
+
+export const claimFundsSuccess = (message) => ({
+  type: actions.CLAIM_FUNDS_SUCCESS,
+  payload: message,
+})
+
 // fundDomain
 
 export const fundDomain = (colonyClient, domainId, amount) => ({
-  type: actions.GET_DOMAINS,
+  type: actions.FUND_DOMAIN,
   payload: domainActions.fundDomain(colonyClient, domainId, amount)
     .then(domains => {
       store.dispatch(setStateDomains(domains))
@@ -17,12 +41,12 @@ export const fundDomain = (colonyClient, domainId, amount) => ({
 })
 
 export const fundDomainError = (message) => ({
-  type: actions.GET_DOMAINS_ERROR,
+  type: actions.FUND_DOMAIN_ERROR,
   payload: message,
 })
 
 export const fundDomainSuccess = (message) => ({
-  type: actions.GET_DOMAINS_SUCCESS,
+  type: actions.FUND_DOMAIN_SUCCESS,
   payload: message,
 })
 

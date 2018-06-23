@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './MintTokens.scss'
 
 const MintTokens = ({
+  amount,
   handleChange,
   handleClick,
   mintTokensError,
@@ -10,25 +11,34 @@ const MintTokens = ({
 }) => (
   <div className={styles.container}>
     <h2>{'Mint Tokens'}</h2>
-    <input
-      onChange={handleChange}
-      placeholder="amount"
-      type="number"
-    />
-    <button onClick={handleClick}>
-      {'Mint Tokens'}
-    </button>
+    <div className={styles.field}>
+      <label htmlFor="amount">
+        {'amount:'}
+      </label>
+      <input
+        id="amount"
+        onChange={handleChange}
+        placeholder="amount"
+        type="number"
+        value={amount}
+      />
+    </div>
+    <div className={styles.buttons}>
+      <button onClick={handleClick}>
+        {'Mint Tokens'}
+      </button>
+    </div>
     {mintTokensError &&
-      <span className={styles.message}>
+      <div className={styles.message}>
         <span className={styles.error}>
           {mintTokensError}
         </span>
-      </span>
+      </div>
     }
     {mintTokensSuccess &&
-      <span className={styles.message}>
+      <div className={styles.message}>
         {'success'}
-      </span>
+      </div>
     }
   </div>
 )

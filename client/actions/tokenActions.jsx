@@ -4,9 +4,9 @@ import * as tokenActions from '../../helpers/actions/tokenActions'
 
 // createToken
 
-export const createToken = (networkClient, tokenName, tokenSymbol) => ({
+export const createToken = (networkClient, name, symbol) => ({
   type: actions.CREATE_TOKEN,
-  payload: tokenActions.createToken(networkClient, tokenName, tokenSymbol)
+  payload: tokenActions.createToken(networkClient, name, symbol)
     .then(tokenAddress => {
       store.dispatch(setStateTokenAddress(tokenAddress))
       store.dispatch(createTokenSuccess())
@@ -56,7 +56,7 @@ export const mintTokens = (colonyClient, amount) => ({
   type: actions.MINT_TOKENS,
   payload: tokenActions.mintTokens(colonyClient, amount)
     .then(token => {
-      store.dispatch(getToken(colonyClient))
+      store.dispatch(setStateToken(token))
       store.dispatch(mintTokensSuccess())
     })
     .catch(error => {

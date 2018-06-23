@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './GetMarket.scss'
 
 const GetMarket = ({
+  colonyAddress,
   getColonyClientError,
   getColonyClientLoading,
   getColonyClientSuccess,
@@ -10,18 +11,29 @@ const GetMarket = ({
 }) => (
   <div className={styles.container}>
     <h2>{'Get Market'}</h2>
-    <input
-      onChange={handleChange}
-      placeholder="market address"
-      type="text"
-    />
-    <button onClick={handleClick}>
-      {'Get Market'}
-    </button>
+    <div className={styles.field}>
+      <label htmlFor="colonyAddress">
+        {'address:'}
+      </label>
+      <input
+        id="colonyAddress"
+        onChange={handleChange}
+        placeholder="0x0"
+        type="text"
+        value={colonyAddress}
+      />
+    </div>
+    <div className={styles.buttons}>
+      <button onClick={handleClick}>
+        {'Get Market'}
+      </button>
+    </div>
     {getColonyClientError &&
-      <p className={styles.message}>
-        {getColonyClientError}
-      </p>
+      <div className={styles.message}>
+        <span className={styles.error}>
+          {getColonyClientError}
+        </span>
+      </div>
     }
   </div>
 )

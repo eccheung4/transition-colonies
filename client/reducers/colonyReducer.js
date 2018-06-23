@@ -15,19 +15,6 @@ const initialState = {
   getColonyClientLoading: false,
   getColonyClientSuccess: false,
 
-  // getColonyClientByAddress
-  getColonyClientByAddressError: null,
-  getColonyClientByAddressLoading: false,
-  getColonyClientByAddressSuccess: false,
-
-  // getMetaColonyClient
-  getMetaColonyClientError: null,
-  getMetaColonyClientLoading: false,
-  getMetaColonyClientSuccess: false,
-
-  // metaColonyClient
-  metaColonyClient: null,
-
 }
 
 const colonyReducer = (state = initialState, action) => {
@@ -82,68 +69,12 @@ const colonyReducer = (state = initialState, action) => {
         getColonyClientSuccess: true,
       }
 
-    // getColonyClientByAddress
-
-    case actions.GET_COLONY_CLIENT_BY_ADDRESS:
-      return {
-        ...state,
-        getColonyClientByAddressError: null,
-        getColonyClientByAddressLoading: true,
-        getColonyClientByAddressSuccess: false,
-      }
-
-    case actions.GET_COLONY_CLIENT_BY_ADDRESS_ERROR:
-      return {
-        ...state,
-        getColonyClientByAddressError: action.payload,
-        getColonyClientByAddressLoading: false,
-      }
-
-    case actions.GET_COLONY_CLIENT_BY_ADDRESS_SUCCESS:
-      return {
-        ...state,
-        getColonyClientByAddressLoading: false,
-        getColonyClientByAddressSuccess: true,
-      }
-
-    // getMetaColonyClient
-
-    case actions.GET_META_COLONY_CLIENT:
-      return {
-        ...state,
-        getMetaColonyClientError: null,
-        getMetaColonyClientLoading: true,
-        getMetaColonyClientSuccess: false,
-      }
-
-    case actions.GET_META_COLONY_CLIENT_ERROR:
-      return {
-        ...state,
-        getMetaColonyClientError: action.payload,
-        getMetaColonyClientLoading: false,
-      }
-
-    case actions.GET_META_COLONY_CLIENT_SUCCESS:
-      return {
-        ...state,
-        getMetaColonyClientLoading: false,
-        getMetaColonyClientSuccess: true,
-      }
-
     // setStateColonyClient
 
     case actions.SET_STATE_COLONY_CLIENT:
       return {
         ...state,
         colonyClient: action.payload,
-      }
-
-    // setStateMetaColonyClient
-
-    case actions.SET_STATE_META_COLONY_CLIENT:
-      return {
-        ...state,
-        metaColonyClient: action.payload,
       }
 
     // default

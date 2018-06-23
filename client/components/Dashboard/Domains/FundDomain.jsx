@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './FundDomain.scss'
 
 const FundDomain = ({
-  amount,
-  domainId,
+  funding,
   fundDomainError,
   fundDomainLoading,
   fundDomainSuccess,
@@ -16,7 +15,7 @@ const FundDomain = ({
       <label htmlFor="domainId">
         {'domain:'}
       </label>
-      <select id="domainId" onChange={handleChange} value={domainId}>
+      <select id="domainId" onChange={handleChange} value={funding.domainId}>
         <option value={2}>
           {'Business'}
         </option>
@@ -36,7 +35,7 @@ const FundDomain = ({
         id="amount"
         onChange={handleChange}
         type="number"
-        value={amount}
+        value={funding.amount}
       />
     </div>
     <div className={styles.buttons}>
@@ -48,6 +47,13 @@ const FundDomain = ({
       <div className={styles.message}>
         <span className={styles.error}>
           {fundDomainError}
+        </span>
+      </div>
+    }
+    {fundDomainLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
         </span>
       </div>
     }

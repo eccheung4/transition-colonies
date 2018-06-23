@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './CreateMarket.scss'
 
 const CreateMarket = ({
-  colonyAddress,
   createColonyError,
   createColonyLoading,
   createColonySuccess,
@@ -11,23 +10,35 @@ const CreateMarket = ({
 }) => (
   <div className={styles.container}>
     <h2>{'Create Market'}</h2>
-    <input
-      onChange={handleChange}
-      placeholder="token address"
-      type="text"
-    />
-    <button onClick={handleClick}>
-      {'Create Market'}
-    </button>
+    <div className={styles.field}>
+      <label htmlFor="tokenAddress">
+        {'token address:'}
+      </label>
+      <input
+        id="tokenAddress"
+        onChange={handleChange}
+        placeholder="0x0"
+        type="text"
+      />
+    </div>
+    <div className={styles.buttons}>
+      <button onClick={handleClick}>
+        {'Create Market'}
+      </button>
+    </div>
     {createColonyError &&
-      <p className={styles.message}>
-        {createColonyError}
-      </p>
+      <div className={styles.message}>
+        <span className={styles.error}>
+          {createColonyError}
+        </span>
+      </div>
     }
-    {colonyAddress &&
-      <p className={styles.message}>
-        {'address: ' + colonyAddress}
-      </p>
+    {createColonyLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
     }
   </div>
 )

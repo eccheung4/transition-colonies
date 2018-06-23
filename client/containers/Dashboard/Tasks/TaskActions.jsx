@@ -54,24 +54,27 @@ class TaskActionsContainer extends Component {
     return (
       <TaskActions
         cancelTask={this.cancelTask}
-        cancelTaskError={this.props.cancelTaskError}
-        cancelTaskLoading={this.props.cancelTaskLoading}
-        cancelTaskSuccess={this.props.cancelTaskSuccess}
         editTask={this.editTask}
+        error={
+          this.props.cancelTaskError ||
+          this.props.finalizeTaskError ||
+          this.props.signTaskError
+        }
         finalizeTask={this.finalizeTask}
-        finalizeTaskError={this.props.finalizeTaskError}
-        finalizeTaskLoading={this.props.finalizeTaskLoading}
-        finalizeTaskSuccess={this.props.finalizeTaskSuccess}
         fundTask={this.fundTask}
-        fundTaskError={this.props.fundTaskError}
-        fundTaskLoading={this.props.fundTaskLoading}
-        fundTaskSuccess={this.props.fundTaskSuccess}
+        loading={
+          this.props.cancelTaskLoading ||
+          this.props.finalizeTaskLoading ||
+          this.props.signTaskLoading
+        }
         signTask={this.signTask}
-        signTaskError={this.props.signTaskError}
-        signTaskLoading={this.props.signTaskLoading}
-        signTaskSuccess={this.props.signTaskSuccess}
         submitRating={this.submitRating}
         submitWork={this.submitWork}
+        success={
+          this.props.cancelTaskSuccess ||
+          this.props.finalizeTaskSuccess ||
+          this.props.signTaskSuccess
+        }
         task={this.props.task}
         viewTask={this.viewTask}
       />
@@ -91,12 +94,9 @@ const mapStateToProps = state => ({
   fundTaskError: state.task.fundTaskError,
   fundTaskLoading: state.task.fundTaskLoading,
   fundTaskSuccess: state.task.fundTaskSuccess,
-  getTaskError: state.task.getTaskError,
-  getTaskLoading: state.task.getTaskLoading,
-  getTaskSuccess: state.task.getTaskSuccess,
-  signTaskError: state.task.signTaskTaskError,
-  signTaskLoading: state.task.signTaskTaskLoading,
-  signTaskSuccess: state.task.signTaskTaskSuccess,
+  signTaskError: state.task.signTaskError,
+  signTaskLoading: state.task.signTaskLoading,
+  signTaskSuccess: state.task.signTaskSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -105,9 +105,6 @@ const mapDispatchToProps = dispatch => ({
   },
   finalizeTask(colonyClient, taskId) {
     dispatch(taskActions.finalizeTask(colonyClient, taskId))
-  },
-  getTask(colonyClient, task) {
-    dispatch(taskActions.getTask(colonyClient, task))
   },
   signTask(colonyClient, taskId) {
     dispatch(taskActions.signTask(colonyClient, taskId))

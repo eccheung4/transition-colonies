@@ -7,34 +7,58 @@ const CreateToken = ({
   createTokenSuccess,
   handleChange,
   handleClick,
+  token,
   tokenAddress,
 }) => (
   <div className={styles.container}>
     <h2>{'Create Token'}</h2>
-    <input
-      id="tokenName"
-      onChange={handleChange}
-      placeholder="token name"
-      type="text"
-    />
-    <input
-      id="tokenSymbol"
-      onChange={handleChange}
-      placeholder="token symbol"
-      type="text"
-    />
-    <button onClick={handleClick}>
-      {'Create Token'}
-    </button>
+    <div className={styles.field}>
+      <label htmlFor="name">
+        {'name:'}
+      </label>
+      <input
+        id="name"
+        onChange={handleChange}
+        placeholder="token"
+        type="text"
+        value={token.name}
+      />
+    </div>
+    <div className={styles.field}>
+      <label htmlFor="symbol">
+        {'symbol:'}
+      </label>
+      <input
+        id="symbol"
+        onChange={handleChange}
+        placeholder="TKN"
+        type="text"
+        value={token.symbol}
+      />
+    </div>
+    <div className={styles.buttons}>
+      <button onClick={handleClick}>
+        {'Create Token'}
+      </button>
+    </div>
     {createTokenError &&
-      <p className={styles.message}>
-        {createTokenError}
-      </p>
+      <div className={styles.message}>
+        <span className={styles.error}>
+          {createTokenError}
+        </span>
+      </div>
     }
-    {tokenAddress &&
-      <p className={styles.message}>
-        {'address: ' + tokenAddress}
-      </p>
+    {createTokenLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
+    {createTokenSuccess &&
+      <div className={styles.message}>
+        {'token address: ' + tokenAddress}
+      </div>
     }
   </div>
 )
