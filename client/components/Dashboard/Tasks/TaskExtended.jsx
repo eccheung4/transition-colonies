@@ -93,6 +93,14 @@ const TaskExtended = ({ task }) => (
     <div className={styles.group}>
       <div>{'ratings:'}</div>
       <div className={styles.indent}>
+        <span>{'count:'}</span>
+        <span>{' ' + task.ratings.count}</span>
+      </div>
+      <div className={styles.indent}>
+        <span>{'date:'}</span>
+        <span>{' ' + task.ratings.date}</span>
+      </div>
+      <div className={styles.indent}>
         <span>{'evaluator:'}</span>
         <span>{' ' + task.ratings.evaluator}</span>
       </div>

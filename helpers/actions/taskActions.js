@@ -178,6 +178,8 @@ export const fundTask = async (colonyClient, taskId, amount) => {
 
 export const getRatings = async (colonyClient, taskId) => {
 
+  const { count, date } = await colonyClient.getTaskWorkRatings.call({ taskId })
+
   // get evaluator work rating secret
   const { secret: evaluator } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'EVALUATOR' })
 
@@ -188,7 +190,7 @@ export const getRatings = async (colonyClient, taskId) => {
   const { secret: worker } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'WORKER' })
 
   // return ratings
-  return { evaluator, manager, worker }
+  return { count, date, evaluator, manager, worker }
 
 }
 
