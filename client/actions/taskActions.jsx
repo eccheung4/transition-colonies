@@ -74,6 +74,30 @@ export const finalizeTaskSuccess = (message) => ({
   payload: message,
 })
 
+// fundTask
+
+export const fundTask = (colonyClient, taskId) => ({
+  type: actions.FUND_TASK,
+  payload: taskActions.fundTask(colonyClient, taskId)
+    .then(task => {
+      store.dispatch(setStateTask(task))
+      store.dispatch(fundTaskSuccess())
+    })
+    .catch(error => {
+      store.dispatch(fundTaskError(error.message))
+    }),
+})
+
+export const fundTaskError = (message) => ({
+  type: actions.FUND_TASK_ERROR,
+  payload: message,
+})
+
+export const fundTaskSuccess = (message) => ({
+  type: actions.FUND_TASK_SUCCESS,
+  payload: message,
+})
+
 // getTask
 
 export const getTask = (colonyClient, task) => ({

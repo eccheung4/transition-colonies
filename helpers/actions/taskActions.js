@@ -143,6 +143,68 @@ export const finalizeTask = async (colonyClient, taskId) => {
 
 }
 
+// fundTask
+
+export const fundTask = async (colonyClient, taskId) => {
+
+  // get task
+  const task = await getTask(colonyClient, taskId)
+
+  // check funded
+  if (task.payoutsWeCannotMake === 0) {
+
+    // throw error
+    throw new Error('task is already funded')
+
+  }
+
+  // set domain id
+  const domainId = task.domainId
+
+  // set pot id
+  const toPot = task.potId
+
+  // get pot id
+  const { potId: fromPot } = await colonyClient.getDomain.call({ domainId })
+
+  // set token
+  const token = colonyClient.token._contract.address
+
+  // get evaluator payout
+  const { amount: evaluatorPayout } = await colonyClient.getTaskPayout.call({
+    taskId,
+    role: 'EVALUATOR',
+    token,
+  })
+
+  // get manager payout
+  const { amount: managerPayout } = await colonyClient.getTaskPayout.call({
+    taskId,
+    role: 'MANAGER',
+    token,
+  })
+
+  // get worker payout
+  const { amount: workerPayout } = await colonyClient.getTaskPayout.call({
+    taskId,
+    role: 'WORKER',
+    token,
+  })
+
+  // set amount
+  const amount = evaluatorPayout.add(managerPayout).add(workerPayout)
+
+  // move funds between pots
+  await colonyClient.moveFundsBetweenPots.send({ fromPot, toPot, amount, token })
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, task)
+
+  // return updated task extended
+  return updatedTaskExtended
+
+}
+
 // getRatings
 
 export const getRatings = async (colonyClient, taskId) => {

@@ -7,6 +7,7 @@ const TaskActions = ({
   cancelTaskLoading,
   cancelTaskSuccess,
   editTask,
+  fundTask,
   finalizeTask,
   finalizeTaskError,
   finalizeTaskLoading,
@@ -28,6 +29,9 @@ const TaskActions = ({
     </button>
     <button onClick={signTask}>
       {'Sign Task'}
+    </button>
+    <button onClick={fundTask}>
+      {'Fund Task'}
     </button>
     <button onClick={finalizeTask}>
       {'Finalize Task'}

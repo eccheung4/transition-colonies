@@ -8,38 +8,18 @@ class TaskActionsContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      cancelTask: false,
-      finalizeTask: false,
-      signTask: false,
-    }
     this.cancelTask = this.cancelTask.bind(this)
     this.editTask = this.editTask.bind(this)
     this.finalizeTask = this.finalizeTask.bind(this)
+    this.fundTask = this.fundTask.bind(this)
     this.signTask = this.signTask.bind(this)
     this.submitRating = this.submitRating.bind(this)
     this.submitWork = this.submitWork.bind(this)
     this.viewTask = this.viewTask.bind(this)
   }
 
-  componentDidUpdate() {
-    if (this.props.cancelTaskSuccess && this.state.cancelTask) {
-      this.props.getTask(this.props.colonyClient, this.props.task)
-      this.setState({ cancelTask: false })
-    }
-    if (this.props.finalizeTaskSuccess && this.state.finalizeTask) {
-      this.props.getTask(this.props.colonyClient, this.props.task)
-      this.setState({ finalizeTask: false })
-    }
-    if (this.props.signTaskSuccess && this.state.signTask) {
-      this.props.getTask(this.props.colonyClient, this.props.task)
-      this.setState({ signTask: false })
-    }
-  }
-
   cancelTask() {
     this.props.cancelTask(this.props.colonyClient, this.props.task.id)
-    this.setState({ cancelTask: true })
   }
 
   editTask() {
@@ -48,12 +28,14 @@ class TaskActionsContainer extends Component {
 
   finalizeTask() {
     this.props.finalizeTask(this.props.colonyClient, this.props.task.id)
-    this.setState({ finalizeTask: true })
+  }
+
+  fundTask() {
+    this.props.fundTask(this.props.colonyClient, this.props.task.id)
   }
 
   signTask() {
     this.props.signTask(this.props.colonyClient, this.props.task.id)
-    this.setState({ signTask: true })
   }
 
   submitRating() {
@@ -80,6 +62,10 @@ class TaskActionsContainer extends Component {
         finalizeTaskError={this.props.finalizeTaskError}
         finalizeTaskLoading={this.props.finalizeTaskLoading}
         finalizeTaskSuccess={this.props.finalizeTaskSuccess}
+        fundTask={this.fundTask}
+        fundTaskError={this.props.fundTaskError}
+        fundTaskLoading={this.props.fundTaskLoading}
+        fundTaskSuccess={this.props.fundTaskSuccess}
         signTask={this.signTask}
         signTaskError={this.props.signTaskError}
         signTaskLoading={this.props.signTaskLoading}
@@ -102,6 +88,9 @@ const mapStateToProps = state => ({
   finalizeTaskError: state.task.finalizeTaskError,
   finalizeTaskLoading: state.task.finalizeTaskLoading,
   finalizeTaskSuccess: state.task.finalizeTaskSuccess,
+  fundTaskError: state.task.fundTaskError,
+  fundTaskLoading: state.task.fundTaskLoading,
+  fundTaskSuccess: state.task.fundTaskSuccess,
   getTaskError: state.task.getTaskError,
   getTaskLoading: state.task.getTaskLoading,
   getTaskSuccess: state.task.getTaskSuccess,
@@ -116,6 +105,9 @@ const mapDispatchToProps = dispatch => ({
   },
   finalizeTask(colonyClient, taskId) {
     dispatch(taskActions.finalizeTask(colonyClient, taskId))
+  },
+  fundTask(colonyClient, taskId) {
+    dispatch(taskActions.fundTask(colonyClient, taskId))
   },
   getTask(colonyClient, task) {
     dispatch(taskActions.getTask(colonyClient, task))
