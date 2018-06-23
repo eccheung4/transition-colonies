@@ -1,3 +1,15 @@
+// claimFunds
+
+export const claimFunds = async (colonyClient) => {
+
+  const token = colonyClient.token._contract.address
+
+  const claimColonyFunds = await colonyClient.claimColonyFunds.send({ token })
+
+  return true
+
+}
+
 // createColony
 
 export const createColony = async (networkClient, tokenAddress) => {

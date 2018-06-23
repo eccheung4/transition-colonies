@@ -1,9 +1,17 @@
 import React from 'react'
 import styles from './ViewDomains.scss'
 
-const ViewDomains = ({ domains }) => (
+const ViewDomains = ({
+  getDomainsError,
+  getDomainsLoading,
+  getDomainsSuccess,
+  domains,
+}) => (
   <div className={styles.container}>
     <h2>{'View Domains'}</h2>
+    {!domains || getDomainsLoading ?
+      <div>{'loading...'}</div>
+    :
     <ul className={styles.list}>
       {domains.map((domain, index) => (
         <li key={index} className={styles.item}>
@@ -14,6 +22,7 @@ const ViewDomains = ({ domains }) => (
         </li>
       ))}
     </ul>
+    }
   </div>
 )
 

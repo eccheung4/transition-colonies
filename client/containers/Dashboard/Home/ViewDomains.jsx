@@ -15,13 +15,13 @@ class ViewDomainsContainer extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.domains === null && !this.props.getDomainsLoading) {
+      this.props.getDomains(this.props.colonyClient)
+    }
+  }
+
   render() {
-    if (this.props.getDomainsError) {
-      return <div>{this.props.getDomainsError}</div>
-    }
-    if (this.props.getDomainsLoading || this.props.domains === null) {
-      return <div>{'loading...'}</div>
-    }
     return (
       <ViewDomains
         domains={this.props.domains}

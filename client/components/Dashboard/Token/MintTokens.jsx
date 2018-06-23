@@ -19,16 +19,16 @@ const MintTokens = ({
       {'Mint Tokens'}
     </button>
     {mintTokensError &&
-      <p className={styles.message}>
+      <span className={styles.message}>
         <span className={styles.error}>
           {mintTokensError}
         </span>
-      </p>
+      </span>
     }
     {mintTokensSuccess &&
-      <p className={styles.message}>
+      <span className={styles.message}>
         {'success'}
-      </p>
+      </span>
     }
   </div>
 )

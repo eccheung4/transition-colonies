@@ -1,31 +1,6 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
 import * as tokenActions from '../../helpers/actions/tokenActions'
-import { setStateDomains } from './domainActions'
-
-// claimTokens
-
-export const claimTokens = (colonyClient) => ({
-  type: actions.CLAIM_FUNDS,
-  payload: tokenActions.claimTokens(colonyClient)
-    .then(success => {
-      store.dispatch(setStateDomains(null))
-      store.dispatch(claimTokensSuccess())
-    })
-    .catch(error => {
-      store.dispatch(claimTokensError(error.message))
-    }),
-})
-
-export const claimTokensError = (message) => ({
-  type: actions.CLAIM_FUNDS_ERROR,
-  payload: message,
-})
-
-export const claimTokensSuccess = (message) => ({
-  type: actions.CLAIM_FUNDS_SUCCESS,
-  payload: message,
-})
 
 // createToken
 

@@ -1,6 +1,31 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
 import * as colonyActions from '../../helpers/actions/colonyActions'
+import { setStateDomains } from './domainActions'
+
+// claimFunds
+
+export const claimFunds = (colonyClient) => ({
+  type: actions.CLAIM_FUNDS,
+  payload: colonyActions.claimFunds(colonyClient)
+    .then(success => {
+      store.dispatch(setStateDomains(null))
+      store.dispatch(claimFundsSuccess())
+    })
+    .catch(error => {
+      store.dispatch(claimFundsError(error.message))
+    }),
+})
+
+export const claimFundsError = (message) => ({
+  type: actions.CLAIM_FUNDS_ERROR,
+  payload: message,
+})
+
+export const claimFundsSuccess = (message) => ({
+  type: actions.CLAIM_FUNDS_SUCCESS,
+  payload: message,
+})
 
 // createColony
 
