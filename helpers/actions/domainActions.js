@@ -45,6 +45,76 @@ export const fundDomain = async (colonyClient, domainId, amount) => {
 
 }
 
+// getClaimableFunds
+
+export const getClaimableFunds = async (colonyClient) => {
+
+  // set token
+  const token = colonyClient.token._contract.address
+
+  // get token supply
+  const { amount: tokenSupply} = await colonyClient.token.getTotalSupply.call()
+
+  // get domain count
+  const { count: domainCount} = await colonyClient.getDomainCount.call()
+
+  // set domain id
+  let domainId = 1
+
+  // set claimed funds
+  let claimedFunds = tokenSupply
+
+  // get domains
+  while (domainId <= domainCount) {
+
+    // get domain
+    const domain = await colonyClient.getDomain.call({ domainId })
+
+    // get pot balance for domain
+    const { balance: potBalance } = await colonyClient.getPotBalance.call({
+      potId: domain.potId,
+      token,
+    })
+
+    // subtract pot balance from claimed funds
+    claimedFunds = claimedFunds.sub(potBalance)
+
+    // increment domain id
+    domainId++
+
+  }
+
+  // get task count
+  const { count: taskCount } = await colonyClient.getTaskCount.call()
+
+  // set task id
+  let taskId = 1
+
+  // get tasks
+  while (taskId <= taskCount) {
+
+    // get task
+    const task = await colonyClient.getTask.call({ taskId })
+
+    // get pot balance for task
+    const { balance: potBalance } = await colonyClient.getPotBalance.call({
+      potId: task.potId,
+      token,
+    })
+
+    // subtract pot balance from claimed funds
+    claimedFunds = claimedFunds.sub(potBalance)
+
+    // increment task id
+    taskId++
+
+  }
+
+  // return claimed funds
+  return claimedFunds.toNumber()
+
+}
+
 // getDomainTitle
 
 export const getDomainTitle = (domainId) => {
@@ -94,7 +164,7 @@ export const getDomains = async (colonyClient) => {
     })
 
     // append potBalance
-    domain.potBalance = potBalance
+    domain.potBalance = potBalance.balance.toNumber()
 
     // push domain to domains
     domains.push(domain)

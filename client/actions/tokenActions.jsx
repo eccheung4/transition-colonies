@@ -1,6 +1,7 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
 import * as tokenActions from '../../helpers/actions/tokenActions'
+import { setStateClaimableFunds } from './domainActions'
 
 // createToken
 
@@ -57,6 +58,7 @@ export const mintTokens = (colonyClient, amount) => ({
   payload: tokenActions.mintTokens(colonyClient, amount)
     .then(token => {
       store.dispatch(setStateToken(token))
+      store.dispatch(setStateClaimableFunds(null))
       store.dispatch(mintTokensSuccess())
     })
     .catch(error => {

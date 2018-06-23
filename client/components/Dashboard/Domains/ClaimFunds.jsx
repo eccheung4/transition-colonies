@@ -2,13 +2,25 @@ import React from 'react'
 import styles from './ClaimFunds.scss'
 
 const ClaimFunds = ({
+  claimableFunds,
   claimFundsError,
   claimFundsLoading,
   claimFundsSuccess,
+  getClaimableFundsError,
+  getClaimableFundsLoading,
+  getClaimableFundsSuccess,
   handleClick,
 }) => (
   <div className={styles.container}>
     <h2>{'Claim Funds'}</h2>
+    <div className={styles.field}>
+      <label>
+        {'claimable funds:'}
+      </label>
+      <span>
+        {!getClaimableFundsLoading ? claimableFunds : 'loading...'}
+      </span>
+    </div>
     <div className={styles.buttons}>
       <button onClick={handleClick}>
         {'Claim Funds'}

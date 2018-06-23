@@ -21,13 +21,16 @@ export const getToken = async (colonyClient) => {
   const address = colonyClient.token._contract.address
 
   // get token info
-  const tokenInfo = await colonyClient.token.getTokenInfo.call()
+  const info = await colonyClient.token.getTokenInfo.call()
 
   // get total supply
-  const totalSupply = await colonyClient.token.getTotalSupply.call()
+  const { amount } = await colonyClient.token.getTotalSupply.call()
+
+  // set supply
+  const supply = amount.toNumber()
 
   // return token
-  return { address, totalSupply, ...tokenInfo }
+  return { address, supply, ...info }
 
 }
 

@@ -50,6 +50,30 @@ export const fundDomainSuccess = (message) => ({
   payload: message,
 })
 
+// getClaimableFunds
+
+export const getClaimableFunds = (colonyClient) => ({
+  type: actions.GET_CLAIMABLE_FUNDS,
+  payload: domainActions.getClaimableFunds(colonyClient)
+    .then(claimableFunds => {
+      store.dispatch(setStateClaimableFunds(claimableFunds))
+      store.dispatch(getClaimableFundsSuccess())
+    })
+    .catch(error => {
+      store.dispatch(getClaimableFundsError(error.message))
+    }),
+})
+
+export const getClaimableFundsError = (message) => ({
+  type: actions.GET_CLAIMABLE_FUNDS_ERROR,
+  payload: message,
+})
+
+export const getClaimableFundsSuccess = (message) => ({
+  type: actions.GET_CLAIMABLE_FUNDS_SUCCESS,
+  payload: message,
+})
+
 // getDomains
 
 export const getDomains = (colonyClient) => ({
@@ -72,6 +96,13 @@ export const getDomainsError = (message) => ({
 export const getDomainsSuccess = (message) => ({
   type: actions.GET_DOMAINS_SUCCESS,
   payload: message,
+})
+
+// setStateClaimableFunds
+
+export const setStateClaimableFunds = (claimableFunds) => ({
+  type: actions.SET_STATE_CLAIMABLE_FUNDS,
+  payload: claimableFunds,
 })
 
 // setStateDomains

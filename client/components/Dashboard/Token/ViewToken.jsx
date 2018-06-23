@@ -17,7 +17,7 @@ const ViewToken = ({
         <p>{'name: ' + token.name}</p>
         <p>{'symbol: ' + token.symbol}</p>
         <p>{'decimals: ' + token.decimals}</p>
-        <p>{'totalSupply: ' + token.totalSupply.amount.toNumber()}</p>
+        <p>{'supply: ' + token.supply}</p>
       </div>
     }
   </div>
