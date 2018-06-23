@@ -31,7 +31,7 @@ class TaskActionsContainer extends Component {
   }
 
   fundTask() {
-    this.props.fundTask(this.props.colonyClient, this.props.task.id)
+    this.props.history.push(`/dashboard/tasks/fund/${this.props.task.id}`)
   }
 
   signTask() {
@@ -105,9 +105,6 @@ const mapDispatchToProps = dispatch => ({
   },
   finalizeTask(colonyClient, taskId) {
     dispatch(taskActions.finalizeTask(colonyClient, taskId))
-  },
-  fundTask(colonyClient, taskId) {
-    dispatch(taskActions.fundTask(colonyClient, taskId))
   },
   getTask(colonyClient, task) {
     dispatch(taskActions.getTask(colonyClient, task))

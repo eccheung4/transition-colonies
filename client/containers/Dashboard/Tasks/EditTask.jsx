@@ -14,7 +14,8 @@ class EditTaskContainer extends Component {
   }
 
   componentDidMount() {
-    const task = this.props.tasks.find(task => task.id === Number(this.props.match.params.id))
+    const taskId = Number(this.props.match.params.id)
+    const task = this.props.tasks.find(task => task.id === taskId)
     this.props.getTask(this.props.colonyClient, task)
   }
 

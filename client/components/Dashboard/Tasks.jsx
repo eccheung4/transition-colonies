@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink, Route, Switch } from 'react-router-dom'
 import CreateTask from '../../containers/Dashboard/Tasks/CreateTask'
 import EditTask from '../../containers/Dashboard/Tasks/EditTask'
+import FundTask from '../../containers/Dashboard/Tasks/FundTask'
 import SubmitRating from '../../containers/Dashboard/Tasks/SubmitRating'
 import SubmitWork from '../../containers/Dashboard/Tasks/SubmitWork'
 import ViewTask from '../../containers/Dashboard/Tasks/ViewTask'
@@ -24,6 +25,7 @@ const Tasks = () => (
         <Route exact path="/dashboard/tasks/new" component={CreateTask} />
         <Route exact path="/dashboard/tasks/:id" component={ViewTask} />
         <Route exact path="/dashboard/tasks/edit/:id" component={EditTask} />
+        <Route exact path="/dashboard/tasks/fund/:id" component={FundTask} />
         <Route exact path="/dashboard/tasks/rate/:id" component={SubmitRating} />
         <Route exact path="/dashboard/tasks/submit/:id" component={SubmitWork} />
       </Switch>

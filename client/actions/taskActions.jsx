@@ -76,9 +76,9 @@ export const finalizeTaskSuccess = (message) => ({
 
 // fundTask
 
-export const fundTask = (colonyClient, taskId) => ({
+export const fundTask = (colonyClient, taskId, amount) => ({
   type: actions.FUND_TASK,
-  payload: taskActions.fundTask(colonyClient, taskId)
+  payload: taskActions.fundTask(colonyClient, taskId, amount)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(fundTaskSuccess())
