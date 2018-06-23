@@ -1,6 +1,18 @@
 // import big number
 import BN from 'bn.js'
 
+// claimTokens
+
+export const claimTokens = async (colonyClient) => {
+
+  const token = colonyClient.token._contract.address
+
+  const claimColonyFunds = await colonyClient.claimColonyFunds.send({ token })
+
+  return true
+
+}
+
 // createToken
 
 export const createToken = async (networkClient, tokenName, tokenSymbol) => {

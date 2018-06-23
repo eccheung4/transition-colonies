@@ -16,12 +16,6 @@ class ViewTokenContainer extends Component {
   }
 
   render() {
-    if (this.props.getTokenError) {
-      return <div>{this.props.getTokenError}</div>
-    }
-    if (this.props.getTokenLoading || this.props.token === null) {
-      return <div>{'loading...'}</div>
-    }
     return (
       <ViewToken
         getTokenError={this.props.getTokenError}

@@ -2,6 +2,11 @@ import * as actions from '../constants/actions'
 
 const initialState = {
 
+  // claimTokens
+  claimTokensError: null,
+  claimTokensLoading: false,
+  claimTokensSuccess: false,
+
   // createToken
   createTokenError: null,
   createTokenLoading: false,
@@ -28,6 +33,30 @@ const initialState = {
 const tokenReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
+    // claimTokens
+
+    case actions.CLAIM_FUNDS:
+      return {
+        ...state,
+        claimTokensError: null,
+        claimTokensLoading: true,
+        claimTokensSuccess: false,
+      }
+
+    case actions.CLAIM_FUNDS_ERROR:
+      return {
+        ...state,
+        claimTokensError: action.payload,
+        claimTokensLoading: false,
+      }
+
+    case actions.CLAIM_FUNDS_SUCCESS:
+      return {
+        ...state,
+        claimTokensLoading: false,
+        claimTokensSuccess: true,
+      }
 
     // createToken
 

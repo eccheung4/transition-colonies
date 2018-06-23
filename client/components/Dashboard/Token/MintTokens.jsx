@@ -20,7 +20,14 @@ const MintTokens = ({
     </button>
     {mintTokensError &&
       <p className={styles.message}>
-        {mintTokensError}
+        <span className={styles.error}>
+          {mintTokensError}
+        </span>
+      </p>
+    }
+    {mintTokensSuccess &&
+      <p className={styles.message}>
+        {'success'}
       </p>
     }
   </div>
