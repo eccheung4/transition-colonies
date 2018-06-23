@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import Domains from './Dashboard/Domains'
 import Menu from './Dashboard/Menu'
 import Home from './Dashboard/Home'
 import Tasks from './Dashboard/Tasks'
@@ -12,6 +13,7 @@ const Dashboard = () => (
     <div className={styles.content}>
       <Switch>
         <Route exact path="/dashboard" component={Home} />
+        <Route path="/dashboard/domains" component={Domains} />
         <Route path="/dashboard/tasks" component={Tasks} />
         <Route exact path="/dashboard/token" component={Token} />
       </Switch>

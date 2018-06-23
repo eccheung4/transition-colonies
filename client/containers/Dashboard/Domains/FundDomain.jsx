@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fundDomain } from '../../../actions/domainActions'
-import FundDomain from '../../../components/Dashboard/Home/FundDomain'
+import FundDomain from '../../../components/Dashboard/Domains/FundDomain'
 
 class FundDomainContainer extends Component {
 

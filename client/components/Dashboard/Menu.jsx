@@ -11,6 +11,11 @@ const Menu = () => (
         </NavLink>
       </li>
       <li className={styles.item}>
+        <NavLink to="/dashboard/domains">
+          {'Domains'}
+        </NavLink>
+      </li>
+      <li className={styles.item}>
         <NavLink to="/dashboard/tasks">
           {'Tasks'}
         </NavLink>

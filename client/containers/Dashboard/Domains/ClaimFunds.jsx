@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { claimFunds } from '../../../actions/colonyActions'
-import ClaimFunds from '../../../components/Dashboard/Home/ClaimFunds'
+import ClaimFunds from '../../../components/Dashboard/Domains/ClaimFunds'
 
 class ClaimFundsContainer extends Component {
 
