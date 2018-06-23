@@ -14,7 +14,7 @@ class GetMarketContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.getColonyClientSuccess) {
+    if (this.props.getColonyClientSuccess && prevProps.getColonyClientSuccess !== this.props.getColonyClientSuccess) {
       this.props.history.push('/dashboard')
     }
   }

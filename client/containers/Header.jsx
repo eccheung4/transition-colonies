@@ -12,8 +12,8 @@ class HeaderContainer extends Component {
   }
 
   logout() {
-    this.props.history.push('/dashboard')
     this.props.setStateColonyClient(null)
+    this.props.history.push('/dashboard')
   }
 
   render() {
