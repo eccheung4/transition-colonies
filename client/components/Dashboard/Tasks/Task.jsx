@@ -110,6 +110,21 @@ const Task = ({
           <span>{' ' + task.deliverable.message}</span>
         </div>
       </div>
+      <div className={styles.group}>
+        <div>{'ratings:'}</div>
+        <div className={styles.indent}>
+          <span>{'evaluator:'}</span>
+          <span>{' ' + task.ratings.evaluator}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'manager:'}</span>
+          <span>{' ' + task.ratings.manager}</span>
+        </div>
+        <div className={styles.indent}>
+          <span>{'worker:'}</span>
+          <span>{' ' + task.ratings.worker}</span>
+        </div>
+      </div>
       <div>
         <span>{'cancelled:'}</span>
         <span>{' ' + task.cancelled}</span>

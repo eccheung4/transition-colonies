@@ -125,6 +125,28 @@ export const finalizeTask = async (colonyClient, taskId) => {
 
 }
 
+// getRatings
+
+export const getRatings = async (colonyClient, taskId) => {
+
+  // get evaluator work rating secret
+  const { secret: evaluator } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'EVALUATOR' })
+
+  // get manager work rating secret
+  const { secret: manager } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'MANAGER' })
+
+  // get worker work rating secret
+  const { secret: worker } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'WORKER' })
+
+  // return ratings
+  return {
+    evaluator,
+    manager,
+    worker,
+  }
+
+}
+
 // getTask
 
 export const getTask = async (colonyClient, taskId) => {
@@ -186,8 +208,8 @@ export const getTask = async (colonyClient, taskId) => {
   // initialize extended protocol
   await ecp.init()
 
-  // declare deliverable
-  let deliverable
+  // set deliverable
+  let deliverable = { message: null }
 
   // check deliverable hash
   if (task.deliverableHash) {
@@ -203,14 +225,25 @@ export const getTask = async (colonyClient, taskId) => {
   // stop extended protocol
   await ecp.stop()
 
+  // set deliverable
+  let ratings = {
+    evaluator: null,
+    manager: null,
+    worker: null,
+  }
+
+  // check deliverable
+  if (deliverable) {
+
+    // get ratings
+    ratings = await getRatings(colonyClient, taskId)
+
+  }
+
   // return task
   return {
     ...task,
-    deliverable: deliverable ? {
-      message: deliverable.message,
-    } : {
-      message: null
-    },
+    deliverable,
     payouts: {
       evaluator: evaluatorPayout.amount.toNumber(),
       manager: managerPayout.amount.toNumber(),
@@ -219,6 +252,7 @@ export const getTask = async (colonyClient, taskId) => {
     pot: {
       balance: potBalance.balance.toNumber(),
     },
+    ratings,
     roles: {
       evaluator,
       manager,
