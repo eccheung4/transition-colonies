@@ -1,3 +1,32 @@
+// import big number
+import BN from 'bn.js'
+
+// fundDomain
+
+export const fundDomain = async (colonyClient, domainId, amount) => {
+
+  // set token
+  const token = colonyClient.token._contract.address
+
+  // get domain
+  const domain = await colonyClient.getDomain.call({ domainId })
+
+  // move funds between pots
+  await colonyClient.moveFundsBetweenPots.send({
+    fromPot: 1,
+    toPot: domain.potId,
+    amount: new BN(amount),
+    token,
+  })
+
+  // get updated domains
+  const domains = await getDomains(colonyClient)
+
+  // return updated domains
+  return domains
+
+}
+
 // getDomainTitle
 
 export const getDomainTitle = (domainId) => {

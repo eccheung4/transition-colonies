@@ -31,7 +31,7 @@ const TaskForm = ({ handleChange, task }) => (
       <label htmlFor="domainId">
         {'domain:'}
       </label>
-      <select id="domainId" value={task.domainId} onChange={handleChange}>
+      <select id="domainId" onChange={handleChange} value={task.domainId}>
         <option value={1}>
           {'Market'}
         </option>

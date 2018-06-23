@@ -5,6 +5,11 @@ const initialState = {
   // domains
   domains: null,
 
+  // fundDomain
+  fundDomainError: null,
+  fundDomainLoading: false,
+  fundDomainSuccess: false,
+
   // getDomains
   getDomainsError: null,
   getDomainsLoading: false,
@@ -15,6 +20,30 @@ const initialState = {
 const domainReducer = (state = initialState, action) => {
 
   switch (action.type) {
+
+    // fundDomain
+
+    case actions.GET_DOMAINS:
+      return {
+        ...state,
+        fundDomainError: null,
+        fundDomainLoading: true,
+        fundDomainSuccess: false,
+      }
+
+    case actions.GET_DOMAINS_ERROR:
+      return {
+        ...state,
+        fundDomainError: action.payload,
+        fundDomainLoading: false,
+      }
+
+    case actions.GET_DOMAINS_SUCCESS:
+      return {
+        ...state,
+        fundDomainLoading: false,
+        fundDomainSuccess: true,
+      }
 
     // getDomains
 
