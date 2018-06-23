@@ -16,12 +16,6 @@ class ViewTasksContainer extends Component {
   }
 
   render() {
-    if (this.props.getTasksError) {
-      return <div>{this.props.getTasksError}</div>
-    }
-    if (this.props.getTasksLoading || this.props.tasks === null) {
-      return <div>{'loading...'}</div>
-    }
     return (
       <ViewTasks
         getTasksError={this.props.getTasksError}

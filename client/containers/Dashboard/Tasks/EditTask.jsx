@@ -1,51 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import formatDate from '../../../helpers/formatDate'
-import { updateTask } from '../../../actions/taskActions'
+import { getTask, updateTask } from '../../../actions/taskActions'
 import EditTask from '../../../components/Dashboard/Tasks/EditTask'
 
 class EditTaskContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { task: null }
+    this.state = { submitted: false, task: null }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
-    this.findAndSetTask()
+    const task = this.props.tasks.find(task => task.id === Number(this.props.match.params.id))
+    this.props.getTask(this.props.colonyClient, task)
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.tasks !== prevProps.tasks) {
-      this.findAndSetTask()
+    if (this.state.task === null && this.props.getTaskSuccess) {
+      this.setState({
+        task: {
+          domainId: this.props.task.domainId,
+          dueDate: formatDate(this.props.task.dueDate),
+          payouts: {
+            evaluator: this.props.task.payouts.evaluator,
+            manager: this.props.task.payouts.manager,
+            worker: this.props.task.payouts.worker,
+          },
+          roles: {
+            evaluator: this.props.task.roles.evaluator.address || '',
+            manager: this.props.task.roles.manager.address || '',
+            worker: this.props.task.roles.worker.address || '',
+          },
+          skillId: this.props.task.skillId,
+          specification: {
+            description: this.props.task.specification.description,
+            title: this.props.task.specification.title,
+          },
+        },
+      })
     }
-  }
-
-  findAndSetTask() {
-    const task = this.props.tasks.find(task => task.id === Number(this.props.match.params.id))
-    this.setState({
-      task: {
-        domainId: task.domainId,
-        dueDate: formatDate(task.dueDate),
-        payouts: {
-          evaluator: task.payouts.evaluator,
-          manager: task.payouts.manager,
-          worker: task.payouts.worker,
-        },
-        roles: {
-          evaluator: task.roles.evaluator.address || '',
-          manager: task.roles.manager.address || '',
-          worker: task.roles.worker.address || '',
-        },
-        skillId: task.skillId,
-        specification: {
-          description: task.specification.description,
-          title: task.specification.title,
-        },
-      },
-    })
+    if (this.state.submitted && this.props.updateTaskSuccess) {
+      this.props.history.push(`/dashboard/tasks/${this.props.task.id}`)
+    }
   }
 
   handleChange(event) {
@@ -168,14 +167,17 @@ class EditTaskContainer extends Component {
     // update task
     this.props.updateTask(this.props.colonyClient, task)
 
+    // set state
+    this.setState({ submitted: true })
+
   }
 
   render() {
-    if (this.state.task === null) {
-      return <div />
-    }
     return (
       <EditTask
+        getTaskError={this.props.getTaskError}
+        getTaskLoading={this.props.getTaskLoading}
+        getTaskSuccess={this.props.getTaskSuccess}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
         task={this.state.task}
@@ -190,6 +192,10 @@ class EditTaskContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
+  getTaskError: state.task.getTaskError,
+  getTaskLoading: state.task.getTaskLoading,
+  getTaskSuccess: state.task.getTaskSuccess,
+  task: state.task.task,
   tasks: state.task.tasks,
   updateTaskError: state.task.updateTaskError,
   updateTaskLoading: state.task.updateTaskLoading,
@@ -197,6 +203,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  getTask(colonyClient, task) {
+    dispatch(getTask(colonyClient, task))
+  },
   updateTask(colonyClient, task) {
     dispatch(updateTask(colonyClient, task))
   },

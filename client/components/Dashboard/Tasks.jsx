@@ -4,6 +4,7 @@ import CreateTask from '../../containers/Dashboard/Tasks/CreateTask'
 import EditTask from '../../containers/Dashboard/Tasks/EditTask'
 import SubmitRating from '../../containers/Dashboard/Tasks/SubmitRating'
 import SubmitWork from '../../containers/Dashboard/Tasks/SubmitWork'
+import ViewTask from '../../containers/Dashboard/Tasks/ViewTask'
 import ViewTasks from '../../containers/Dashboard/Tasks/ViewTasks'
 import styles from './Tasks.scss'
 
@@ -21,6 +22,7 @@ const Tasks = () => (
       <Switch>
         <Route exact path="/dashboard/tasks" component={ViewTasks} />
         <Route exact path="/dashboard/tasks/new" component={CreateTask} />
+        <Route exact path="/dashboard/tasks/:id" component={ViewTask} />
         <Route exact path="/dashboard/tasks/edit/:id" component={EditTask} />
         <Route exact path="/dashboard/tasks/rate/:id" component={SubmitRating} />
         <Route exact path="/dashboard/tasks/submit/:id" component={SubmitWork} />

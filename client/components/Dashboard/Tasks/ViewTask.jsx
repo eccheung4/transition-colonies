@@ -1,11 +1,24 @@
 import React from 'react'
-import Task from '../../../containers/Dashboard/Tasks/Task'
+import TaskActions from '../../../containers/Dashboard/Tasks/TaskActions'
+import TaskExtended from './TaskExtended'
 import styles from './ViewTask.scss'
 
-const ViewTask = ({ task }) => (
+const ViewTask = ({
+  getTaskError,
+  getTaskLoading,
+  getTaskSuccess,
+  task,
+}) => (
   <div className={styles.container}>
     <h2>{'View Task'}</h2>
-    <Task task={task} />
+    {!task || getTaskLoading ?
+      <div>{'loading...'}</div>
+    :
+      <div>
+        <TaskExtended task={task} />
+        <TaskActions task={task} />
+      </div>
+    }
   </div>
 )
 

@@ -8,6 +8,7 @@ class CreateTaskContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      submitted: false,
       task: {
         domainId: 1,
         dueDate: '',
@@ -30,6 +31,12 @@ class CreateTaskContainer extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidUpdate() {
+    if (this.state.submitted && this.props.createTaskSuccess) {
+      this.props.history.push(`/dashboard/tasks/${this.props.task.id}`)
+    }
   }
 
   handleChange(event) {
@@ -91,6 +98,9 @@ class CreateTaskContainer extends Component {
     // create task
     this.props.createTask(this.props.colonyClient, task)
 
+    // set state
+    this.setState({ submitted: true })
+
   }
 
   render() {
@@ -113,6 +123,7 @@ const mapStateToProps = state => ({
   createTaskError: state.task.createTaskError,
   createTaskLoading: state.task.createTaskLoading,
   createTaskSuccess: state.task.createTaskSuccess,
+  task: state.task.task,
 })
 
 const mapDispatchToProps = dispatch => ({

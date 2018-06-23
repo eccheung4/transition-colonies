@@ -11,8 +11,14 @@ export const cancelTask = async (colonyClient, taskId) => {
   // cancel task
   await colonyClient.cancelTask.send({ taskId })
 
-  // return id
-  return taskId
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
 
 }
 
@@ -108,8 +114,14 @@ export const createTask = async (colonyClient, task) => {
 
   }
 
-  // return id
-  return taskId
+  // get new task
+  const newTask = await getTask(colonyClient, taskId)
+
+  // get new task extended
+  const newTaskExtended = await getTaskExtended(colonyClient, newTask)
+
+  // return new task extended
+  return newTaskExtended
 
 }
 
@@ -120,8 +132,14 @@ export const finalizeTask = async (colonyClient, taskId) => {
   // finalize task
   await colonyClient.finalizeTask.send({ taskId })
 
-  // return id
-  return taskId
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
 
 }
 
@@ -139,11 +157,7 @@ export const getRatings = async (colonyClient, taskId) => {
   const { secret: worker } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'WORKER' })
 
   // return ratings
-  return {
-    evaluator,
-    manager,
-    worker,
-  }
+  return { evaluator, manager, worker }
 
 }
 
@@ -153,6 +167,33 @@ export const getTask = async (colonyClient, taskId) => {
 
   // get task
   const task = await colonyClient.getTask.call({ taskId })
+
+  // initialize extended protocol
+  await ecp.init()
+
+  // get specification from specification hash
+  const specification = await ecp.getTaskSpecification(task.specificationHash)
+
+  // stop extended protocol
+  await ecp.stop()
+
+  // return task
+  return {
+    ...task,
+    specification: {
+      description: specification.description,
+      title: specification.title,
+    },
+  }
+
+}
+
+// getTaskExtended
+
+export const getTaskExtended = async (colonyClient, task) => {
+
+  // set task id
+  const taskId = task.id
 
   // get evaluator
   const evaluator = await colonyClient.getTaskRole.call({
@@ -219,13 +260,10 @@ export const getTask = async (colonyClient, taskId) => {
 
   }
 
-  // get specification from specification hash
-  const specification = await ecp.getTaskSpecification(task.specificationHash)
-
   // stop extended protocol
   await ecp.stop()
 
-  // set deliverable
+  // set ratings
   let ratings = {
     evaluator: null,
     manager: null,
@@ -257,10 +295,6 @@ export const getTask = async (colonyClient, taskId) => {
       evaluator,
       manager,
       worker,
-    },
-    specification: {
-      description: specification.description,
-      title: specification.title,
     },
   }
 
@@ -540,8 +574,14 @@ export const signTask = async (colonyClient, taskId) => {
 
   }
 
-  // return id
-  return taskId
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
 
 }
 
@@ -705,8 +745,14 @@ export const submitRating = async (colonyClient, taskId, role, rating) => {
   // submit task work rating
   const submitTaskWorkRating = await colonyClient.submitTaskWorkRating.send({ taskId, role, secret })
 
-  // return id
-  return taskId
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
 
 }
 
@@ -726,8 +772,14 @@ export const submitWork = async (colonyClient, taskId, deliverable) => {
   // submit task deliverable
   await colonyClient.submitTaskDeliverable.send({ taskId, deliverableHash })
 
-  // return id
-  return taskId
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
 
 }
 
@@ -827,7 +879,13 @@ export const updateTask = async (colonyClient, task) => {
 
   }
 
-  // return id
-  return taskId
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
 
 }

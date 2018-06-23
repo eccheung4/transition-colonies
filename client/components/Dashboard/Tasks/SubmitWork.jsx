@@ -1,5 +1,4 @@
 import React from 'react'
-import ViewTask from '../../../containers/Dashboard/Tasks/ViewTask'
 import styles from './SubmitWork.scss'
 
 const SubmitWork = ({
@@ -36,7 +35,13 @@ const SubmitWork = ({
         </span>
       </div>
     }
-    <ViewTask />
+    {submitWorkSuccess &&
+      <div className={styles.message}>
+        <span>
+          {'success'}
+        </span>
+      </div>
+    }
   </div>
 )
 

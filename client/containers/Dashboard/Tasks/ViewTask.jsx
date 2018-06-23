@@ -1,36 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getTask } from '../../../actions/taskActions'
 import ViewTask from '../../../components/Dashboard/Tasks/ViewTask'
 
 class ViewTaskContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { task: null }
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      (this.state.task === null || prevProps.task !== this.props.task) &&
-      (!this.props.createTaskLoading && !this.props.submitWorkLoading && !this.props.updateTaskLoading) &&
-      this.props.getTaskSuccess
-    ) {
-      this.setState({ task: this.props.task })
-    } else if (
-      this.state.task !== null &&
-      (this.props.createTaskLoading || this.props.submitWorkLoading || this.props.updateTaskLoading)
-    ) {
-      this.setState({ task: null })
-    }
+  componentDidMount() {
+    const taskId = Number(this.props.match.params.id)
+    const task = this.props.tasks.find(task => task.id === taskId)
+    this.props.getTask(this.props.colonyClient, task)
   }
 
   render() {
-    if (this.state.task === null) {
-      return <div />
-    }
     return (
       <ViewTask
-        task={this.state.task}
+        getTaskError={this.props.getTaskError}
+        getTaskLoading={this.props.getTaskLoading}
+        getTaskSuccess={this.props.getTaskSuccess}
+        task={this.props.task}
       />
     )
   }
@@ -38,11 +29,18 @@ class ViewTaskContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  createTaskLoading: state.task.createTaskLoading,
+  colonyClient: state.colony.colonyClient,
+  getTaskError: state.task.getTaskError,
+  getTaskLoading: state.task.getTaskLoading,
   getTaskSuccess: state.task.getTaskSuccess,
   task: state.task.task,
-  submitWorkLoading: state.task.submitWorkLoading,
-  updateTaskLoading: state.task.updateTaskLoading,
+  tasks: state.task.tasks,
 })
 
-export default connect(mapStateToProps, null)(ViewTaskContainer)
+const mapDispatchToProps = dispatch => ({
+  getTask(colonyClient, task) {
+    dispatch(getTask(colonyClient, task))
+  },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewTaskContainer)

@@ -1,6 +1,5 @@
 import React from 'react'
 import TaskForm from './TaskForm'
-import ViewTask from '../../../containers/Dashboard/Tasks/ViewTask'
 import styles from './CreateTask.scss'
 
 const CreateTask = ({
@@ -29,7 +28,6 @@ const CreateTask = ({
         </span>
       </div>
     }
-    <ViewTask />
   </div>
 )
 
