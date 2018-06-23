@@ -160,28 +160,28 @@ export const getTask = async (colonyClient, taskId) => {
   // get pot balance
   const potBalance = await colonyClient.getPotBalance.call({
     potId: task.potId,
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
   })
 
   // get evaluator payout
   const evaluatorPayout = await colonyClient.getTaskPayout.call({
     taskId,
     role: 'EVALUATOR',
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
   })
 
   // get manager payout
   const managerPayout = await colonyClient.getTaskPayout.call({
     taskId,
     role: 'MANAGER',
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
   })
 
   // get worker payout
   const workerPayout = await colonyClient.getTaskPayout.call({
     taskId,
     role: 'WORKER',
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
   })
 
   // initialize extended protocol
@@ -347,7 +347,7 @@ export const setTaskEvaluatorPayout = async (colonyClient, taskId, amount) => {
   // start set task evaluator payout operation
   const setTaskEvaluatorPayout = await colonyClient.setTaskEvaluatorPayout.startOperation({
     taskId,
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
     amount: new BN(amount),
   })
 
@@ -369,7 +369,7 @@ export const setTaskManagerPayout = async (colonyClient, taskId, amount) => {
   // start set task manager payout
   await colonyClient.setTaskManagerPayout.send({
     taskId,
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
     amount: new BN(amount),
   })
 
@@ -409,7 +409,7 @@ export const setTaskWorkerPayout = async (colonyClient, taskId, amount) => {
   // start set task worker payout operation
   const setTaskWorkerPayout = await colonyClient.setTaskWorkerPayout.startOperation({
     taskId,
-    source: colonyClient.token._contract.address,
+    token: colonyClient.token._contract.address,
     amount: new BN(amount),
   })
 
@@ -661,13 +661,13 @@ export const submitRating = async (colonyClient, taskId, role, rating) => {
   const salt = 'secret'
 
   // set value
-  const value = new BN(rating)
+  const value = rating
 
-  // generate rating secret
-  const ratingSecret = await colonyClient.generateSecret.call({ salt, value })
+  // generate secret
+  const { secret } = await colonyClient.generateSecret.call({ salt, value })
 
   // submit task work rating
-  const submitTaskWorkRating = await colonyClient.submitTaskWorkRating.send({ taskId, role, ratingSecret })
+  const submitTaskWorkRating = await colonyClient.submitTaskWorkRating.send({ taskId, role, secret })
 
   // return id
   return taskId

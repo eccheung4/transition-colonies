@@ -35,7 +35,7 @@ class SubmitRatingContainer extends Component {
       this.props.colonyClient,
       Number(this.props.match.params.id),
       this.state.role,
-      this.state.rating,
+      Number(this.state.rating),
     )
 
   }
