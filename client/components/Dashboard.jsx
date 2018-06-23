@@ -15,7 +15,7 @@ const Dashboard = () => (
         <Route exact path="/dashboard" component={Home} />
         <Route path="/dashboard/domains" component={Domains} />
         <Route path="/dashboard/tasks" component={Tasks} />
-        <Route exact path="/dashboard/token" component={Token} />
+        <Route path="/dashboard/token" component={Token} />
       </Switch>
     </div>
   </div>

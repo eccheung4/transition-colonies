@@ -17,7 +17,12 @@ class ClaimFundsContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.claimableFunds === null && !this.props.claimableFundsError && !this.props.claimableFundsLoading) {
+    if (
+      prevProps.claimableFunds !== null &&
+      this.props.claimableFunds === null &&
+      this.props.claimableFundsError === null &&
+      this.props.claimableFundsLoading === false
+    ) {
       this.props.getClaimableFunds(this.props.colonyClient)
     }
     if (this.props.claimFundsSuccess && prevProps.claimFundsSuccess !== this.props.claimFundsSuccess) {
