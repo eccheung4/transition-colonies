@@ -7,11 +7,6 @@ const initialState = {
   cancelTaskLoading: false,
   cancelTaskSuccess: false,
 
-  // claimTask
-  claimTaskError: null,
-  claimTaskLoading: false,
-  claimTaskSuccess: false,
-
   // createTask
   createTaskError: null,
   createTaskLoading: false,
@@ -86,30 +81,6 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         cancelTaskLoading: false,
         cancelTaskSuccess: true,
-      }
-
-    // claimTask
-
-    case actions.CLAIM_TASK:
-      return {
-        ...state,
-        claimTaskError: null,
-        claimTaskLoading: true,
-        claimTaskSuccess: false,
-      }
-
-    case actions.CLAIM_TASK_ERROR:
-      return {
-        ...state,
-        claimTaskError: action.payload,
-        claimTaskLoading: false,
-      }
-
-    case actions.CLAIM_TASK_SUCCESS:
-      return {
-        ...state,
-        claimTaskLoading: false,
-        claimTaskSuccess: true,
       }
 
     // createTask

@@ -16,22 +16,6 @@ export const cancelTask = async (colonyClient, taskId) => {
 
 }
 
-// claimTask
-
-export const claimTask = async (colonyClient, taskId) => {
-
-  // set current user as worker
-  await colonyClient.setTaskRoleUser.send({
-    taskId,
-    role: 'WORKER',
-    user: colonyClient.adapter.wallet.address,
-  })
-
-  // return id
-  return taskId
-
-}
-
 // createTask
 
 export const createTask = async (colonyClient, task) => {
@@ -149,39 +133,54 @@ export const getTask = async (colonyClient, taskId) => {
   const task = await colonyClient.getTask.call({ taskId })
 
   // get evaluator
-  const evaluator = await colonyClient.getTaskRole.call({ taskId, role: 'EVALUATOR' })
+  const evaluator = await colonyClient.getTaskRole.call({
+    taskId,
+    role: 'EVALUATOR',
+  })
 
   // get manager
-  const manager = await colonyClient.getTaskRole.call({ taskId, role: 'MANAGER' })
+  const manager = await colonyClient.getTaskRole.call({
+    taskId,
+    role: 'MANAGER',
+  })
 
   // get worker
-  const worker = await colonyClient.getTaskRole.call({ taskId, role: 'WORKER' })
+  const worker = await colonyClient.getTaskRole.call({
+    taskId,
+    role: 'WORKER',
+  })
+
+  // set pot id
+  const potId = task.potId
+
+  // set token
+  const token = colonyClient.token._contract.address
 
   // get pot balance
   const potBalance = await colonyClient.getPotBalance.call({
-    potId: task.potId,
-    token: colonyClient.token._contract.address,
+    potId,
+    token,
   })
 
   // get evaluator payout
   const evaluatorPayout = await colonyClient.getTaskPayout.call({
     taskId,
     role: 'EVALUATOR',
-    token: colonyClient.token._contract.address,
+    token,
   })
 
   // get manager payout
   const managerPayout = await colonyClient.getTaskPayout.call({
     taskId,
     role: 'MANAGER',
-    token: colonyClient.token._contract.address,
+    token,
   })
 
   // get worker payout
   const workerPayout = await colonyClient.getTaskPayout.call({
     taskId,
     role: 'WORKER',
-    token: colonyClient.token._contract.address,
+    token,
   })
 
   // initialize extended protocol
@@ -279,7 +278,10 @@ export const setTaskBrief = async (colonyClient, taskId, specification) => {
   await ecp.stop()
 
   // start set task brief operation
-  const setTaskBriefOperation = await colonyClient.setTaskBrief.startOperation({ taskId, specificationHash })
+  const setTaskBriefOperation = await colonyClient.setTaskBrief.startOperation({
+    taskId,
+    specificationHash,
+  })
 
   // serialize operation into JSON format
   const setTaskBriefOperationJSON = setTaskBriefOperation.toJSON()

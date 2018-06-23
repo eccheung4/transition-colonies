@@ -7,10 +7,6 @@ const Task = ({
   cancelTaskError,
   cancelTaskLoading,
   cancelTaskSuccess,
-  claimTask,
-  claimTaskError,
-  claimTaskLoading,
-  claimTaskSuccess,
   editTask,
   finalizeTask,
   finalizeTaskError,
@@ -128,9 +124,6 @@ const Task = ({
       </div>
     </div>
     <div className={styles.buttons}>
-      <button onClick={claimTask}>
-        {'Claim Task'}
-      </button>
       <button onClick={editTask}>
         {'Edit Task'}
       </button>
