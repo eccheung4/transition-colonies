@@ -1,7 +1,7 @@
 {
   "name": "transition-market",
   "version": "1.0.0",
-  "description": "A market for displaced people in transition",
+  "description": "Markets for displaced people in transition",
   "scripts": {
     "postinstall": "git submodule update --init --recursive && cd lib/colonyNetwork && yarn",
     "deploy-contracts": "cd lib/colonyNetwork && ./node_modules/.bin/truffle migrate --compile-all --reset",
