@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux'
 import colonyReducer from './reducers/colonyReducer'
-import domainReducer from './reducers/domainReducer'
+import domainsReducer from './reducers/domainsReducer'
 import networkReducer from './reducers/networkReducer'
-import taskReducer from './reducers/taskReducer'
+import tasksReducer from './reducers/tasksReducer'
 import tokenReducer from './reducers/tokenReducer'
 
 const reducers = combineReducers({
   colony: colonyReducer,
-  domain: domainReducer,
+  domains: domainsReducer,
   network: networkReducer,
-  task: taskReducer,
+  tasks: tasksReducer,
   token: tokenReducer,
 })
 

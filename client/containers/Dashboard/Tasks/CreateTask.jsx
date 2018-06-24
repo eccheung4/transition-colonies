@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createTask } from '../../../actions/taskActions'
+import { createTask } from '../../../actions/tasksActions'
 import CreateTask from '../../../components/Dashboard/Tasks/CreateTask'
 
 class CreateTaskContainer extends Component {
@@ -85,18 +85,8 @@ class CreateTaskContainer extends Component {
 
   handleClick() {
 
-    // set task
-    const task = {
-      domainId: this.state.task.domainId,
-      dueDate: this.state.task.dueDate,
-      payouts: this.state.task.payouts,
-      roles: this.state.task.roles,
-      skillId: this.state.task.skillId,
-      specification: this.state.task.specification,
-    }
-
     // create task
-    this.props.createTask(this.props.colonyClient, task)
+    this.props.createTask(this.props.colonyClient, this.state.task)
 
     // set state
     this.setState({ submitted: true })
@@ -120,10 +110,10 @@ class CreateTaskContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  createTaskError: state.task.createTaskError,
-  createTaskLoading: state.task.createTaskLoading,
-  createTaskSuccess: state.task.createTaskSuccess,
-  task: state.task.task,
+  createTaskError: state.tasks.createTaskError,
+  createTaskLoading: state.tasks.createTaskLoading,
+  createTaskSuccess: state.tasks.createTaskSuccess,
+  task: state.tasks.task,
 })
 
 const mapDispatchToProps = dispatch => ({

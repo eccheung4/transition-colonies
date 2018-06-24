@@ -9,7 +9,7 @@ export const claimFunds = async (colonyClient) => {
   const token = colonyClient.token._contract.address
 
   // claim funds
-  const claimColonyFunds = await colonyClient.claimColonyFunds.send({ token })
+  await colonyClient.claimColonyFunds.send({ token })
 
   // get updated domains
   const domains = await getDomains(colonyClient)
@@ -103,7 +103,7 @@ export const getDomains = async (colonyClient) => {
   while (domainId <= domainCount) {
 
     // get domain
-    const domain = await colonyClient.getDomain.call({ domainId })
+    let domain = await colonyClient.getDomain.call({ domainId })
 
     // append domain title
     domain.title = getDomainTitle(domainId)

@@ -39,7 +39,7 @@ export const getToken = async (colonyClient) => {
 export const mintTokens = async (colonyClient, amount) => {
 
   // mint tokens
-  const mintTokens = await colonyClient.mintTokens.send({ amount: new BN(amount) })
+  await colonyClient.mintTokens.send({ amount: new BN(amount) })
 
   // get token
   const token = await getToken(colonyClient)

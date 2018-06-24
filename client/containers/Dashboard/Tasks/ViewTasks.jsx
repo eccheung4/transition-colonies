@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTasks } from '../../../actions/taskActions'
+import { getTasks } from '../../../actions/tasksActions'
 import ViewTasks from '../../../components/Dashboard/Tasks/ViewTasks'
 
 class ViewTasksContainer extends Component {
@@ -30,10 +30,10 @@ class ViewTasksContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  getTasksError: state.task.getTasksError,
-  getTasksLoading: state.task.getTasksLoading,
-  getTasksSuccess: state.task.getTasksSuccess,
-  tasks: state.task.tasks,
+  getTasksError: state.tasks.getTasksError,
+  getTasksLoading: state.tasks.getTasksLoading,
+  getTasksSuccess: state.tasks.getTasksSuccess,
+  tasks: state.tasks.tasks,
 })
 
 const mapDispatchToProps = dispatch => ({

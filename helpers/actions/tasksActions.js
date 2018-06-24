@@ -340,7 +340,7 @@ export const getTasks = async (colonyClient) => {
   // get task count
   const { count: taskCount } = await colonyClient.getTaskCount.call()
 
-  // set id
+  // set task id
   let taskId = 1
 
   // set tasks
@@ -355,7 +355,7 @@ export const getTasks = async (colonyClient) => {
     // add task to tasks
     tasks.push(task)
 
-    // increment id
+    // increment task id
     taskId++
 
   }

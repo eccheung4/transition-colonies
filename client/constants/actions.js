@@ -10,7 +10,7 @@ export const GET_COLONY_CLIENT_SUCCESS = 'GET_COLONY_CLIENT_SUCCESS'
 
 export const SET_STATE_COLONY_CLIENT = 'SET_STATE_COLONY_CLIENT'
 
-// domainActions
+// domainsActions
 
 export const CLAIM_FUNDS = 'CLAIM_FUNDS'
 export const CLAIM_FUNDS_ERROR = 'CLAIM_FUNDS_ERROR'
@@ -39,7 +39,7 @@ export const GET_NETWORK_CLIENT_SUCCESS = 'GET_NETWORK_CLIENT_SUCCESS'
 
 export const SET_STATE_NETWORK_CLIENT = 'SET_STATE_NETWORK_CLIENT'
 
-// taskActions
+// tasksActions
 
 export const CANCEL_TASK = 'CANCEL_TASK'
 export const CANCEL_TASK_ERROR = 'CANCEL_TASK_ERROR'

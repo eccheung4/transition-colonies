@@ -30,7 +30,7 @@ const initialState = {
 
 }
 
-const domainReducer = (state = initialState, action) => {
+const domainsReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
@@ -155,4 +155,4 @@ const domainReducer = (state = initialState, action) => {
 
 }
 
-export default domainReducer
+export default domainsReducer

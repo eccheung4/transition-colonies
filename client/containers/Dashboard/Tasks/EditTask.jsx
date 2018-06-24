@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import formatDate from '../../../helpers/formatDate'
-import { getTask, updateTask } from '../../../actions/taskActions'
+import { getTask, updateTask } from '../../../actions/tasksActions'
 import EditTask from '../../../components/Dashboard/Tasks/EditTask'
 
 class EditTaskContainer extends Component {
@@ -193,14 +193,14 @@ class EditTaskContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  getTaskError: state.task.getTaskError,
-  getTaskLoading: state.task.getTaskLoading,
-  getTaskSuccess: state.task.getTaskSuccess,
-  task: state.task.task,
-  tasks: state.task.tasks,
-  updateTaskError: state.task.updateTaskError,
-  updateTaskLoading: state.task.updateTaskLoading,
-  updateTaskSuccess: state.task.updateTaskSuccess,
+  getTaskError: state.tasks.getTaskError,
+  getTaskLoading: state.tasks.getTaskLoading,
+  getTaskSuccess: state.tasks.getTaskSuccess,
+  task: state.tasks.task,
+  tasks: state.tasks.tasks,
+  updateTaskError: state.tasks.updateTaskError,
+  updateTaskLoading: state.tasks.updateTaskLoading,
+  updateTaskSuccess: state.tasks.updateTaskSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({

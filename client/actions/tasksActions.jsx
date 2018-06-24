@@ -1,12 +1,12 @@
 import { store } from '../index'
 import * as actions from '../constants/actions'
-import * as taskActions from '../../helpers/actions/taskActions'
+import * as tasksActions from '../../helpers/actions/tasksActions'
 
 // cancelTask
 
 export const cancelTask = (colonyClient, taskId) => ({
   type: actions.CANCEL_TASK,
-  payload: taskActions.cancelTask(colonyClient, taskId)
+  payload: tasksActions.cancelTask(colonyClient, taskId)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(cancelTaskSuccess())
@@ -30,7 +30,7 @@ export const cancelTaskSuccess = (message) => ({
 
 export const createTask = (colonyClient, task) => ({
   type: actions.CREATE_TASK,
-  payload: taskActions.createTask(colonyClient, task)
+  payload: tasksActions.createTask(colonyClient, task)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(createTaskSuccess())
@@ -54,7 +54,7 @@ export const createTaskSuccess = (message) => ({
 
 export const finalizeTask = (colonyClient, taskId) => ({
   type: actions.FINALIZE_TASK,
-  payload: taskActions.finalizeTask(colonyClient, taskId)
+  payload: tasksActions.finalizeTask(colonyClient, taskId)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(finalizeTaskSuccess())
@@ -78,7 +78,7 @@ export const finalizeTaskSuccess = (message) => ({
 
 export const fundTask = (colonyClient, taskId, amount) => ({
   type: actions.FUND_TASK,
-  payload: taskActions.fundTask(colonyClient, taskId, amount)
+  payload: tasksActions.fundTask(colonyClient, taskId, amount)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(fundTaskSuccess())
@@ -102,7 +102,7 @@ export const fundTaskSuccess = (message) => ({
 
 export const getTask = (colonyClient, task) => ({
   type: actions.GET_TASK,
-  payload: taskActions.getTaskExtended(colonyClient, task)
+  payload: tasksActions.getTaskExtended(colonyClient, task)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(getTaskSuccess())
@@ -126,7 +126,7 @@ export const getTaskSuccess = (message) => ({
 
 export const getTasks = (colonyClient) => ({
   type: actions.GET_TASKS,
-  payload: taskActions.getTasks(colonyClient)
+  payload: tasksActions.getTasks(colonyClient)
     .then(task => {
       store.dispatch(setStateTasks(task))
       store.dispatch(getTasksSuccess())
@@ -164,7 +164,7 @@ export const setStateTasks = (tasks) => ({
 
 export const signTask = (colonyClient, taskId) => ({
   type: actions.SIGN_TASK,
-  payload: taskActions.signTask(colonyClient, taskId)
+  payload: tasksActions.signTask(colonyClient, taskId)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(signTaskSuccess())
@@ -188,7 +188,7 @@ export const signTaskSuccess = (message) => ({
 
 export const submitRating = (colonyClient, taskId, role, rating) => ({
   type: actions.SUBMIT_RATING,
-  payload: taskActions.submitRating(colonyClient, taskId, role, rating)
+  payload: tasksActions.submitRating(colonyClient, taskId, role, rating)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(submitRatingSuccess())
@@ -212,7 +212,7 @@ export const submitRatingSuccess = (message) => ({
 
 export const submitWork = (colonyClient, taskId, deliverable) => ({
   type: actions.SUBMIT_WORK,
-  payload: taskActions.submitWork(colonyClient, taskId, deliverable)
+  payload: tasksActions.submitWork(colonyClient, taskId, deliverable)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(submitWorkSuccess())
@@ -236,7 +236,7 @@ export const submitWorkSuccess = (message) => ({
 
 export const updateTask = (colonyClient, task) => ({
   type: actions.UPDATE_TASK,
-  payload: taskActions.updateTask(colonyClient, task)
+  payload: tasksActions.updateTask(colonyClient, task)
     .then(task => {
       store.dispatch(setStateTask(task))
       store.dispatch(updateTaskSuccess())

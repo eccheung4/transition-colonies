@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fundTask } from '../../../actions/taskActions'
+import { fundTask } from '../../../actions/tasksActions'
 import FundTask from '../../../components/Dashboard/Tasks/FundTask'
 import formatDate from '../../../helpers/formatDate'
 
@@ -51,9 +51,9 @@ class FundTaskContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  fundTaskError: state.task.fundTaskError,
-  fundTaskLoading: state.task.fundTaskLoading,
-  fundTaskSuccess: state.task.fundTaskSuccess,
+  fundTaskError: state.tasks.fundTaskError,
+  fundTaskLoading: state.tasks.fundTaskLoading,
+  fundTaskSuccess: state.tasks.fundTaskSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({

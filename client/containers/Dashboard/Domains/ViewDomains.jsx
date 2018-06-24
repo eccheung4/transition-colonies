@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getDomains } from '../../../actions/domainActions'
+import { getDomains } from '../../../actions/domainsActions'
 import ViewDomains from '../../../components/Dashboard/Domains/ViewDomains'
 
 class ViewDomainsContainer extends Component {
@@ -36,10 +36,10 @@ class ViewDomainsContainer extends Component {
 
 const mapStateToProps = state => ({
   colonyClient: state.colony.colonyClient,
-  domains: state.domain.domains,
-  getDomainsError: state.domain.getDomainsError,
-  getDomainsLoading: state.domain.getDomainsLoading,
-  getDomainsSuccess: state.domain.getDomainsSuccess,
+  domains: state.domains.domains,
+  getDomainsError: state.domains.getDomainsError,
+  getDomainsLoading: state.domains.getDomainsLoading,
+  getDomainsSuccess: state.domains.getDomainsSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import * as taskActions from '../../../actions/taskActions'
+import * as tasksActions from '../../../actions/tasksActions'
 import TaskActions from '../../../components/Dashboard/Tasks/TaskActions'
 
 class TaskActionsContainer extends Component {
@@ -84,30 +84,30 @@ class TaskActionsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  cancelTaskError: state.task.cancelTaskError,
-  cancelTaskLoading: state.task.cancelTaskLoading,
-  cancelTaskSuccess: state.task.cancelTaskSuccess,
+  cancelTaskError: state.tasks.cancelTaskError,
+  cancelTaskLoading: state.tasks.cancelTaskLoading,
+  cancelTaskSuccess: state.tasks.cancelTaskSuccess,
   colonyClient: state.colony.colonyClient,
-  finalizeTaskError: state.task.finalizeTaskError,
-  finalizeTaskLoading: state.task.finalizeTaskLoading,
-  finalizeTaskSuccess: state.task.finalizeTaskSuccess,
-  fundTaskError: state.task.fundTaskError,
-  fundTaskLoading: state.task.fundTaskLoading,
-  fundTaskSuccess: state.task.fundTaskSuccess,
-  signTaskError: state.task.signTaskError,
-  signTaskLoading: state.task.signTaskLoading,
-  signTaskSuccess: state.task.signTaskSuccess,
+  finalizeTaskError: state.tasks.finalizeTaskError,
+  finalizeTaskLoading: state.tasks.finalizeTaskLoading,
+  finalizeTaskSuccess: state.tasks.finalizeTaskSuccess,
+  fundTaskError: state.tasks.fundTaskError,
+  fundTaskLoading: state.tasks.fundTaskLoading,
+  fundTaskSuccess: state.tasks.fundTaskSuccess,
+  signTaskError: state.tasks.signTaskError,
+  signTaskLoading: state.tasks.signTaskLoading,
+  signTaskSuccess: state.tasks.signTaskSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({
   cancelTask(colonyClient, taskId) {
-    dispatch(taskActions.cancelTask(colonyClient, taskId))
+    dispatch(tasksActions.cancelTask(colonyClient, taskId))
   },
   finalizeTask(colonyClient, taskId) {
-    dispatch(taskActions.finalizeTask(colonyClient, taskId))
+    dispatch(tasksActions.finalizeTask(colonyClient, taskId))
   },
   signTask(colonyClient, taskId) {
-    dispatch(taskActions.signTask(colonyClient, taskId))
+    dispatch(tasksActions.signTask(colonyClient, taskId))
   },
 })
 
