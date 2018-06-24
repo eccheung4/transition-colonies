@@ -35,6 +35,13 @@ const Login = ({
         </span>
       </div>
     }
+    {getColonyClientLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
   </div>
 )
 

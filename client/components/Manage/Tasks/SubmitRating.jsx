@@ -56,6 +56,13 @@ const SubmitRating = ({
         </span>
       </div>
     }
+    {submitRatingLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
     {submitRatingSuccess &&
       <div className={styles.message}>
         <span>

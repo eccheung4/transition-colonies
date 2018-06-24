@@ -35,6 +35,11 @@ const MintTokens = ({
         </span>
       </div>
     }
+    {mintTokensLoading &&
+      <div className={styles.message}>
+        {'loading...'}
+      </div>
+    }
     {mintTokensSuccess &&
       <div className={styles.message}>
         {'success'}

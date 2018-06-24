@@ -40,6 +40,13 @@ const FundTask = ({
         </span>
       </div>
     }
+    {fundTaskLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
     {fundTaskSuccess &&
       <div className={styles.message}>
         <span>

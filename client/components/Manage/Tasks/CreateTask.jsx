@@ -28,6 +28,13 @@ const CreateTask = ({
         </span>
       </div>
     }
+    {createTaskLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
   </div>
 )
 

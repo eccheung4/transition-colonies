@@ -35,6 +35,13 @@ const EditTask = ({
               </span>
             </div>
           }
+          {updateTaskLoading &&
+            <div className={styles.message}>
+              <span>
+                {'loading...'}
+              </span>
+            </div>
+          }
         </div>
       }
   </div>

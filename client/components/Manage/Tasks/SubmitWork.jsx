@@ -42,6 +42,13 @@ const SubmitWork = ({
         </span>
       </div>
     }
+    {submitWorkLoading &&
+      <div className={styles.message}>
+        <span>
+          {'loading...'}
+        </span>
+      </div>
+    }
   </div>
 )
 
