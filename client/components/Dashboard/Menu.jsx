@@ -16,6 +16,11 @@ const Menu = () => (
         </NavLink>
       </li>
       <li className={styles.item}>
+        <NavLink to="/dashboard/skills">
+          {'Skills'}
+        </NavLink>
+      </li>
+      <li className={styles.item}>
         <NavLink to="/dashboard/tasks">
           {'Tasks'}
         </NavLink>

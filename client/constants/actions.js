@@ -39,6 +39,14 @@ export const GET_NETWORK_CLIENT_SUCCESS = 'GET_NETWORK_CLIENT_SUCCESS'
 
 export const SET_STATE_NETWORK_CLIENT = 'SET_STATE_NETWORK_CLIENT'
 
+// skillsActions
+
+export const GET_SKILLS = 'GET_SKILLS'
+export const GET_SKILLS_ERROR = 'GET_SKILLS_ERROR'
+export const GET_SKILLS_SUCCESS = 'GET_SKILLS_SUCCESS'
+
+export const SET_STATE_SKILLS = 'SET_STATE_SKILLS'
+
 // tasksActions
 
 export const CANCEL_TASK = 'CANCEL_TASK'
