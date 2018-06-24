@@ -211,6 +211,7 @@ const tasksReducer = (state = initialState, action) => {
     // setStateTask
 
     case actions.SET_STATE_TASK:
+      if (action.payload === null) return state
       let index = state.tasks.findIndex(task => task.id === action.payload.id)
       let tasks = state.tasks
       if (index >= 0) {

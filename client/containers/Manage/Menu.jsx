@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { setStateColonyClient } from '../../actions/colonyActions'
+import { logout } from '../../actions/appActions'
 import Menu from '../../components/Manage/Menu'
 
 class MenuContainer extends Component {
@@ -12,8 +12,8 @@ class MenuContainer extends Component {
   }
 
   logout() {
-    this.props.setStateColonyClient(null)
     this.props.history.push('/manage')
+    this.props.logout()
   }
 
   render() {
@@ -23,8 +23,8 @@ class MenuContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setStateColonyClient(colonyClient) {
-    dispatch(setStateColonyClient(colonyClient))
+  logout() {
+    dispatch(logout())
   },
 })
 

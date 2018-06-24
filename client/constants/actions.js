@@ -1,3 +1,7 @@
+// appActions
+
+export const LOGOUT = 'LOGOUT'
+
 // colonyActions
 
 export const CREATE_COLONY = 'CREATE_COLONY'
