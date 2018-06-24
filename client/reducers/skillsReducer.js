@@ -2,13 +2,13 @@ import * as actions from '../constants/actions'
 
 const initialState = {
 
-  // skills
-  skills: null,
-
   // getSkills
   getSkillsError: null,
   getSkillsLoading: false,
   getSkillsSuccess: false,
+
+  // skills
+  skills: null,
 
 }
 

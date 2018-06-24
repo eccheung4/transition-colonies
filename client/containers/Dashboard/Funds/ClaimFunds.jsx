@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { claimFunds, getClaimableFunds } from '../../../actions/domainsActions'
-import ClaimFunds from '../../../components/Dashboard/Domains/ClaimFunds'
+import { claimFunds, getClaimableFunds } from '../../../actions/fundsActions'
+import ClaimFunds from '../../../components/Dashboard/Funds/ClaimFunds'
 
 class ClaimFundsContainer extends Component {
 
@@ -52,14 +52,14 @@ class ClaimFundsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  claimableFunds: state.domains.claimableFunds,
-  claimFundsError: state.domains.claimFundsError,
-  claimFundsLoading: state.domains.claimFundsLoading,
-  claimFundsSuccess: state.domains.claimFundsSuccess,
+  claimableFunds: state.funds.claimableFunds,
+  claimFundsError: state.funds.claimFundsError,
+  claimFundsLoading: state.funds.claimFundsLoading,
+  claimFundsSuccess: state.funds.claimFundsSuccess,
   colonyClient: state.colony.colonyClient,
-  getClaimableFundsError: state.domains.getClaimableFundsError,
-  getClaimableFundsLoading: state.domains.getClaimableFundsLoading,
-  getClaimableFundsSuccess: state.domains.getClaimableFundsSuccess,
+  getClaimableFundsError: state.funds.getClaimableFundsError,
+  getClaimableFundsLoading: state.funds.getClaimableFundsLoading,
+  getClaimableFundsSuccess: state.funds.getClaimableFundsSuccess,
 })
 
 const mapDispatchToProps = dispatch => ({

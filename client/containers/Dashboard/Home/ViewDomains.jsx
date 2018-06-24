@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getDomains } from '../../../actions/domainsActions'
-import ViewDomains from '../../../components/Dashboard/Domains/ViewDomains'
+import ViewDomains from '../../../components/Dashboard/Home/ViewDomains'
 
 class ViewDomainsContainer extends Component {
 
