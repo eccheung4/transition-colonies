@@ -14,7 +14,7 @@ const CreateToken = ({
     <h2>{'Create Token'}</h2>
     <div className={styles.field}>
       <label htmlFor="name">
-        {'name:'}
+        {'Name:'}
       </label>
       <input
         id="name"
@@ -26,7 +26,7 @@ const CreateToken = ({
     </div>
     <div className={styles.field}>
       <label htmlFor="symbol">
-        {'symbol:'}
+        {'Symbol:'}
       </label>
       <input
         id="symbol"
@@ -57,7 +57,7 @@ const CreateToken = ({
     }
     {createTokenSuccess &&
       <div className={styles.message}>
-        {'token address: ' + tokenAddress}
+        {'Token Address: ' + tokenAddress}
       </div>
     }
   </div>

@@ -12,7 +12,7 @@ const CreateColony = ({
     <h2>{'Create Colony'}</h2>
     <div className={styles.field}>
       <label htmlFor="tokenAddress">
-        {'token address:'}
+        {'Token Address:'}
       </label>
       <input
         id="tokenAddress"

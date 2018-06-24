@@ -13,11 +13,11 @@ const ViewToken = ({
       <div>{'loading...'}</div>
     :
       <div>
-        <p>{'address: ' + token.address}</p>
-        <p>{'name: ' + token.name}</p>
-        <p>{'symbol: ' + token.symbol}</p>
-        <p>{'decimals: ' + token.decimals}</p>
-        <p>{'supply: ' + token.supply}</p>
+        <p>{'Address: ' + token.address}</p>
+        <p>{'Name: ' + token.name}</p>
+        <p>{'Symbol: ' + token.symbol}</p>
+        <p>{'Decimals: ' + token.decimals}</p>
+        <p>{'Supply: ' + token.supply}</p>
       </div>
     }
   </div>

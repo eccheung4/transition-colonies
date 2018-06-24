@@ -13,7 +13,7 @@ const MintTokens = ({
     <h2>{'Mint Tokens'}</h2>
     <div className={styles.field}>
       <label htmlFor="amount">
-        {'amount:'}
+        {'Amount:'}
       </label>
       <input
         id="amount"

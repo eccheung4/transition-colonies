@@ -22,14 +22,12 @@ const Funds = () => (
         {'Fund Task'}
       </NavLink>
     </div>
-    <div className={styles.content}>
-      <Switch>
-        <Route exact path="/manage/funds" component={ViewFunds} />
-        <Route exact path="/manage/funds/claim" component={ClaimFunds} />
-        <Route exact path="/manage/funds/domain" component={FundDomain} />
-        <Route exact path="/manage/funds/task" component={FundTask} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/manage/funds" component={ViewFunds} />
+      <Route exact path="/manage/funds/claim" component={ClaimFunds} />
+      <Route exact path="/manage/funds/domain" component={FundDomain} />
+      <Route exact path="/manage/funds/task" component={FundTask} />
+    </Switch>
   </div>
 )
 

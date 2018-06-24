@@ -14,12 +14,10 @@ const Home = () => (
         {'View Domains'}
       </NavLink>
     </div>
-    <div className={styles.content}>
-      <Switch>
-        <Route exact path="/manage" component={ViewColony} />
-        <Route exact path="/manage/domains" component={ViewDomains} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/manage" component={ViewColony} />
+      <Route exact path="/manage/domains" component={ViewDomains} />
+    </Switch>
   </div>
 )
 

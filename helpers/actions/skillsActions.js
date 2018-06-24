@@ -5,7 +5,7 @@ export const getSkillTitle = (skillId) => {
   // return skill title
   switch (skillId) {
     case 0:
-      return 'none'
+      return 'undefined'
     case 3:
       return 'Agriculture'
     case 4:

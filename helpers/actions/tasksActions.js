@@ -184,17 +184,8 @@ export const getRatings = async (colonyClient, taskId) => {
 
   const { count, date } = await colonyClient.getTaskWorkRatings.call({ taskId })
 
-  // get evaluator work rating secret
-  const { secret: evaluator } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'EVALUATOR' })
-
-  // get manager work rating secret
-  const { secret: manager } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'MANAGER' })
-
-  // get worker work rating secret
-  const { secret: worker } = await colonyClient.getTaskWorkRatingSecret.call({ taskId, role: 'WORKER' })
-
   // return ratings
-  return { count, date, evaluator, manager, worker }
+  return { count, date }
 
 }
 
@@ -309,11 +300,7 @@ export const getTaskExtended = async (colonyClient, task) => {
   await ecp.stop()
 
   // set ratings
-  let ratings = {
-    evaluator: null,
-    manager: null,
-    worker: null,
-  }
+  let ratings = { count: 0, date: null }
 
   // check deliverable
   if (deliverable) {

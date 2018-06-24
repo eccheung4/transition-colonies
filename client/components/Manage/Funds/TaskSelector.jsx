@@ -4,7 +4,7 @@ import styles from './TaskSelector.scss'
 const TaskSelector = ({ handleChange, taskId, tasks }) => (
   <div className={styles.field}>
     <label htmlFor="taskId">
-      {'task:'}
+      {'Task:'}
     </label>
     <select id="taskId" onChange={handleChange} value={taskId}>
       <option value={0}>

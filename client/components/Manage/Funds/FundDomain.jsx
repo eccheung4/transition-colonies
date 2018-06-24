@@ -13,7 +13,7 @@ const FundDomain = ({
     <h2>{'Fund Domain'}</h2>
     <div className={styles.field}>
       <label htmlFor="domainId">
-        {'domain:'}
+        {'Domain:'}
       </label>
       <select id="domainId" onChange={handleChange} value={funding.domainId}>
         <option value={0}>
@@ -32,7 +32,7 @@ const FundDomain = ({
     </div>
     <div className={styles.field}>
       <label htmlFor="amount">
-        {'amount:'}
+        {'Amount:'}
       </label>
       <input
         id="amount"

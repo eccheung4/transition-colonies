@@ -6,7 +6,7 @@ const TaskForm = ({ handleChange, task }) => (
   <div className={styles.container}>
     <div className={styles.field}>
       <label htmlFor="domainId">
-        {'domain:'}
+        {'Domain:'}
       </label>
       <select id="domainId" onChange={handleChange} value={task.domainId}>
         <option value={0}>
@@ -29,7 +29,7 @@ const TaskForm = ({ handleChange, task }) => (
     />
     <div className={styles.field}>
       <label htmlFor="specification-title">
-        {'title:'}
+        {'Title:'}
       </label>
       <input
         id="specification-title"
@@ -41,7 +41,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="specification-description">
-        {'description:'}
+        {'Description:'}
       </label>
       <input
         id="specification-description"
@@ -53,7 +53,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="dueDate">
-        {'due date:'}
+        {'Due date:'}
       </label>
       <input
         id="dueDate"
@@ -64,7 +64,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="role-manager">
-        {'manager:'}
+        {'Manager:'}
       </label>
       <input
         id="role-manager"
@@ -76,7 +76,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="role-evaluator">
-        {'evaluator:'}
+        {'Evaluator:'}
       </label>
       <input
         id="role-evaluator"
@@ -88,7 +88,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="role-worker">
-        {'worker:'}
+        {'Worker:'}
       </label>
       <input
         id="role-worker"
@@ -100,7 +100,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="payout-manager">
-        {'manager payout:'}
+        {'Manager Payout:'}
       </label>
       <input
         id="payout-manager"
@@ -112,7 +112,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="payout-evaluator">
-        {'evaluator payout:'}
+        {'Evaluator Payout:'}
       </label>
       <input
         id="payout-evaluator"
@@ -124,7 +124,7 @@ const TaskForm = ({ handleChange, task }) => (
     </div>
     <div className={styles.field}>
       <label htmlFor="payout-worker">
-        {'worker payout:'}
+        {'Worker Payout:'}
       </label>
       <input
         id="payout-worker"

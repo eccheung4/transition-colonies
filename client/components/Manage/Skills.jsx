@@ -10,11 +10,9 @@ const Skills = () => (
         {'View Skills'}
       </NavLink>
     </div>
-    <div className={styles.content}>
-      <Switch>
-        <Route exact path="/manage/skills" component={ViewSkills} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/manage/skills" component={ViewSkills} />
+    </Switch>
   </div>
 )
 

@@ -13,7 +13,7 @@ const Login = ({
     <h2>{'Get Colony'}</h2>
     <div className={styles.field}>
       <label htmlFor="colonyAddress">
-        {'address:'}
+        {'Colony Address:'}
       </label>
       <input
         id="colonyAddress"

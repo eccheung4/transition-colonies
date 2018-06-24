@@ -14,12 +14,10 @@ const Token = () => (
         {'Mint Tokens'}
       </NavLink>
     </div>
-    <div className={styles.content}>
-      <Switch>
-        <Route exact path="/manage/token" component={ViewToken} />
-        <Route exact path="/manage/token/mint" component={MintTokens} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/manage/token" component={ViewToken} />
+      <Route exact path="/manage/token/mint" component={MintTokens} />
+    </Switch>
   </div>
 )
 

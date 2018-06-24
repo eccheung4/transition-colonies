@@ -4,7 +4,7 @@ import styles from './SkillSelector.scss'
 const SkillSelector = ({ handleChange, skillId, skills }) => (
   <div className={styles.field}>
     <label htmlFor="skillId">
-      {'skill:'}
+      {'Skill:'}
     </label>
     <select id="skillId" onChange={handleChange} value={skillId}>
       <option value={0}>

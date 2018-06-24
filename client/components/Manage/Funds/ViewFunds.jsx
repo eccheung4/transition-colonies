@@ -17,10 +17,10 @@ const ViewFunds = ({
         <ul className={styles.list}>
           {pots.slice(0, 1).map((pot, index) => (
             <li key={index} className={styles.item}>
-              <p>{'id: ' + pot.id}</p>
-              <p>{'type: ' + pot.type}</p>
-              <p>{'title: ' + pot.title}</p>
-              <p>{'balance: ' + pot.balance}</p>
+              <p className={styles.title}>{pot.title}</p>
+              <p>{'Pot ID: ' + pot.id}</p>
+              <p>{'Balance: ' + pot.balance}</p>
+              <p>{'Type: ' + pot.type}</p>
             </li>
           ))}
         </ul>
@@ -28,10 +28,10 @@ const ViewFunds = ({
         <ul className={styles.list}>
           {pots.slice(1, 4).map((pot, index) => (
             <li key={index} className={styles.item}>
-              <p>{'id: ' + pot.id}</p>
-              <p>{'type: ' + pot.type}</p>
-              <p>{'title: ' + pot.title}</p>
-              <p>{'balance: ' + pot.balance}</p>
+              <p className={styles.title}>{pot.title}</p>
+              <p>{'Pot ID: ' + pot.id}</p>
+              <p>{'Balance: ' + pot.balance}</p>
+              <p>{'Type: ' + pot.type}</p>
             </li>
           ))}
         </ul>
@@ -39,10 +39,10 @@ const ViewFunds = ({
         <ul className={styles.list}>
           {pots.slice(4).map((pot, index) => (
             <li key={index} className={styles.item}>
-              <p>{'id: ' + pot.id}</p>
-              <p>{'type: ' + pot.type}</p>
-              <p>{'title: ' + pot.title}</p>
-              <p>{'balance: ' + pot.balance}</p>
+              <p className={styles.title}>{pot.title}</p>
+              <p>{'Pot ID: ' + pot.id}</p>
+              <p>{'Balance: ' + pot.balance}</p>
+              <p>{'Type: ' + pot.type}</p>
             </li>
           ))}
         </ul>

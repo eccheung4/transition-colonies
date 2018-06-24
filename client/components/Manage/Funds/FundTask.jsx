@@ -19,7 +19,7 @@ const FundTask = ({
     />
     <div className={styles.field}>
       <label htmlFor="amount">
-        {'amount:'}
+        {'Amount:'}
       </label>
       <input
         id="amount"

@@ -15,7 +15,7 @@ const ClaimFunds = ({
     <h2>{'Claim Funds'}</h2>
     <div className={styles.field}>
       <label>
-        {'claimable funds:'}
+        {'Claimable Funds:'}
       </label>
       <span>
         {!getClaimableFundsLoading ? claimableFunds : 'loading...'}
