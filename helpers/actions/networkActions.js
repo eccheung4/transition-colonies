@@ -1,3 +1,6 @@
+// import seed global skills
+import { seedGlobalSkills } from '../seed'
+
 // import the prerequisites and colony client
 const { providers, Wallet } = require('ethers')
 const { default: EthersAdapter } = require('@colony/colony-js-adapter-ethers')
@@ -31,6 +34,18 @@ export const getNetworkClient = async (testAccountIndex) => {
   const networkClient = new ColonyNetworkClient({ adapter })
   await networkClient.init()
 
+  // get skill count
+  const { count: skillCount } = await networkClient.getSkillCount.call()
+
+  // check skill count
+  if (skillCount === 2) {
+
+    // seed global skills
+    seedGlobalSkills(networkClient)
+
+  }
+
+  // return netwrok client
   return networkClient
 
 }
