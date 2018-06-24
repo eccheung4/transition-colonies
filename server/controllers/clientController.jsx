@@ -29,7 +29,7 @@ export default (request, response) => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Transition Market</title>
+        <title>Transition Colonies</title>
       </head>
       <body>
         <div id="app">${html}</div>

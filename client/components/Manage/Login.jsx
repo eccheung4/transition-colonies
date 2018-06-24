@@ -10,7 +10,7 @@ const Login = ({
   handleChange,
 }) => (
   <div className={styles.container}>
-    <h2>{'Get Market'}</h2>
+    <h2>{'Get Colony'}</h2>
     <div className={styles.field}>
       <label htmlFor="colonyAddress">
         {'address:'}
@@ -25,7 +25,7 @@ const Login = ({
     </div>
     <div className={styles.buttons}>
       <button onClick={handleClick}>
-        {'Get Market'}
+        {'Get Colony'}
       </button>
     </div>
     {getColonyClientError &&

@@ -3,7 +3,7 @@ import styles from './Footer.scss'
 
 const Footer = () => (
   <footer className={styles.footer}>
-    {'Transition Market 2018'}
+    {'Transition Colonies 2018'}
   </footer>
 )
 

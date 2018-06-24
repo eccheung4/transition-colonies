@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getDomains } from '../../../actions/domainsActions'
-import ViewMarket from '../../../components/Manage/Home/ViewMarket'
+import ViewColony from '../../../components/Manage/Home/ViewColony'
 
-class ViewMarketContainer extends Component {
+class ViewColonyContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -23,7 +23,7 @@ class ViewMarketContainer extends Component {
 
   render() {
     return (
-      <ViewMarket
+      <ViewColony
         address={this.props.colonyClient.contract.address}
         domains={this.props.domains}
         getDomainsError={this.props.getDomainsError}
@@ -49,4 +49,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewMarketContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ViewColonyContainer)

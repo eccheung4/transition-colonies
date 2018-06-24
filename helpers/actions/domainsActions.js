@@ -5,7 +5,7 @@ export const getDomainTitle = (domainId) => {
   // return domain title
   switch (domainId) {
     case 1:
-      return 'Market'
+      return 'Colony'
     case 2:
       return 'Business'
     case 3:

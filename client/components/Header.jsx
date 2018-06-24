@@ -5,7 +5,7 @@ import styles from './Header.scss'
 const Header = ({ logout }) => (
   <header className={styles.header}>
     <NavLink className={styles.title} to="/">
-      {'Transition Market'}
+      {'Transition Colonies'}
     </NavLink>
     <ul className={styles.list}>
       <li className={styles.item}>

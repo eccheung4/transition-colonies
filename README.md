@@ -1,4 +1,4 @@
-# transition-market
+# transition-colonies
 
 This project is a submission for the [Colony Hackathon](https://colony.io/hackathon/).
 

@@ -13,7 +13,7 @@ const ViewFunds = ({
       <div>{'loading...'}</div>
     :
       <div>
-        <h3>{'Market'}</h3>
+        <h3>{'Colony'}</h3>
         <ul className={styles.list}>
           {pots.slice(0, 1).map((pot, index) => (
             <li key={index} className={styles.item}>
