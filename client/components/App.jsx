@@ -5,6 +5,7 @@ import Manage from '../containers/Manage'
 import Footer from './Footer'
 import Header from './Header'
 import Home from './Home'
+import Sponsor from './Sponsor'
 import styles from './App.scss'
 
 const App = () => (
@@ -14,6 +15,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/create" component={Create} />
       <Route path="/manage" component={Manage} />
+      <Route exact path="/sponsor" component={Sponsor} />
     </Switch>
     <Footer />
   </div>

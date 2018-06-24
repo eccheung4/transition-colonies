@@ -19,8 +19,8 @@ const Header = ({ logout }) => (
         </NavLink>
       </li>
       <li className={styles.item}>
-        <NavLink to="/support">
-          {'Support'}
+        <NavLink to="/sponsor">
+          {'Sponsor'}
         </NavLink>
       </li>
     </ul>
