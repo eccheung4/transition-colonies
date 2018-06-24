@@ -15,7 +15,7 @@ class CreateMarketContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.createColonySuccess) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/manage')
     }
   }
 

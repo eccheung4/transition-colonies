@@ -1,10 +1,9 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Create from './Create'
-import Dashboard from '../containers/Dashboard'
-import Login from './Login'
+import Manage from '../containers/Manage'
 import Footer from './Footer'
-import Header from '../containers/Header'
+import Header from './Header'
 import Home from './Home'
 import styles from './App.scss'
 
@@ -14,8 +13,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/create" component={Create} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route exact path="/login" component={Login} />
+      <Route path="/manage" component={Manage} />
     </Switch>
     <Footer />
   </div>

@@ -1,0 +1,9 @@
+.container {
+  padding: 2rem;
+}
+
+.content {
+  margin-left: 15vw; // manage menu width
+  min-height: calc(100vh - 6rem); // substract header height
+  position: relative;
+}
