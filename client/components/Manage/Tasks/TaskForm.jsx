@@ -5,6 +5,29 @@ import styles from './TaskForm.scss'
 const TaskForm = ({ handleChange, task }) => (
   <div className={styles.container}>
     <div className={styles.field}>
+      <label htmlFor="domainId">
+        {'domain:'}
+      </label>
+      <select id="domainId" onChange={handleChange} value={task.domainId}>
+        <option value={0}>
+          {'select domain...'}
+        </option>
+        <option value={2}>
+          {'Business'}
+        </option>
+        <option value={3}>
+          {'Education'}
+        </option>
+        <option value={4}>
+          {'Service'}
+        </option>
+      </select>
+    </div>
+    <SkillSelector
+      handleChange={handleChange}
+      skillId={task.skillId}
+    />
+    <div className={styles.field}>
       <label htmlFor="specification-title">
         {'title:'}
       </label>
@@ -29,29 +52,6 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
-      <label htmlFor="domainId">
-        {'domain:'}
-      </label>
-      <select id="domainId" onChange={handleChange} value={task.domainId}>
-        <option value={0}>
-          {'select domain...'}
-        </option>
-        <option value={2}>
-          {'Business'}
-        </option>
-        <option value={3}>
-          {'Education'}
-        </option>
-        <option value={4}>
-          {'Service'}
-        </option>
-      </select>
-    </div>
-    <SkillSelector
-      handleChange={handleChange}
-      skillId={task.skillId}
-    />
-    <div className={styles.field}>
       <label htmlFor="dueDate">
         {'due date:'}
       </label>
@@ -60,18 +60,6 @@ const TaskForm = ({ handleChange, task }) => (
         onChange={handleChange}
         type="date"
         value={task.dueDate}
-      />
-    </div>
-    <div className={styles.field}>
-      <label htmlFor="role-evaluator">
-        {'evaluator:'}
-      </label>
-      <input
-        id="role-evaluator"
-        onChange={handleChange}
-        placeholder="0x0"
-        type="text"
-        value={task.roles.evaluator}
       />
     </div>
     <div className={styles.field}>
@@ -87,6 +75,18 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
+      <label htmlFor="role-evaluator">
+        {'evaluator:'}
+      </label>
+      <input
+        id="role-evaluator"
+        onChange={handleChange}
+        placeholder="0x0"
+        type="text"
+        value={task.roles.evaluator}
+      />
+    </div>
+    <div className={styles.field}>
       <label htmlFor="role-worker">
         {'worker:'}
       </label>
@@ -99,18 +99,6 @@ const TaskForm = ({ handleChange, task }) => (
       />
     </div>
     <div className={styles.field}>
-      <label htmlFor="payout-evaluator">
-        {'evaluator payout:'}
-      </label>
-      <input
-        id="payout-evaluator"
-        onChange={handleChange}
-        placeholder="0"
-        type="number"
-        value={task.payouts.evaluator}
-      />
-    </div>
-    <div className={styles.field}>
       <label htmlFor="payout-manager">
         {'manager payout:'}
       </label>
@@ -120,6 +108,18 @@ const TaskForm = ({ handleChange, task }) => (
         placeholder="0"
         type="number"
         value={task.payouts.manager}
+      />
+    </div>
+    <div className={styles.field}>
+      <label htmlFor="payout-evaluator">
+        {'evaluator payout:'}
+      </label>
+      <input
+        id="payout-evaluator"
+        onChange={handleChange}
+        placeholder="0"
+        type="number"
+        value={task.payouts.evaluator}
       />
     </div>
     <div className={styles.field}>

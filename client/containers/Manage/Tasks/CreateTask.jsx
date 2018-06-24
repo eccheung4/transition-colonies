@@ -19,7 +19,7 @@ class CreateTaskContainer extends Component {
         },
         roles: {
           evaluator: '',
-          manager: '',
+          manager: props.colonyClient.adapter.wallet.address,
           worker: '',
         },
         skillId: 0,
