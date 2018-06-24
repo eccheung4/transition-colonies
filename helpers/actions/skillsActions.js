@@ -1,3 +1,31 @@
+// getSkillTitle
+
+export const getSkillTitle = (skillId) => {
+
+  // return skill title
+  switch (skillId) {
+    case 3:
+      return 'Agriculture'
+    case 4:
+      return 'Communication'
+    case 5:
+      return 'Construction'
+    case 6:
+      return 'Economics'
+    case 7:
+      return 'Engineering'
+    case 8:
+      return 'Healthcare'
+    case 9:
+      return 'Technology'
+    case 10:
+      return 'Transportation'
+    default:
+      break
+  }
+
+}
+
 // getSkill
 
 export const getSkill = async (networkClient, skillId) => {
@@ -14,23 +42,23 @@ export const getSkill = async (networkClient, skillId) => {
 
 export const getSkills = async (networkClient) => {
 
-  // get skill count
-  const { count: skillCount } = await networkClient.getSkillCount.call()
-
   // set skill id
-  let skillId = 1
+  let skillId = 3
 
   // set skills
   let skills = []
 
   // get skills
-  while (skillId <= skillCount) {
+  while (skillId <= 10) {
 
     // get skill
     let skill = await getSkill(networkClient, skillId)
 
     // append skill id
     skill.id = skillId
+
+    // append skill title
+    skill.title = getSkillTitle(skillId)
 
     // add skill to skills
     skills.push(skill)

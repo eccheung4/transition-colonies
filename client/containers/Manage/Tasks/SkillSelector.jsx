@@ -11,7 +11,7 @@ class SkillSelectorContainer extends Component {
 
   componentDidMount() {
     if (this.props.skills === null) {
-      this.props.getSkills(networkClient)
+      this.props.getSkills(this.props.networkClient)
     }
   }
 

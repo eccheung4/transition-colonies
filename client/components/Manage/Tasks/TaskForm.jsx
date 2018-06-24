@@ -66,7 +66,7 @@ const TaskForm = ({ handleChange, task }) => (
       <input
         id="role-evaluator"
         onChange={handleChange}
-        placeholder="user address"
+        placeholder="0x0"
         type="text"
         value={task.roles.evaluator}
       />
@@ -78,7 +78,7 @@ const TaskForm = ({ handleChange, task }) => (
       <input
         id="role-manager"
         onChange={handleChange}
-        placeholder="user address"
+        placeholder="0x0"
         type="text"
         value={task.roles.manager}
       />
@@ -90,7 +90,7 @@ const TaskForm = ({ handleChange, task }) => (
       <input
         id="role-worker"
         onChange={handleChange}
-        placeholder="user address"
+        placeholder="0x0"
         type="text"
         value={task.roles.worker}
       />

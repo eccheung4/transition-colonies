@@ -16,11 +16,6 @@ const Menu = ({ logout }) => (
         </NavLink>
       </li>
       <li className={styles.item}>
-        <NavLink to="/manage/skills">
-          {'Skills'}
-        </NavLink>
-      </li>
-      <li className={styles.item}>
         <NavLink to="/manage/tasks">
           {'Tasks'}
         </NavLink>
