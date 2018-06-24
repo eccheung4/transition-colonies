@@ -7,13 +7,27 @@ const TaskPreview = ({ task }) => (
       <span>{'id:'}</span>
       <span>{' ' + task.id}</span>
     </div>
-    <div>
-      <span>{'skill id:'}</span>
-      <span>{' ' + task.skillId}</span>
+    <div className={styles.group}>
+      <div>{'domain:'}</div>
+      <div className={styles.indent}>
+        <span>{'id:'}</span>
+        <span>{' ' + task.domainId}</span>
+      </div>
+      <div className={styles.indent}>
+        <span>{'title:'}</span>
+        <span>{' ' + task.domainTitle}</span>
+      </div>
     </div>
-    <div>
-      <span>{'domain id:'}</span>
-      <span>{' ' + task.domainId}</span>
+    <div className={styles.group}>
+      <div>{'skill:'}</div>
+      <div className={styles.indent}>
+        <span>{'id:'}</span>
+        <span>{' ' + task.skillId}</span>
+      </div>
+      <div className={styles.indent}>
+        <span>{'title:'}</span>
+        <span>{' ' + task.skillTitle}</span>
+      </div>
     </div>
     <div>
       <span>{'due date:'}</span>

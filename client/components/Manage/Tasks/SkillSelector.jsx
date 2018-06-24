@@ -8,7 +8,7 @@ const SkillSelector = ({ handleChange, skillId, skills }) => (
     </label>
     <select id="skillId" onChange={handleChange} value={skillId}>
       <option value={0}>
-        {'(none)'}
+        {'select skill...'}
       </option>
       {skills ? skills.map(skill => (
         <option key={skill.id} value={skill.id}>

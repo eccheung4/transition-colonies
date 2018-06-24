@@ -4,6 +4,10 @@ import BN from 'bn.js'
 // import extended protocol
 import ecp from '../ecp'
 
+// import local actions
+import { getDomainTitle } from './domainsActions'
+import { getSkillTitle } from './skillsActions'
+
 // cancelTask
 
 export const cancelTask = async (colonyClient, taskId) => {
@@ -210,9 +214,17 @@ export const getTask = async (colonyClient, taskId) => {
   // stop extended protocol
   await ecp.stop()
 
+  // get domain title
+  const domainTitle = getDomainTitle(task.domainId)
+
+  // get skill title
+  const skillTitle = getSkillTitle(task.skillId)
+
   // return task
   return {
     ...task,
+    domainTitle,
+    skillTitle,
     specification: {
       description: specification.description,
       title: specification.title,

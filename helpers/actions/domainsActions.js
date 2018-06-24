@@ -5,13 +5,13 @@ export const getDomainTitle = (domainId) => {
   // return domain title
   switch (domainId) {
     case 1:
-      return 'market'
+      return 'Market'
     case 2:
-      return 'business'
+      return 'Business'
     case 3:
-      return 'education'
+      return 'Education'
     case 4:
-      return 'service'
+      return 'Service'
     default:
       break
   }

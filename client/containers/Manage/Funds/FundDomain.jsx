@@ -7,14 +7,14 @@ class FundDomainContainer extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { funding: { amount: 0, domainId: 2 } }
+    this.state = { funding: { amount: 0, domainId: 0 } }
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.fundDomainSuccess && prevProps.fundDomainSuccess !== this.props.fundDomainSuccess) {
-      this.setState({ funding: { amount: 0, domainId: 2 } })
+      this.setState({ funding: { amount: 0, domainId: 0 } })
     }
   }
 
