@@ -1,9 +1,9 @@
 // getSkill
 
-export const getSkill = async (colonyClient, skillId) => {
+export const getSkill = async (networkClient, skillId) => {
 
   // get skill
-  const skill = await colonyClient.getSkill.call({ skillId })
+  const skill = await networkClient.getSkill.call({ skillId })
 
   // return skill
   return skill
@@ -12,7 +12,7 @@ export const getSkill = async (colonyClient, skillId) => {
 
 // getSkills
 
-export const getSkills = async (networkClient, colonyClient) => {
+export const getSkills = async (networkClient) => {
 
   // get skill count
   const { count: skillCount } = await networkClient.getSkillCount.call()
@@ -27,7 +27,10 @@ export const getSkills = async (networkClient, colonyClient) => {
   while (skillId <= skillCount) {
 
     // get skill
-    const skill = await getSkill(networkClient, skillId)
+    let skill = await getSkill(networkClient, skillId)
+
+    // append skill id
+    skill.id = skillId
 
     // add skill to skills
     skills.push(skill)

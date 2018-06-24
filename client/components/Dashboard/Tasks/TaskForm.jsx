@@ -1,4 +1,5 @@
 import React from 'react'
+import SkillSelector from '../../../containers/Dashboard/Tasks/SkillSelector'
 import styles from './TaskForm.scss'
 
 const TaskForm = ({ handleChange, task }) => (
@@ -43,18 +44,10 @@ const TaskForm = ({ handleChange, task }) => (
         </option>
       </select>
     </div>
-    <div className={styles.field}>
-      <label htmlFor="skillId">
-        {'skill:'}
-      </label>
-      <input
-        id="skillId"
-        onChange={handleChange}
-        placeholder="0"
-        type="number"
-        value={task.skillId}
-      />
-    </div>
+    <SkillSelector
+      handleChange={handleChange}
+      skillId={task.skillId}
+    />
     <div className={styles.field}>
       <label htmlFor="dueDate">
         {'due date:'}

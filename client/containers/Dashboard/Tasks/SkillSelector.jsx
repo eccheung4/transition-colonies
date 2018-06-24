@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSkills } from '../../../actions/skillsActions'
-import ViewSkills from '../../../components/Dashboard/Skills/ViewSkills'
+import SkillSelector from '../../../components/Dashboard/Tasks/SkillSelector'
 
-class ViewSkillsContainer extends Component {
+class SkillSelectorContainer extends Component {
 
   constructor(props) {
     super(props)
@@ -11,16 +11,18 @@ class ViewSkillsContainer extends Component {
 
   componentDidMount() {
     if (this.props.skills === null) {
-      this.props.getSkills(this.props.networkClient)
+      this.props.getSkills(networkClient)
     }
   }
 
   render() {
     return (
-      <ViewSkills
+      <SkillSelector
         getSkillsError={this.props.getSkillsError}
         getSkillsLoading={this.props.getSkillsLoading}
         getSkillsSuccess={this.props.getSkillsSuccess}
+        handleChange={this.props.handleChange}
+        skillId={this.props.skillId}
         skills={this.props.skills}
       />
     )
@@ -29,9 +31,9 @@ class ViewSkillsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  getSkillsError: state.skills.getSkillsError,
-  getSkillsLoading: state.skills.getSkillsLoading,
-  getSkillsSuccess: state.skills.getSkillsSuccess,
+  getSkillsError: state.tasks.getSkillsError,
+  getSkillsLoading: state.tasks.getSkillsLoading,
+  getSkillsSuccess: state.tasks.getSkillsSuccess,
   networkClient: state.network.networkClient,
   skills: state.skills.skills,
 })
@@ -42,4 +44,4 @@ const mapDispatchToProps = dispatch => ({
   },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewSkillsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SkillSelectorContainer)

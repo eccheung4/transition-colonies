@@ -4,9 +4,9 @@ import * as skillsActions from '../../helpers/actions/skillsActions'
 
 // getSkills
 
-export const getSkills = (networkClient, colonyClient) => ({
+export const getSkills = (networkClient) => ({
   type: actions.GET_SKILLS,
-  payload: skillsActions.getSkills(networkClient, colonyClient)
+  payload: skillsActions.getSkills(networkClient)
     .then(skills => {
       store.dispatch(setStateSkills(skills))
       store.dispatch(getSkillsSuccess())
