@@ -568,9 +568,6 @@ export const signTask = async (colonyClient, taskId) => {
     // sign task brief
     await signTaskBrief(colonyClient, setTaskBriefOperationJSON)
 
-    // remove local storage item
-    localStorage.removeItem('setTaskBriefOperationJSON')
-
   }
 
   // check if task due date operation exists for contract and task
@@ -582,9 +579,6 @@ export const signTask = async (colonyClient, taskId) => {
 
     // sign task due date
     await signTaskDueDate(colonyClient, setTaskDueDateOperationJSON)
-
-    // remove local storage item
-    localStorage.removeItem('setTaskDueDateOperationJSON')
 
   }
 
@@ -598,9 +592,6 @@ export const signTask = async (colonyClient, taskId) => {
     // sign task evaluator payout
     await signTaskEvaluatorPayout(colonyClient, setTaskEvaluatorPayoutOperationJSON)
 
-    // remove local storage item
-    localStorage.removeItem('setTaskEvaluatorPayoutOperationJSON')
-
   }
 
   // check if task worker payout operation exists for contract and task
@@ -612,9 +603,6 @@ export const signTask = async (colonyClient, taskId) => {
 
     // sign task worker payout
     await signTaskWorkerPayout(colonyClient, setTaskWorkerPayoutOperationJSON)
-
-    // remove local storage item
-    localStorage.removeItem('setTaskWorkerPayoutOperationJSON')
 
   }
 
@@ -649,6 +637,9 @@ export const signTaskBrief = async (colonyClient, operationJSON) => {
 
     // send set task brief operation
     await setTaskBriefOperation.send()
+
+    // remove local storage item
+    localStorage.removeItem('setTaskBriefOperationJSON')
 
   } else {
 
@@ -686,6 +677,9 @@ export const signTaskDueDate = async (colonyClient, operationJSON) => {
     // send set task due date operation
     await setTaskDueDateOperation.send()
 
+    // remove local storage item
+    localStorage.removeItem('setTaskDueDateOperationJSON')
+
   } else {
 
     // serialize operation into JSON format
@@ -722,6 +716,9 @@ export const signTaskEvaluatorPayout = async (colonyClient, operationJSON) => {
     // send set task evaluator payout operation
     await setTaskEvaluatorPayoutOperation.send()
 
+    // remove local storage item
+    localStorage.removeItem('setTaskEvaluatorPayoutOperationJSON')
+
   } else {
 
     // serialize operation into JSON format
@@ -757,6 +754,9 @@ export const signTaskWorkerPayout = async (colonyClient, operationJSON) => {
 
     // send set task worker payout operation
     await setTaskWorkerPayoutOperation.send()
+
+    // remove local storage item
+    localStorage.removeItem('setTaskWorkerPayoutOperationJSON')
 
   } else {
 
