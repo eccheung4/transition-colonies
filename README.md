@@ -1,44 +1,114 @@
 # transition-colonies
 
-This project is a submission for the [Colony Hackathon](https://colony.io/hackathon/).
+## About
+
+This project was created for the [Colony Hackathon](https://colony.io/hackathon/). The project uses [colonyJS](https://github.com/JoinColony/colonyJS) to interact with the [colonyNetwork](https://github.com/JoinColony/colonyNetwork). More information about the project can be found in the [project proposal](https://github.com/JoinColony/colonyHackathon/issues/98).
 
 ## Proposal
 
-[https://github.com/JoinColony/colonyHackathon/issues/98](https://github.com/JoinColony/colonyHackathon/issues/98)
+[JoinColony/colonyHackathon Issue #98](https://github.com/JoinColony/colonyHackathon/issues/98)
+
+## Submission
+
+[JoinColony/colonyHachathon Pull Request #119](https://github.com/JoinColony/colonyHackathon/pull/119)
+
+Final commit for the hackathon is [added license](https://github.com/ryanchristo/transition-colonies/commit/139db2da98b024eb881ced9c67a6e0dc089d5023)
 
 ## Prerequisites
 
-- Yarn 1.7
 - Node 9.5
+- Yarn 1.7
+
+## Testing
+
+#### Run Tests
+
+```
+yarn test
+```
 
 ## Development
 
-### Install
+#### Set Environment
+
+```
+NODE_ENV=development
+```
+
+#### Install Dependencies
+
 ```
 yarn
 ```
 
-### Start Ganache
+#### Start Ganache
+
 ```
 yarn start-ganache
 ```
 
-### Deploy Contracts
+#### Deploy Contracts
+
 ```
 yarn deploy-contracts
 ```
 
-### Start TrufflePig
+#### Start TrufflePig
+
 ```
 yarn start-trufflepig
 ```
 
-### Start Server
+#### Seed Network
+
+```
+yarn seed-network
+```
+
+#### Start Webpack
+
+```
+yarn watch
+```
+
+#### Start Server
+
 ```
 yarn start
 ```
 
-### Start Webpack
+#### View Project
+
+http://localhost:3000
+
+## Production
+
+#### Set Environment
+
 ```
-yarn watch
+NETWORK=rinkeby
+NODE_ENV=production
+PRIVATE_KEY=
 ```
+
+#### Install Dependencies
+
+```
+yarn
+```
+
+#### Build Client
+
+```
+yarn build
+```
+
+#### Start Server
+
+```
+yarn start
+```
+
+#### View Project
+
+http://localhost:3000
