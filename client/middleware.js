@@ -7,7 +7,7 @@ const logger = createLogger({
 
 let middleware = []
 
-if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   middleware = [...middleware, logger]
 }
 

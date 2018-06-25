@@ -10,8 +10,12 @@ class AppContainer extends Component {
   }
 
   componentDidMount() {
-    let testAccountIndex = prompt('test account index:', '0')
-    this.props.getNetworkClient(Number(testAccountIndex))
+    if (process.env.NODE_ENV !== 'production') {
+      let testAccountIndex = prompt('test account index:', '0')
+      this.props.getNetworkClient(Number(testAccountIndex))
+    } else {
+      this.props.getNetworkClient()
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -21,21 +25,13 @@ class AppContainer extends Component {
   }
 
   render() {
-    if (this.props.getNetworkClientError) {
-      return (
-        <div>
-          {this.props.getNetworkClientError}
-        </div>
-      )
-    }
-    if (this.props.getNetworkClientLoading || this.props.networkClient === null) {
-      return (
-        <div>
-          {'loading...'}
-        </div>
-      )
-    }
-    return <App />
+    return (
+      <App
+        getNetworkClientError={this.props.getNetworkClientError}
+        getNetworkClientLoading={this.props.getNetworkClientLoading || this.props.networkClient === null}
+        getNetworkClientSuccess={this.props.getNetworkClientSuccess}
+      />
+    )
   }
 
 }
