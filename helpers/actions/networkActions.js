@@ -1,27 +1,55 @@
-// import seed global skills
-import { seedGlobalSkills } from '../seed'
-
-// import the prerequisites and colony client
+// import prerequisites and colony client
 const { providers, Wallet } = require('ethers')
 const { default: EthersAdapter } = require('@colony/colony-js-adapter-ethers')
+const { default: NetworkLoader } = require('@colony/colony-js-contract-loader-network')
 const { TrufflepigLoader } = require('@colony/colony-js-contract-loader-http')
 const { default: ColonyNetworkClient } = require('@colony/colony-js-client')
 
-// create an instance of Trufflepig loader
-const loader = new TrufflepigLoader()
+// set loader
+let loader
 
-// create a provider for local TestRPC (Ganache)
-const provider = new providers.JsonRpcProvider('http://localhost:8545/')
+// set provider
+let provider
+
+// set wallet
+let wallet
+
+// check environemnt
+if (process.env.NODE_ENV === 'production') {
+
+  // create instance of NetworkLoader
+  loader = new NetworkLoader({ network: process.env.NETWORK })
+
+  // create provider for network
+  provider = providers.getDefaultProvider(process.env.NETWORK)
+
+  // create wallet with private key and provider
+  wallet = new Wallet(process.env.PRIVATE_KEY, provider)
+
+} else {
+
+  // create instance of TrufflepigLoader
+  loader = new TrufflepigLoader()
+
+  // create provider for local TestRPC (Ganache)
+  provider = new providers.JsonRpcProvider('http://localhost:8545/')
+
+}
 
 // getNetworkClient
 
 export const getNetworkClient = async (testAccountIndex) => {
 
-  // get the private key from selected account through trufflepig
-  const { privateKey } = await loader.getAccount(testAccountIndex || 0)
+  // check environemnt
+  if (process.env.NODE_ENV !== 'production') {
 
-  // create a wallet with the private key
-  const wallet = new Wallet(privateKey, provider)
+    // get private key from selected account through trufflepig
+    const { privateKey } = await loader.getAccount(testAccountIndex || 0)
+
+    // create wallet with private key and provider
+    wallet = new Wallet(privateKey, provider)
+
+  }
 
   // create an ethers powered adapter
   const adapter = new EthersAdapter({
@@ -30,20 +58,11 @@ export const getNetworkClient = async (testAccountIndex) => {
     wallet,
   })
 
-  // connect to ColonyNetwork with the adapter
+  // create new instance of network client with adapter
   const networkClient = new ColonyNetworkClient({ adapter })
+
+  // initialize netwrok client
   await networkClient.init()
-
-  // get skill count
-  const { count: skillCount } = await networkClient.getSkillCount.call()
-
-  // check skill count
-  if (skillCount === 2) {
-
-    // seed global skills
-    seedGlobalSkills(networkClient)
-
-  }
 
   // return netwrok client
   return networkClient
