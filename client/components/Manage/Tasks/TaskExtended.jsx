@@ -9,13 +9,13 @@ const TaskExtended = ({ task }) => (
     <p>{'Due Date: ' + task.dueDate}</p>
     <p>{'Title: ' + task.specification.title}</p>
     <p>{'Description: ' + task.specification.description}</p>
-    <p>{'Evaluator: ' + task.roles.evaluator.address}</p>
     <p>{'Manager: ' + task.roles.manager.address}</p>
+    <p>{'Evaluator: ' + task.roles.evaluator.address}</p>
     <p>{'Worker: ' + task.roles.worker.address}</p>
     <p>{'Pot Balance: ' + task.pot.balance}</p>
-    <p>{'Evaluator Payout: ' + task.payouts.evaluator}</p>
     <p>{'Manager Payout: ' + task.payouts.manager}</p>
-    <p>{'Worker: ' + task.payouts.worker}</p>
+    <p>{'Evaluator Payout: ' + task.payouts.evaluator}</p>
+    <p>{'Worker Payout: ' + task.payouts.worker}</p>
     <p>{'Date Delivered: ' + task.deliverableDate}</p>
     <p>{'Delivered Message: ' + task.deliverable.message}</p>
     <p>{'Ratings Submitted: ' + task.ratings.count}</p>

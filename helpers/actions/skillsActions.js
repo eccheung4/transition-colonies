@@ -61,7 +61,7 @@ export const getSkills = async (networkClient) => {
   // set skills
   let skills = []
 
-  // get skills
+  // loop through skills
   while (skillId <= skillCount) {
 
     // get parent skill id and prevent throwing error with catch
