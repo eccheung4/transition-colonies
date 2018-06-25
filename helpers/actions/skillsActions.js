@@ -2,28 +2,36 @@
 
 export const getSkillTitle = (skillId) => {
 
-  // return skill title
-  switch (skillId) {
-    case 0:
-      return 'undefined'
-    case 3:
-      return 'Agriculture'
-    case 4:
-      return 'Communication'
-    case 5:
-      return 'Construction'
-    case 6:
-      return 'Economics'
-    case 7:
-      return 'Engineering'
-    case 8:
-      return 'Healthcare'
-    case 9:
-      return 'Technology'
-    case 10:
-      return 'Transportation'
-    default:
-      break
+  // check environment
+  if (process.env.NODE_ENV === 'production') {
+
+    // return undefined
+    return 'undefined'
+
+  } else {
+
+    // return title
+    switch (skillId) {
+      case 3:
+        return 'Agriculture'
+      case 4:
+        return 'Communication'
+      case 5:
+        return 'Construction'
+      case 6:
+        return 'Economics'
+      case 7:
+        return 'Engineering'
+      case 8:
+        return 'Healthcare'
+      case 9:
+        return 'Technology'
+      case 10:
+        return 'Transportation'
+      default:
+        break
+    }
+
   }
 
 }
@@ -44,26 +52,37 @@ export const getSkill = async (networkClient, skillId) => {
 
 export const getSkills = async (networkClient) => {
 
+  // get skill count
+  const { count: skillCount } = await networkClient.getSkillCount.call()
+
   // set skill id
-  let skillId = 3
+  let skillId = 1
 
   // set skills
   let skills = []
 
   // get skills
-  while (skillId <= 10) {
+  while (skillId <= skillCount) {
 
-    // get skill
-    let skill = await getSkill(networkClient, skillId)
+    // get parent skill id and prevent throwing error with catch
+    const { parentSkillId } = await networkClient.getParentSkillId.call({
+      skillId,
+      parentSkillIndex: 0,
+    }).catch(() => false)
 
-    // append skill id
-    skill.id = skillId
+    // check if global skill
+    if (parentSkillId && parentSkillId === 1) {
 
-    // append skill title
-    skill.title = getSkillTitle(skillId)
+      // get skill
+      let skill = await getSkill(networkClient, skillId)
 
-    // add skill to skills
-    skills.push(skill)
+      // append skill id
+      skill.id = skillId
+
+      // add skill to skills
+      skills.push(skill)
+
+    }
 
     // increment id
     skillId++

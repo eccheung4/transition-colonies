@@ -14,7 +14,7 @@ class CreateColonyContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.createColonySuccess) {
+    if (this.props.createColonySuccess && prevProps.createColonySuccess !== this.props.createColonySuccess) {
       this.props.history.push('/manage')
     }
   }
