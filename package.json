@@ -9,7 +9,7 @@
     "start-trufflepig": "cd lib/colonyNetwork && trufflepig --ganacheKeyFile ganache-accounts.json",
     "build": "webpack -p --config webpack/production.config.js",
     "start": "node server/server",
-    "watch": "webpack -w --config webpack/development.config.js",
+    "watch": "rm -f public/index.min.css && webpack -w --config webpack/development.config.js",
     "test": "jest"
   },
   "contributors": [
@@ -45,6 +45,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.11",
     "css-modules-require-hook": "^4.2.3",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "ganache-cli": "^6.1.0",
     "jest": "^23.1.0",
     "node-sass": "^4.9.0",
@@ -53,8 +54,8 @@
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "trufflepig": "^1.0.4",
-    "webpack": "^4.1.0",
-    "webpack-cli": "^2.0.10",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8",
     "webpack-merge": "^4.1.3"
   }
 }

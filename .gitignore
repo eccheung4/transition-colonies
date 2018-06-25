@@ -1,3 +1,4 @@
 node_modules
 ganache-accounts.json
+public/index.min.css
 public/index.min.js

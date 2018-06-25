@@ -30,6 +30,7 @@ export default (request, response) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Transition Colonies</title>
+        <link rel="stylesheet" type="text/css" href="/index.min.css">
       </head>
       <body>
         <div id="app">${html}</div>
