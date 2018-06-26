@@ -1,7 +1,3 @@
-// appActions
-
-export const LOGOUT = 'LOGOUT'
-
 // colonyActions
 
 export const CREATE_COLONY = 'CREATE_COLONY'
@@ -120,3 +116,15 @@ export const MINT_TOKENS_SUCCESS = 'MINT_TOKENS_SUCCESS'
 
 export const SET_STATE_TOKEN = 'SET_STATE_TOKEN'
 export const SET_STATE_TOKEN_ADDRESS = 'SET_STATE_TOKEN_ADDRESS'
+
+// adminsActions
+
+export const ADD_ADMIN = 'ADD_ADMIN'
+export const ADD_ADMIN_ERROR = 'ADD_ADMIN_ERROR'
+export const ADD_ADMIN_SUCCESS = 'ADD_ADMIN_SUCCESS'
+
+export const GET_ADMINS = 'GET_ADMINS'
+export const GET_ADMINS_ERROR = 'GET_ADMINS_ERROR'
+export const GET_ADMINS_SUCCESS = 'GET_ADMINS_SUCCESS'
+
+export const SET_STATE_ADMINS = 'SET_STATE_ADMINS'

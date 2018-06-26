@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import adminsReducer from './reducers/adminsReducer'
 import colonyReducer from './reducers/colonyReducer'
 import domainsReducer from './reducers/domainsReducer'
 import fundsReducer from './reducers/fundsReducer'
@@ -8,6 +9,7 @@ import tasksReducer from './reducers/tasksReducer'
 import tokenReducer from './reducers/tokenReducer'
 
 const reducers = combineReducers({
+  admins: adminsReducer,
   colony: colonyReducer,
   domains: domainsReducer,
   funds: fundsReducer,

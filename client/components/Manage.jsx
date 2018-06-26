@@ -6,6 +6,7 @@ import Menu from '../containers/Manage/Menu'
 import Home from './Manage/Home'
 import Tasks from './Manage/Tasks'
 import Token from './Manage/Token'
+import Admins from './Manage/Admins'
 import styles from './Manage.scss'
 
 const Manage = ({ colonyClient }) => (
@@ -20,6 +21,7 @@ const Manage = ({ colonyClient }) => (
             <Route path="/manage/funds" component={Funds} />
             <Route path="/manage/tasks" component={Tasks} />
             <Route path="/manage/token" component={Token} />
+            <Route path="/manage/admins" component={Admins} />
             <Route path="/manage" component={Home} />
           </Switch>
         </div>

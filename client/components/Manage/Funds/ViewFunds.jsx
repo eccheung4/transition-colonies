@@ -15,9 +15,11 @@ const ViewFunds = ({
       <div>
         <h3>{'Colony'}</h3>
         <ul className={styles.list}>
-          {pots.slice(0, 1).map((pot, index) => (
-            <li key={index} className={styles.item}>
-              <p className={styles.title}>{pot.title}</p>
+          {pots.slice(0, 1).map(pot => (
+            <li key={pot.id} className={styles.item}>
+              <p className={styles.title}>
+                {pot.title}
+              </p>
               <p>{'Pot ID: ' + pot.id}</p>
               <p>{'Balance: ' + pot.balance}</p>
               <p>{'Type: ' + pot.type}</p>
@@ -26,9 +28,11 @@ const ViewFunds = ({
         </ul>
         <h3>{'Domains'}</h3>
         <ul className={styles.list}>
-          {pots.slice(1, 4).map((pot, index) => (
-            <li key={index} className={styles.item}>
-              <p className={styles.title}>{pot.title}</p>
+          {pots.slice(1, 4).map(pot => (
+            <li key={pot.id} className={styles.item}>
+              <p className={styles.title}>
+                {pot.title}
+              </p>
               <p>{'Pot ID: ' + pot.id}</p>
               <p>{'Balance: ' + pot.balance}</p>
               <p>{'Type: ' + pot.type}</p>
@@ -37,9 +41,11 @@ const ViewFunds = ({
         </ul>
         <h3>{'Tasks'}</h3>
         <ul className={styles.list}>
-          {pots.slice(4).map((pot, index) => (
-            <li key={index} className={styles.item}>
-              <p className={styles.title}>{pot.title}</p>
+          {pots.slice(4).map(pot => (
+            <li key={pot.id} className={styles.item}>
+              <p className={styles.title}>
+                {pot.title}
+              </p>
               <p>{'Pot ID: ' + pot.id}</p>
               <p>{'Balance: ' + pot.balance}</p>
               <p>{'Type: ' + pot.type}</p>

@@ -34,7 +34,7 @@ const Home = () => (
         <li>{'Community organizers (admin) can create educational programs (tasks in "education" domain)'}</li>
         <li>{'Community organizers (admin) can create community projects (tasks in "service" domain)'}</li>
         <li>{'Community organizers (admin) can create business milestones (tasks in "business" domain)'}</li>
-        <li>{'Community members (users) can complete educational programs, community projects and business milestones (tasks) to earn tokens and build their reputation'}</li>
+        <li>{'Community members (admins) can complete educational programs, community projects and business milestones (tasks) to earn tokens and build their reputation'}</li>
       </ul>
     </div>
   </div>
