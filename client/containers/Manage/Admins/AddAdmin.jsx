@@ -12,6 +12,12 @@ class AddAdminContainer extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.addAdminSuccess && prevProps.addAdminSuccess !== this.props.addAdminSuccess) {
+      this.setState({ userAddress: '' })
+    }
+  }
+
   handleChange(event) {
     let state = this.state
     state[event.target.id] = event.target.value

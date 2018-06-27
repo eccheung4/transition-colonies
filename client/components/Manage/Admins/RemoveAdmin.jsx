@@ -1,16 +1,16 @@
 import React from 'react'
-import styles from './AddAdmin.scss'
+import styles from './RemoveAdmin.scss'
 
-const AddAdmin = ({
-  addAdminError,
-  addAdminLoading,
-  addAdminSuccess,
+const RemoveAdmin = ({
   handleChange,
   handleClick,
+  removeAdminError,
+  removeAdminLoading,
+  removeAdminSuccess,
   userAddress,
 }) => (
   <div className={styles.container}>
-    <h2>{'Add Admin'}</h2>
+    <h2>{'Remove Admin'}</h2>
     <div className={styles.field}>
       <label htmlFor="userAddress">
         {'Address:'}
@@ -25,24 +25,24 @@ const AddAdmin = ({
     </div>
     <div className={styles.buttons}>
       <button onClick={handleClick}>
-        {'Add Admin'}
+        {'Remove Admin'}
       </button>
     </div>
-    {addAdminError &&
+    {removeAdminError &&
       <div className={styles.message}>
         <span className={styles.error}>
-          {addAdminError}
+          {removeAdminError}
         </span>
       </div>
     }
-    {addAdminLoading &&
+    {removeAdminLoading &&
       <div className={styles.message}>
         <span>
           {'loading...'}
         </span>
       </div>
     }
-    {addAdminSuccess &&
+    {removeAdminSuccess &&
       <div className={styles.message}>
         <span>
           {'success'}
@@ -52,4 +52,4 @@ const AddAdmin = ({
   </div>
 )
 
-export default AddAdmin
+export default RemoveAdmin

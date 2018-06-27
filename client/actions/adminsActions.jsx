@@ -50,6 +50,30 @@ export const getAdminsSuccess = (message) => ({
   payload: message,
 })
 
+// removeAdmin
+
+export const removeAdmin = (colonyClient, userAddress) => ({
+  type: actions.REMOVE_ADMIN,
+  payload: adminsActions.removeAdmin(colonyClient, userAddress)
+    .then(admins => {
+      store.dispatch(setStateAdmins(admins))
+      store.dispatch(removeAdminSuccess())
+    })
+    .catch(error => {
+      store.dispatch(removeAdminError(error.message))
+    }),
+})
+
+export const removeAdminError = (message) => ({
+  type: actions.REMOVE_ADMIN_ERROR,
+  payload: message,
+})
+
+export const removeAdminSuccess = (message) => ({
+  type: actions.REMOVE_ADMIN_SUCCESS,
+  payload: message,
+})
+
 // setStateAdmins
 
 export const setStateAdmins = (admins) => ({

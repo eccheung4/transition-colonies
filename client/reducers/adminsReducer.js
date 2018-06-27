@@ -15,6 +15,11 @@ const initialState = {
   getAdminsLoading: false,
   getAdminsSuccess: false,
 
+  // removeAdmin
+  removeAdminError: null,
+  removeAdminLoading: false,
+  removeAdminSuccess: false,
+
 }
 
 const adminsReducer = (state = initialState, action) => {
@@ -67,6 +72,30 @@ const adminsReducer = (state = initialState, action) => {
         ...state,
         getAdminsLoading: false,
         getAdminsSuccess: true,
+      }
+
+    // removeAdmin
+
+    case actions.REMOVE_ADMIN:
+      return {
+        ...state,
+        removeAdminError: null,
+        removeAdminLoading: true,
+        removeAdminSuccess: false,
+      }
+
+    case actions.REMOVE_ADMIN_ERROR:
+      return {
+        ...state,
+        removeAdminError: action.payload,
+        removeAdminLoading: false,
+      }
+
+    case actions.REMOVE_ADMIN_SUCCESS:
+      return {
+        ...state,
+        removeAdminLoading: false,
+        removeAdminSuccess: true,
       }
 
     // setStateAdmins
