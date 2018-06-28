@@ -36,7 +36,7 @@ class RemoveAdminContainer extends Component {
         removeAdminError={this.props.removeAdminError}
         removeAdminLoading={this.props.removeAdminLoading}
         removeAdminSuccess={this.props.removeAdminSuccess}
-        userAddress={this.props.userAddress}
+        userAddress={this.state.userAddress}
       />
     )
   }

@@ -36,7 +36,7 @@ class AddAdminContainer extends Component {
         addAdminSuccess={this.props.addAdminSuccess}
         handleChange={this.handleChange}
         handleClick={this.handleClick}
-        userAddress={this.props.userAddress}
+        userAddress={this.state.userAddress}
       />
     )
   }
