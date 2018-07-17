@@ -17,9 +17,6 @@ const SubmitRating = ({
         {'role:'}
       </label>
       <select id="role" value={role} onChange={handleChange}>
-        <option value={'EVALUATOR'}>
-          {'Evaluator'}
-        </option>
         <option value={'MANAGER'}>
           {'Manager'}
         </option>
