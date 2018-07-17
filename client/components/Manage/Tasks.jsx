@@ -3,6 +3,7 @@ import { NavLink, Route, Switch } from 'react-router-dom'
 import CreateTask from '../../containers/Manage/Tasks/CreateTask'
 import EditTask from '../../containers/Manage/Tasks/EditTask'
 import FundTask from '../../containers/Manage/Tasks/FundTask'
+import RevealRating from '../../containers/Manage/Tasks/RevealRating'
 import SubmitRating from '../../containers/Manage/Tasks/SubmitRating'
 import SubmitWork from '../../containers/Manage/Tasks/SubmitWork'
 import ViewTask from '../../containers/Manage/Tasks/ViewTask'
@@ -26,6 +27,7 @@ const Tasks = () => (
       <Route exact path="/manage/tasks/edit/:id" component={EditTask} />
       <Route exact path="/manage/tasks/fund/:id" component={FundTask} />
       <Route exact path="/manage/tasks/rate/:id" component={SubmitRating} />
+      <Route exact path="/manage/tasks/reveal/:id" component={RevealRating} />
       <Route exact path="/manage/tasks/submit/:id" component={SubmitWork} />
     </Switch>
   </div>

@@ -12,6 +12,7 @@ class TaskActionsContainer extends Component {
     this.editTask = this.editTask.bind(this)
     this.finalizeTask = this.finalizeTask.bind(this)
     this.fundTask = this.fundTask.bind(this)
+    this.revealRating = this.revealRating.bind(this)
     this.signTask = this.signTask.bind(this)
     this.submitRating = this.submitRating.bind(this)
     this.submitWork = this.submitWork.bind(this)
@@ -32,6 +33,10 @@ class TaskActionsContainer extends Component {
 
   fundTask() {
     this.props.history.push(`/manage/tasks/fund/${this.props.task.id}`)
+  }
+
+  revealRating() {
+    this.props.history.push(`/manage/tasks/reveal/${this.props.task.id}`)
   }
 
   signTask() {
@@ -67,6 +72,7 @@ class TaskActionsContainer extends Component {
           this.props.finalizeTaskLoading ||
           this.props.signTaskLoading
         }
+        revealRating={this.revealRating}
         signTask={this.signTask}
         submitRating={this.submitRating}
         submitWork={this.submitWork}

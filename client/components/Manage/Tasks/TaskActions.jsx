@@ -8,6 +8,7 @@ const TaskActions = ({
   fundTask,
   finalizeTask,
   loading,
+  revealRating,
   signTask,
   submitRating,
   submitWork,
@@ -28,14 +29,17 @@ const TaskActions = ({
       <button onClick={fundTask}>
         {'Fund Task'}
       </button>
-      <button onClick={finalizeTask}>
-        {'Finalize Task'}
-      </button>
       <button onClick={submitWork}>
         {'Submit Work'}
       </button>
       <button onClick={submitRating}>
         {'Submit Rating'}
+      </button>
+      <button onClick={revealRating}>
+        {'Reveal Rating'}
+      </button>
+      <button onClick={finalizeTask}>
+        {'Finalize Task'}
       </button>
       <button onClick={cancelTask}>
         {'Cancel Task'}

@@ -32,6 +32,11 @@ const initialState = {
   getTasksLoading: false,
   getTasksSuccess: false,
 
+  // revealRating
+  revealRatingError: null,
+  revealRatingLoading: false,
+  revealRatingSuccess: false,
+
   // signTask
   signTaskError: null,
   signTaskLoading: false,
@@ -206,6 +211,30 @@ const tasksReducer = (state = initialState, action) => {
         ...state,
         getTasksLoading: false,
         getTasksSuccess: true,
+      }
+
+    // revealRating
+
+    case actions.REVEAL_RATING:
+      return {
+        ...state,
+        revealRatingError: null,
+        revealRatingLoading: true,
+        revealRatingSuccess: false,
+      }
+
+    case actions.REVEAL_RATING_ERROR:
+      return {
+        ...state,
+        revealRatingError: action.payload,
+        revealRatingLoading: false,
+      }
+
+    case actions.REVEAL_RATING_SUCCESS:
+      return {
+        ...state,
+        revealRatingLoading: false,
+        revealRatingSuccess: true,
       }
 
     // setStateTask

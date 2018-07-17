@@ -364,6 +364,33 @@ export const getTasks = async (colonyClient) => {
 
 }
 
+// revealRating
+
+export const revealRating = async (colonyClient, taskId, role, rating) => {
+
+  // set salt
+  const salt = 'secret'
+
+  // set value
+  const value = rating
+
+  // generate secret
+  const { secret } = await colonyClient.generateSecret.call({ salt, value })
+
+  // reveal task work rating
+  const revealTaskWorkRating = await colonyClient.revealTaskWorkRating.send({ taskId, role, rating, salt })
+
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
+
+}
+
 // setTaskBrief
 
 export const setTaskBrief = async (colonyClient, taskId, specification) => {

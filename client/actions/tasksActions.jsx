@@ -146,6 +146,30 @@ export const getTasksSuccess = (message) => ({
   payload: message,
 })
 
+// revealRating
+
+export const revealRating = (colonyClient, taskId, role, rating) => ({
+  type: actions.REVEAL_RATING,
+  payload: tasksActions.revealRating(colonyClient, taskId, role, rating)
+    .then(task => {
+      store.dispatch(setStateTask(task))
+      store.dispatch(revealRatingSuccess())
+    })
+    .catch(error => {
+      store.dispatch(revealRatingError(error.message))
+    }),
+})
+
+export const revealRatingError = (message) => ({
+  type: actions.REVEAL_RATING_ERROR,
+  payload: message,
+})
+
+export const revealRatingSuccess = (message) => ({
+  type: actions.REVEAL_RATING_SUCCESS,
+  payload: message,
+})
+
 // setStateTask
 
 export const setStateTask = (task) => ({
