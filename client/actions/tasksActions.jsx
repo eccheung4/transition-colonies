@@ -2,6 +2,31 @@ import { store } from '../index'
 import * as actions from '../constants/actions'
 import * as tasksActions from '../../helpers/actions/tasksActions'
 
+
+// submitRating
+
+export const submitClaimPayout = (colonyClient, taskId, role) => ({
+  type: actions.SUBMIT_RATING,
+  payload: tasksActions.submitClaimPayout(colonyClient, taskId, role)
+    .then(task => {
+      store.dispatch(setStateTask(task))
+      store.dispatch(submitClaimPayoutSuccess())
+    })
+    .catch(error => {
+      store.dispatch(submitClaimPayoutError(error.message))
+    }),
+})
+
+export const submitClaimPayoutError = (message) => ({
+  type: actions.SUBMIT_CLAIM_PAYOUT_ERROR,
+  payload: message,
+})
+
+export const submitClaimPayoutSuccess = (message) => ({
+  type: actions.SUBMIT_CLAIM_PAYOUT_SUCCESS,
+  payload: message,
+})
+
 // cancelTask
 
 export const cancelTask = (colonyClient, taskId) => ({

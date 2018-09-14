@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './TaskActions.scss'
 
 const TaskActions = ({
+  submitClaimPayout,
   cancelTask,
   editTask,
   error,
@@ -43,6 +44,9 @@ const TaskActions = ({
       </button>
       <button onClick={cancelTask}>
         {'Cancel Task'}
+      </button>
+      <button onClick={submitClaimPayout}>
+        {'Claim Payout'}
       </button>
     </div>
     {error && !loading &&

@@ -8,6 +8,7 @@ import SubmitRating from '../../containers/Manage/Tasks/SubmitRating'
 import SubmitWork from '../../containers/Manage/Tasks/SubmitWork'
 import ViewTask from '../../containers/Manage/Tasks/ViewTask'
 import ViewTasks from '../../containers/Manage/Tasks/ViewTasks'
+import SubmitClaimPayout from '../../containers/Manage/Tasks/SubmitClaimPayout'
 import styles from './Tasks.scss'
 
 const Tasks = () => (
@@ -29,6 +30,7 @@ const Tasks = () => (
       <Route exact path="/manage/tasks/rate/:id" component={SubmitRating} />
       <Route exact path="/manage/tasks/reveal/:id" component={RevealRating} />
       <Route exact path="/manage/tasks/submit/:id" component={SubmitWork} />
+      <Route exact path="/manage/tasks/claim/:id" component={SubmitClaimPayout} />
     </Switch>
   </div>
 )

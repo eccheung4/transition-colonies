@@ -8,6 +8,7 @@ class TaskActionsContainer extends Component {
 
   constructor(props) {
     super(props)
+    this.submitClaimPayout = this.submitClaimPayout.bind(this)
     this.cancelTask = this.cancelTask.bind(this)
     this.editTask = this.editTask.bind(this)
     this.finalizeTask = this.finalizeTask.bind(this)
@@ -17,6 +18,10 @@ class TaskActionsContainer extends Component {
     this.submitRating = this.submitRating.bind(this)
     this.submitWork = this.submitWork.bind(this)
     this.viewTask = this.viewTask.bind(this)
+  }
+
+  submitClaimPayout() {
+    this.props.history.push(`/manage/tasks/claim/${this.props.task.id}`)
   }
 
   cancelTask() {
@@ -58,9 +63,11 @@ class TaskActionsContainer extends Component {
   render() {
     return (
       <TaskActions
+        submitClaimPayout={this.submitClaimPayout}
         cancelTask={this.cancelTask}
         editTask={this.editTask}
         error={
+          this.props.submitClaimPayoutError ||
           this.props.cancelTaskError ||
           this.props.finalizeTaskError ||
           this.props.signTaskError
@@ -68,6 +75,7 @@ class TaskActionsContainer extends Component {
         finalizeTask={this.finalizeTask}
         fundTask={this.fundTask}
         loading={
+          this.props.submitClaimPayoutLoading ||
           this.props.cancelTaskLoading ||
           this.props.finalizeTaskLoading ||
           this.props.signTaskLoading
@@ -77,6 +85,7 @@ class TaskActionsContainer extends Component {
         submitRating={this.submitRating}
         submitWork={this.submitWork}
         success={
+          this.props.submitClaimPayoutSuccess ||
           this.props.cancelTaskSuccess ||
           this.props.finalizeTaskSuccess ||
           this.props.signTaskSuccess
@@ -90,6 +99,9 @@ class TaskActionsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+  submitClaimPayoutError: state.tasks.submitClaimPayoutError,
+  submitClaimPayoutLoading: state.tasks.submitClaimPayoutLoading,
+  submitClaimPayoutSuccess: state.tasks.submitClaimPayoutSuccess,
   cancelTaskError: state.tasks.cancelTaskError,
   cancelTaskLoading: state.tasks.cancelTaskLoading,
   cancelTaskSuccess: state.tasks.cancelTaskSuccess,

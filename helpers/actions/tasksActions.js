@@ -8,6 +8,27 @@ import ecp from '../ecp'
 import { getDomainTitle } from './domainsActions'
 import { getSkillTitle } from './skillsActions'
 
+
+// claimPayout
+
+export const submitClaimPayout = async (colonyClient, taskId, role) => {
+  // set token
+  const token = colonyClient.token._contract.address
+
+  // submit task work rating
+  const submitClaimPayout = await colonyClient.claimPayout.send({ taskId, role, token })
+
+  // get updated task
+  const updatedTask = await getTask(colonyClient, taskId)
+
+  // get updated task extended
+  const updatedTaskExtended = await getTaskExtended(colonyClient, updatedTask)
+
+  // return updated task extended
+  return updatedTaskExtended
+
+}
+
 // cancelTask
 
 export const cancelTask = async (colonyClient, taskId) => {
