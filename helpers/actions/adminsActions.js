@@ -3,9 +3,8 @@
 export const addAdmin = async (colonyClient, userAddress) => {
 
   // add user role admin
-  await colonyClient.authority.setUserRole.send({
-    user: userAddress,
-    role: 'ADMIN',
+  await colonyClient.setAdminRole.send({
+    user: userAddress
   })
 
   // get updated admins
@@ -30,10 +29,8 @@ export const getAdmins = async (colonyClient) => {
 export const removeAdmin = async (colonyClient, userAddress) => {
 
   // remove user role admin
-  await colonyClient.authority.setUserRole.send({
-    user: userAddress,
-    role: 'ADMIN',
-    enabled: false,
+  await colonyClient.removeAdminRole.send({
+    user: userAddress
   })
 
   // get updated admins
