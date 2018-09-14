@@ -23,10 +23,6 @@ const TaskForm = ({ handleChange, task }) => (
         </option>
       </select>
     </div>
-    <SkillSelector
-      handleChange={handleChange}
-      skillId={task.skillId}
-    />
     <div className={styles.field}>
       <label htmlFor="specification-title">
         {'Title:'}
@@ -60,30 +56,6 @@ const TaskForm = ({ handleChange, task }) => (
         onChange={handleChange}
         type="date"
         value={task.dueDate}
-      />
-    </div>
-    <div className={styles.field}>
-      <label htmlFor="role-manager">
-        {'Manager:'}
-      </label>
-      <input
-        id="role-manager"
-        onChange={handleChange}
-        placeholder="0x0"
-        type="text"
-        value={task.roles.manager}
-      />
-    </div>
-    <div className={styles.field}>
-      <label htmlFor="role-evaluator">
-        {'Evaluator:'}
-      </label>
-      <input
-        id="role-evaluator"
-        onChange={handleChange}
-        placeholder="0x0"
-        type="text"
-        value={task.roles.evaluator}
       />
     </div>
     <div className={styles.field}>
