@@ -9,9 +9,8 @@ const TaskPreview = ({ task }) => (
     <p>{'Due Date: ' + task.dueDate}</p>
     <p>{'Title: ' + task.specification.title}</p>
     <p>{'Description: ' + task.specification.description}</p>
-    <p>{'Date Delivered: ' + task.deliverableDate}</p>
-    <p>{'Cancelled: ' + task.cancelled}</p>
-    <p>{'Finalized: ' + task.finalized}</p>
+    <p>{'Date Delivered: ' + task.completionDate}</p>
+    <p>{'Status: ' + task.status}</p>
     <p>{'Payouts We Cannot Make: ' + task.payoutsWeCannotMake}</p>
   </div>
 )

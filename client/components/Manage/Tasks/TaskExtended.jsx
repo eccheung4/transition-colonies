@@ -16,12 +16,11 @@ const TaskExtended = ({ task }) => (
     <p>{'Manager Payout: ' + task.payouts.manager}</p>
     <p>{'Evaluator Payout: ' + task.payouts.evaluator}</p>
     <p>{'Worker Payout: ' + task.payouts.worker}</p>
-    <p>{'Date Delivered: ' + task.deliverableDate}</p>
+    <p>{'Date Delivered: ' + task.completionDate}</p>
     <p>{'Delivered Message: ' + task.deliverable.message}</p>
     <p>{'Ratings Submitted: ' + task.ratings.count}</p>
     <p>{'Last Rating Submitted: ' + task.ratings.date}</p>
-    <p>{'Cancelled: ' + task.cancelled}</p>
-    <p>{'Finalized: ' + task.finalized}</p>
+    <p>{'Status: ' + task.status}</p>
     <p>{'Payouts We Cannot Make: ' + task.payoutsWeCannotMake}</p>
   </div>
 )

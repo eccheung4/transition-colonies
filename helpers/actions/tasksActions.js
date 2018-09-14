@@ -213,7 +213,7 @@ export const getTask = async (colonyClient, taskId) => {
   // stop extended protocol
   await ecp.stop()
 
-  console.log(specification)
+  console.log(task)
 
   // get domain title
   const domainTitle = getDomainTitle(task.domainId)
